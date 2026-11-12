@@ -46,6 +46,17 @@ from ai_eda.config import AGENT_RUNS_ROOT
 EventSink = Callable[[dict[str, Any]], None]
 
 
+def seed_components(level: int) -> tuple[str, ...]:
+    """Which verified components a tier starts from (L2: caches, L3: caches + predictor)."""
+
+    return ("icache", "dcache") if level == 2 else ("icache", "dcache", "branch_predictor")
+
+
+def seed_source_error(level: int) -> str:
+    source = "L1" if level == 2 else "L2"
+    return f"L{level} 组件来源必须是教师测试验证通过的 {source} 运行"
+
+
 def _first_retirements(report: dict) -> int | None:
     """从整机冒烟观测里读退休条数；读不到就返回 None（不据此判断）。"""
 
@@ -287,18 +298,19 @@ def run_agent(
     seed_interfaces: dict[str, str] = {}
     seed_manifest = None
     if component_seed_from:
-        if resume_from or project.get("expected_cpu_level") != 3:
-            raise ValueError("组件来源仅用于新 L3 运行，不能同时续跑")
+        seed_level = project.get("expected_cpu_level")
+        if resume_from or seed_level not in (2, 3):
+            raise ValueError("组件来源仅用于新的 L2/L3 运行，不能同时续跑")
         source = _load_resume_source(component_seed_from)
         summary = json.loads((source["source"] / "run_summary.json").read_text(encoding="utf-8"))
         report_ref = summary["selected_report"]
         report = json.loads(resolve_artifact(source["source"], report_ref).read_text(encoding="utf-8"))
         if not source_is_eligible_for_tier(project["id"], source["project_id"], report):
-            raise ValueError("L3 组件来源必须是教师测试验证通过的 L2 运行")
+            raise ValueError(seed_source_error(seed_level))
         seed_manifest = summary["selected_manifest"]
         available = load_snapshot_at(source["source"], seed_manifest)
         seed_files = {f"rtl/{name}.sv": available[f"rtl/{name}.sv"]
-                      for name in ("icache", "dcache", "branch_predictor")}
+                      for name in seed_components(seed_level)}
         seed_interfaces = frozen_component_interfaces(seed_files)
     spec_base = agent_task_spec(project["id"])
     run_id = f"agent-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}"

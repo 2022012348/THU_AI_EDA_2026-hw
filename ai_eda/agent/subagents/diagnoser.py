@@ -1622,6 +1622,38 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
             "teacher_checks": list(dict.fromkeys(memory_checks)),
             "verification": "Memory instructions carry their own registered operation and destination through MEM.",
         }
+    lane_rows = [
+        row for row in (*evidence.get("first_checks", ()), *(evidence.get("checks") or {}).get("groups", ()))
+        if any(marker in str(row.get("detail", "")) for marker in (
+            "非法字节使能", "写事务数", "未复制 dmem_wdata", "得到 0xa5a5a5a5",
+        ))
+    ]
+    if len(lane_rows) >= 3:
+        mem_path = "rtl/mem_stage.sv"
+        path = mem_path if mem_path in files else "rtl/rv32i5.sv"
+        illegal = any("非法字节使能" in str(row.get("detail", "")) for row in lane_rows)
+        return {
+            "stage": "simulation",
+            "hypothesis": "Store byte lanes are wrong: dmem_be, the data on dmem_wdata and the address are not "
+                          "derived from the same funct3 + addr[1:0], so byte/half stores land in the wrong "
+                          "lanes, get dropped, or issue more than one transaction.",
+            "confidence": "high" if illegal else "medium",
+            "files": [path],
+            "symbols": ["dmem_be", "dmem_wdata", "dmem_addr"],
+            "constraints": [
+                "Build dmem_be as one contiguous block from funct3 and addr[1:0]: SW=1111, SH=0011<<addr[1], "
+                "SB=0001<<addr[1:0]. Never emit a mask with holes.",
+                "dmem_wdata must carry the store data replicated across the word so the selected lanes already "
+                "hold the low bytes (0x80 as SB becomes 80808080). Do not shift the data by the byte address "
+                "unless every lane also carries the correct byte.",
+                "One store instruction produces exactly one bus transaction: hold valid, addr, we, wdata and be "
+                "stable until the cache accepts it, then release.",
+                "Keep the load path, the EX forwarding mux and all cycle timing unchanged.",
+            ],
+            "teacher_checks": list(dict.fromkeys(row.get("name") for row in lane_rows)),
+            "verification": "t06_load_store and t08_store_fwd pass; DMEM write transaction counts match and no "
+                            "illegal byte enables appear.",
+        }
     store_checks = [row.get("name") for row in evidence.get("first_checks", ())
                     if row.get("name") in ("t06_load_store", "t08_store_fwd", "cache_line_conflict")]
     if not store_checks:

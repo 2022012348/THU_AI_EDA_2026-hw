@@ -1,0 +1,28 @@
+{
+  "task_name": "homework_aes128",
+  "spec_path": "/Users/abel/Documents/THU_AI_EDA_2026/content/tasks/homework_aes128/spec.md",
+  "testbench_path": "/Users/abel/Documents/THU_AI_EDA_2026/content/tasks/homework_aes128/tb.sv",
+  "testbench_top": "tb_homework_aes128",
+  "timeout_seconds": 20,
+  "task_spec_sha256": "5e83482062522f9c20e7e949a1f7b27777509d990fdd59a9a13c900de08db493",
+  "prompt_source": "/Users/abel/Documents/THU_AI_EDA_2026/content/prompts/homework/H1_custom_v6.md",
+  "prompt_sha256": "7d8594246253282a93d09d3760eaa72366136d5b7560e7158576c4572b0f9f7d",
+  "raw_response_sha256": "8adec5b80d826a0b35799551292747fc6a61de70b1c6da62938ea7ec302c151e",
+  "reasoning_available": false,
+  "rtl_sha256": "3e4605457493d5997e48fcbf7daa609b3eab079d734320eac0914efc9234a233",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "base_url": "https://llmapi.paratera.com/v1",
+  "thinking": false,
+  "reasoning_effort": null,
+  "temperature": 0.2,
+  "max_tokens": 12000,
+  "created_at": "2026-11-10T05:09:15.465068+00:00",
+  "generation_mode": "single_call_no_feedback",
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 4812,
+    "completion_tokens": 6322,
+    "total_tokens": 11134
+  },
+  "elapsed_seconds": 22.36
+}

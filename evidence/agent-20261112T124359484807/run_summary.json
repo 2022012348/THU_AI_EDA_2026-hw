@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "run_id": "agent-20261112T124359484807",
+  "project_id": "rv32i5_cache",
+  "started_at": "2026-11-12T12:43:59.485+00:00",
+  "finished_at": "2026-11-12T12:49:00.263+00:00",
+  "status": "passed",
+  "duration_s": 300.775,
+  "independent": true,
+  "resumed_from": null,
+  "model_calls": 18,
+  "max_calls": 40,
+  "max_repair_attempts": 10,
+  "tester_attempts": 9,
+  "call_settings": [
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 1500,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "parser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 10780,
+        "completion_tokens": 775,
+        "total_tokens": 11555,
+        "cached_tokens": 10496
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "planner",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 12212,
+        "completion_tokens": 4322,
+        "total_tokens": 16534,
+        "cached_tokens": 10240
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 60000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 17459,
+        "completion_tokens": 18109,
+        "total_tokens": 35568,
+        "cached_tokens": 2048
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2752,
+        "completion_tokens": 423,
+        "total_tokens": 3175,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 5385,
+        "completion_tokens": 573,
+        "total_tokens": 5958,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2846,
+        "completion_tokens": 260,
+        "total_tokens": 3106,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 4648,
+        "completion_tokens": 371,
+        "total_tokens": 5019,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 4218,
+        "completion_tokens": 1003,
+        "total_tokens": 5221,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 9108,
+        "completion_tokens": 501,
+        "total_tokens": 9609,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 13838,
+        "completion_tokens": 702,
+        "total_tokens": 14540,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 9502,
+        "completion_tokens": 644,
+        "total_tokens": 10146,
+        "cached_tokens": 7552
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 14218,
+        "completion_tokens": 634,
+        "total_tokens": 14852,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 9507,
+        "completion_tokens": 778,
+        "total_tokens": 10285,
+        "cached_tokens": 6144
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 16464,
+        "completion_tokens": 1820,
+        "total_tokens": 18284,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 9511,
+        "completion_tokens": 865,
+        "total_tokens": 10376,
+        "cached_tokens": 6144
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 14741,
+        "completion_tokens": 766,
+        "total_tokens": 15507,
+        "cached_tokens": 0
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 6000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 9485,
+        "completion_tokens": 743,
+        "total_tokens": 10228,
+        "cached_tokens": 6144
+      }
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 24000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 16045,
+        "completion_tokens": 10907,
+        "total_tokens": 26952,
+        "cached_tokens": 0
+      }
+    }
+  ],
+  "tokens": {
+    "prompt_tokens": 182719,
+    "completion_tokens": 44196,
+    "total_tokens": 226915
+  },
+  "error": null,
+  "teacher_spec_sha256": "0ec1774d0231b8028f4e8ce950d5b4a2c590a57c1778eee4b6486fd485ea9175",
+  "teacher_tb_sha256": "061cdef4bfc137f99b6ad5086ef9f5d1d516276965ed87bf653d5830e134407b",
+  "teacher_passed": true,
+  "verified_level": 1,
+  "failed_checks": 0,
+  "test_suites": [
+    {
+      "name": "base",
+      "passed": true,
+      "skipped": false,
+      "checks": 268280
+    },
+    {
+      "name": "cache",
+      "passed": true,
+      "skipped": false,
+      "checks": 2216
+    },
+    {
+      "name": "predictor",
+      "passed": true,
+      "skipped": true,
+      "checks": 0
+    },
+    {
+      "name": "ooo",
+      "passed": true,
+      "skipped": true,
+      "checks": 0
+    },
+    {
+      "name": "performance_correctness",
+      "passed": true,
+      "skipped": false,
+      "checks": 44182
+    }
+  ],
+  "performance": {
+    "benchmarks": [
+      {
+        "benchmark": "teaching_crc32_64bytes",
+        "cycles": 10555,
+        "instructions": 3185,
+        "dmem_reads": 16,
+        "dmem_writes": 0,
+        "branches": 0,
+        "mispredicts": 0,
+        "ooo_bypass": 0,
+        "clock_hz": 100000000,
+        "cpi": 3.313972,
+        "ipc": 0.301753
+      },
+      {
+        "benchmark": "teaching_array_sum64",
+        "cycles": 1390,
+        "instructions": 324,
+        "dmem_reads": 64,
+        "dmem_writes": 0,
+        "branches": 0,
+        "mispredicts": 0,
+        "ooo_bypass": 0,
+        "clock_hz": 100000000,
+        "cpi": 4.290123,
+        "ipc": 0.233094
+      },
+      {
+        "benchmark": "teaching_branch_predict64",
+        "cycles": 1025,
+        "instructions": 293,
+        "dmem_reads": 0,
+        "dmem_writes": 0,
+        "branches": 0,
+        "mispredicts": 0,
+        "ooo_bypass": 0,
+        "clock_hz": 100000000,
+        "cpi": 3.498294,
+        "ipc": 0.285854
+      },
+      {
+        "benchmark": "teaching_ooo_overlap64",
+        "cycles": 1750,
+        "instructions": 516,
+        "dmem_reads": 64,
+        "dmem_writes": 0,
+        "branches": 0,
+        "mispredicts": 0,
+        "ooo_bypass": 0,
+        "clock_hz": 100000000,
+        "cpi": 3.391473,
+        "ipc": 0.294857
+      }
+    ]
+  },
+  "metrics": {
+    "status": "ok",
+    "library": "gscl45nm.lib",
+    "top_module": "rv32i5",
+    "area": 138053.5117,
+    "area_unit": "library area units (gscl45nm)",
+    "power_status": "ok",
+    "power_reason": null,
+    "power_method": "OpenSTA gate-level VCD estimate",
+    "internal_power_w": 0.0195,
+    "switching_power_w": 0.00229,
+    "dynamic_power_w": 0.02179,
+    "leakage_power_w": 0.000614,
+    "total_power_w": 0.0224,
+    "vcd_scope": "tb_power_agent_rv32i5/dut"
+  },
+  "passed": true,
+  "selected_report": "tester-09/test_report.json",
+  "selected_manifest": "artifacts/rtl_manifest_attempt9.json",
+  "repair_stop": null
+}

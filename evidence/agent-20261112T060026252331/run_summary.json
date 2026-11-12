@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "run_id": "agent-20261112T060026252331",
+  "project_id": "rv32i5_ooo",
+  "started_at": "2026-11-12T06:00:26.253+00:00",
+  "finished_at": "2026-11-12T06:02:50.993+00:00",
+  "status": "passed",
+  "duration_s": 144.739,
+  "independent": false,
+  "resumed_from": "agent-20261112T055150850447",
+  "resumed_from_tester_attempt": 2,
+  "model_calls": 7,
+  "max_calls": 18,
+  "max_repair_attempts": 8,
+  "tester_attempts": 6,
+  "call_settings": [
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 3500,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    }
+  ],
+  "tokens": {
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "total_tokens": null
+  },
+  "error": null,
+  "teacher_spec_sha256": "0ff959abf7f5cbd2669691d19b11fb6ccd7b0eb1884a5924ece4d542a5ffa89d",
+  "teacher_tb_sha256": "061cdef4bfc137f99b6ad5086ef9f5d1d516276965ed87bf653d5830e134407b",
+  "teacher_passed": true,
+  "verified_level": 3,
+  "failed_checks": 0,
+  "test_suites": [
+    {
+      "name": "base",
+      "passed": true,
+      "skipped": false,
+      "checks": 254147
+    },
+    {
+      "name": "cache",
+      "passed": true,
+      "skipped": false,
+      "checks": 1898
+    },
+    {
+      "name": "predictor",
+      "passed": true,
+      "skipped": false,
+      "checks": 1227
+    },
+    {
+      "name": "ooo",
+      "passed": true,
+      "skipped": false,
+      "checks": 1137
+    },
+    {
+      "name": "performance_correctness",
+      "passed": true,
+      "skipped": false,
+      "checks": 42379
+    }
+  ],
+  "performance": {
+    "benchmarks": [
+      {
+        "benchmark": "trained_branch64",
+        "cycles": 407,
+        "instructions": 132,
+        "branches": 64,
+        "mispredicts": 2,
+        "cpi": 3.083333,
+        "ipc": 0.324324
+      },
+      {
+        "benchmark": "teaching_crc32_64bytes",
+        "cycles": 9946,
+        "instructions": 3185,
+        "dmem_reads": 16,
+        "dmem_writes": 0,
+        "branches": 1088,
+        "mispredicts": 302,
+        "ooo_bypass": 4,
+        "clock_hz": 100000000,
+        "cpi": 3.122763,
+        "ipc": 0.320229
+      },
+      {
+        "benchmark": "teaching_array_sum64",
+        "cycles": 1023,
+        "instructions": 324,
+        "dmem_reads": 64,
+        "dmem_writes": 0,
+        "branches": 64,
+        "mispredicts": 2,
+        "ooo_bypass": 30,
+        "clock_hz": 100000000,
+        "cpi": 3.157407,
+        "ipc": 0.316716
+      },
+      {
+        "benchmark": "teaching_branch_predict64",
+        "cycles": 963,
+        "instructions": 293,
+        "dmem_reads": 0,
+        "dmem_writes": 0,
+        "branches": 128,
+        "mispredicts": 35,
+        "ooo_bypass": 0,
+        "clock_hz": 100000000,
+        "cpi": 3.286689,
+        "ipc": 0.304258
+      },
+      {
+        "benchmark": "teaching_ooo_overlap64",
+        "cycles": 2187,
+        "instructions": 516,
+        "dmem_reads": 64,
+        "dmem_writes": 0,
+        "branches": 64,
+        "mispredicts": 2,
+        "ooo_bypass": 75,
+        "clock_hz": 100000000,
+        "cpi": 4.238372,
+        "ipc": 0.23594
+      }
+    ]
+  },
+  "metrics": {
+    "status": "ok",
+    "library": "gscl45nm.lib",
+    "top_module": "rv32i5",
+    "area": 291482.6993,
+    "area_unit": "library area units (gscl45nm)",
+    "power_status": "ok",
+    "power_reason": null,
+    "power_method": "OpenSTA gate-level VCD estimate",
+    "internal_power_w": 0.0297,
+    "switching_power_w": 0.00258,
+    "dynamic_power_w": 0.03228,
+    "leakage_power_w": 0.00125,
+    "total_power_w": 0.0336,
+    "vcd_scope": "tb_power_agent_rv32i5/dut"
+  },
+  "passed": true,
+  "selected_report": "tester-06/test_report.json",
+  "selected_manifest": "artifacts/rtl_manifest_attempt6.json",
+  "repair_stop": null
+}

@@ -1,0 +1,217 @@
+{
+  "task_name": "homework_aes128",
+  "rtl_path": "/Users/abel/Documents/THU_AI_EDA_2026/runs/prompt/homework_aes128/hw1-v7r4/generated.sv",
+  "passed": false,
+  "stage": "simulation",
+  "return_code": 1,
+  "stdout": "AI_EDA_TRACE|cycle=4|test=reset|event=ready|ok=1|detail=ready_high\nAI_EDA_TRACE|cycle=4|test=reset|event=done|ok=1|detail=done_low\nAI_EDA_TRACE|cycle=5|test=fips_c1|event=start|ok=1|detail=start_asserted\nCHECK: fips_c1 — ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a\nAI_EDA_TRACE|cycle=66|test=fips_c1|event=done|ok=0|detail=ciphertext_mismatch\nAI_EDA_TRACE|cycle=67|test=fips_c1|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=67|test=fips_c1|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=67|test=fips_c2|event=start|ok=1|detail=start_asserted\nCHECK: fips_c2 — ciphertext 不一致：得到 42eab1584dcac354a20b4267824d672a，期望 66e94bd4ef8a2c3b884cfa59ca342b2e\nAI_EDA_TRACE|cycle=128|test=fips_c2|event=done|ok=0|detail=ciphertext_mismatch\nAI_EDA_TRACE|cycle=129|test=fips_c2|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=129|test=fips_c2|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=129|test=fips_b|event=start|ok=1|detail=start_asserted\nCHECK: fips_b — ciphertext 不一致：得到 6519f83e9338415d36cca1b05cbc997f，期望 3925841d02dc09fbdc118597196a0b32\nAI_EDA_TRACE|cycle=190|test=fips_b|event=done|ok=0|detail=ciphertext_mismatch\nAI_EDA_TRACE|cycle=191|test=fips_b|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=191|test=fips_b|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=191|test=fips_c1_repeat|event=start|ok=1|detail=start_asserted\nCHECK: fips_c1_repeat — ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a\nAI_EDA_TRACE|cycle=252|test=fips_c1_repeat|event=done|ok=0|detail=ciphertext_mismatch\nAI_EDA_TRACE|cycle=253|test=fips_c1_repeat|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=253|test=fips_c1_repeat|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=259|test=mid_reset|event=done_cleared|ok=1|detail=done_cleared\nAI_EDA_TRACE|cycle=259|test=mid_reset|event=ready_restored|ok=1|detail=ready_ok\nAI_EDA_TRACE|cycle=260|test=after_mid_reset|event=start|ok=1|detail=start_asserted\nCHECK: after_mid_reset — ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a\nAI_EDA_TRACE|cycle=321|test=after_mid_reset|event=done|ok=0|detail=ciphertext_mismatch\nAI_EDA_TRACE|cycle=322|test=after_mid_reset|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=322|test=after_mid_reset|event=ready_after_done|ok=1|detail=ready_restored\nLAB_RESULT: FAIL (5 checks)\nFATAL: /Users/abel/Documents/THU_AI_EDA_2026/content/tasks/homework_aes128/tb.sv:225: \n       Time: 3216000  Scope: tb_homework_aes128\n",
+  "stderr": "",
+  "trace": [
+    {
+      "cycle": 4,
+      "test": "reset",
+      "event": "ready",
+      "ok": "1",
+      "detail": "ready_high"
+    },
+    {
+      "cycle": 4,
+      "test": "reset",
+      "event": "done",
+      "ok": "1",
+      "detail": "done_low"
+    },
+    {
+      "cycle": 5,
+      "test": "fips_c1",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 66,
+      "test": "fips_c1",
+      "event": "done",
+      "ok": "0",
+      "detail": "ciphertext_mismatch"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c1",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c1",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c2",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 128,
+      "test": "fips_c2",
+      "event": "done",
+      "ok": "0",
+      "detail": "ciphertext_mismatch"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_c2",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_c2",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_b",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 190,
+      "test": "fips_b",
+      "event": "done",
+      "ok": "0",
+      "detail": "ciphertext_mismatch"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_b",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_b",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_c1_repeat",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 252,
+      "test": "fips_c1_repeat",
+      "event": "done",
+      "ok": "0",
+      "detail": "ciphertext_mismatch"
+    },
+    {
+      "cycle": 253,
+      "test": "fips_c1_repeat",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 253,
+      "test": "fips_c1_repeat",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 259,
+      "test": "mid_reset",
+      "event": "done_cleared",
+      "ok": "1",
+      "detail": "done_cleared"
+    },
+    {
+      "cycle": 259,
+      "test": "mid_reset",
+      "event": "ready_restored",
+      "ok": "1",
+      "detail": "ready_ok"
+    },
+    {
+      "cycle": 260,
+      "test": "after_mid_reset",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 321,
+      "test": "after_mid_reset",
+      "event": "done",
+      "ok": "0",
+      "detail": "ciphertext_mismatch"
+    },
+    {
+      "cycle": 322,
+      "test": "after_mid_reset",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 322,
+      "test": "after_mid_reset",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    }
+  ],
+  "checks": [
+    {
+      "name": "fips_c1",
+      "detail": "ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a"
+    },
+    {
+      "name": "fips_c2",
+      "detail": "ciphertext 不一致：得到 42eab1584dcac354a20b4267824d672a，期望 66e94bd4ef8a2c3b884cfa59ca342b2e"
+    },
+    {
+      "name": "fips_b",
+      "detail": "ciphertext 不一致：得到 6519f83e9338415d36cca1b05cbc997f，期望 3925841d02dc09fbdc118597196a0b32"
+    },
+    {
+      "name": "fips_c1_repeat",
+      "detail": "ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a"
+    },
+    {
+      "name": "after_mid_reset",
+      "detail": "ciphertext 不一致：得到 dfafbc32a305cadc1f794ba526ce3bf7，期望 69c4e0d86a7b0430d8cdb78070b4c55a"
+    }
+  ],
+  "metrics": {
+    "status": "ok",
+    "library": "gscl45nm.lib",
+    "top_module": "aes128",
+    "area": 17185.2967,
+    "area_unit": "library area units (gscl45nm)",
+    "power_status": "ok",
+    "power_reason": null,
+    "power_method": "OpenSTA gate-level VCD estimate",
+    "internal_power_w": 0.00683,
+    "switching_power_w": 0.00381,
+    "dynamic_power_w": 0.01064,
+    "leakage_power_w": 7.79e-05,
+    "total_power_w": 0.0107,
+    "vcd_scope": "tb_power_homework_aes128/dut"
+  }
+}

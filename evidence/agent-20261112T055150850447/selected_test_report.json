@@ -1,0 +1,1627 @@
+{
+  "task_name": "agent_rv32i5",
+  "rtl_path": "/Users/abel/Documents/ChatGPT/EDA_AGENT/THU_AI_EDA_2026/runs/agent/agent-20261112T055150850447/artifacts/generated_attempt1.sv",
+  "passed": false,
+  "stage": "simulation",
+  "return_code": 1,
+  "stdout": "AI_EDA_TRACE|cycle=3|test=enc|event=check_encoding|halted=0|exit_code=0|detail=rv32i_encoders_selfchecked\nAI_EDA_TRACE|cycle=6|test=t01_reset|event=load_program|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=6|test=t01_reset|event=test_start|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=9|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=9|test=t01_reset|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t01_reset — 死循环程序没有产生任何 DMEM 写，无法验证复位屏蔽在途 store\nAI_EDA_TRACE|cycle=309|test=t01_reset|event=loop_progress|halted=0|exit_code=0|detail=x1=0x00000000_writes=0\nAI_EDA_TRACE|cycle=315|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=315|test=t01_reset|event=load_program|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=318|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=319|test=t01_reset|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t01_reset — 等待 halted 超时（200 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=3519|test=t01_reset|event=timeout|halted=0|exit_code=0|detail=max_cycles=200_pc=0x00000000\nAI_EDA_TRACE|cycle=3525|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=3525|test=t01_reset|event=test_end|halted=0|exit_code=0|detail=checks=9749_failures=2_cycles=3200_ok=0\nAI_EDA_TRACE|cycle=3528|test=t02_alu_r|event=load_program|halted=0|exit_code=0|detail=instrs=30\nAI_EDA_TRACE|cycle=3528|test=t02_alu_r|event=test_start|halted=0|exit_code=0|detail=instrs=30\nAI_EDA_TRACE|cycle=3528|test=t02_alu_r|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t02_alu_r — 等待 halted 超时（400 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=9928|test=t02_alu_r|event=timeout|halted=0|exit_code=0|detail=max_cycles=400_pc=0x00000000\nAI_EDA_TRACE|cycle=9928|test=t02_alu_r|event=test_end|halted=0|exit_code=0|detail=checks=19201_failures=1_cycles=6400_ok=0\nAI_EDA_TRACE|cycle=9931|test=t03_alu_imm|event=load_program|halted=0|exit_code=0|detail=instrs=24\nAI_EDA_TRACE|cycle=9931|test=t03_alu_imm|event=test_start|halted=0|exit_code=0|detail=instrs=24\nAI_EDA_TRACE|cycle=9931|test=t03_alu_imm|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t03_alu_imm — 等待 halted 超时（400 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=16331|test=t03_alu_imm|event=timeout|halted=0|exit_code=0|detail=max_cycles=400_pc=0x00000000\nAI_EDA_TRACE|cycle=16331|test=t03_alu_imm|event=test_end|halted=0|exit_code=0|detail=checks=19201_failures=1_cycles=6400_ok=0\nAI_EDA_TRACE|cycle=16334|test=t04_upper|event=load_program|halted=0|exit_code=0|detail=instrs=11\nAI_EDA_TRACE|cycle=16334|test=t04_upper|event=test_start|halted=0|exit_code=0|detail=instrs=11\nAI_EDA_TRACE|cycle=16334|test=t04_upper|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t04_upper — 等待 halted 超时（400 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=22734|test=t04_upper|event=timeout|halted=0|exit_code=0|detail=max_cycles=400_pc=0x00000000\nAI_EDA_TRACE|cycle=22734|test=t04_upper|event=test_end|halted=0|exit_code=0|detail=checks=19201_failures=1_cycles=6400_ok=0\nAI_EDA_TRACE|cycle=22737|test=t05_forward|event=load_program|halted=0|exit_code=0|detail=instrs=26\nAI_EDA_TRACE|cycle=22737|test=t05_forward|event=test_start|halted=0|exit_code=0|detail=instrs=26\nAI_EDA_TRACE|cycle=22737|test=t05_forward|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t05_forward — 等待 halted 超时（400 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=29137|test=t05_forward|event=timeout|halted=0|exit_code=0|detail=max_cycles=400_pc=0x00000000\nAI_EDA_TRACE|cycle=29137|test=t05_forward|event=test_end|halted=0|exit_code=0|detail=checks=19201_failures=1_cycles=6400_ok=0\nAI_EDA_TRACE|cycle=29140|test=t06_load_store|event=load_program|halted=0|exit_code=0|detail=instrs=31\nAI_EDA_TRACE|cycle=29140|test=t06_load_store|event=test_start|halted=0|exit_code=0|detail=instrs=31\nAI_EDA_TRACE|cycle=29140|test=t06_load_store|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t06_load_store — 等待 halted 超时（500 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=37140|test=t06_load_store|event=timeout|halted=0|exit_code=0|detail=max_cycles=500_pc=0x00000000\nAI_EDA_TRACE|cycle=37140|test=t06_load_store|event=test_end|halted=0|exit_code=0|detail=checks=24001_failures=1_cycles=8000_ok=0\nAI_EDA_TRACE|cycle=37143|test=t06b_neg_imm|event=load_program|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=37143|test=t06b_neg_imm|event=test_start|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=37143|test=t06b_neg_imm|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t06b_neg_imm — 等待 halted 超时（300 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=41943|test=t06b_neg_imm|event=timeout|halted=0|exit_code=0|detail=max_cycles=300_pc=0x00000000\nAI_EDA_TRACE|cycle=41943|test=t06b_neg_imm|event=test_end|halted=0|exit_code=0|detail=checks=14401_failures=1_cycles=4800_ok=0\nAI_EDA_TRACE|cycle=41946|test=t07_load_use|event=load_program|halted=0|exit_code=0|detail=instrs=14\nAI_EDA_TRACE|cycle=41946|test=t07_load_use|event=test_start|halted=0|exit_code=0|detail=instrs=14\nAI_EDA_TRACE|cycle=41946|test=t07_load_use|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t07_load_use — 等待 halted 超时（500 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=49946|test=t07_load_use|event=timeout|halted=0|exit_code=0|detail=max_cycles=500_pc=0x00000000\nAI_EDA_TRACE|cycle=49946|test=t07_load_use|event=test_end|halted=0|exit_code=0|detail=checks=24001_failures=1_cycles=8000_ok=0\nAI_EDA_TRACE|cycle=49949|test=t08_store_fwd|event=load_program|halted=0|exit_code=0|detail=instrs=19\nAI_EDA_TRACE|cycle=49949|test=t08_store_fwd|event=test_start|halted=0|exit_code=0|detail=instrs=19\nAI_EDA_TRACE|cycle=49949|test=t08_store_fwd|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t08_store_fwd — 等待 halted 超时（500 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=57949|test=t08_store_fwd|event=timeout|halted=0|exit_code=0|detail=max_cycles=500_pc=0x00000000\nAI_EDA_TRACE|cycle=57949|test=t08_store_fwd|event=test_end|halted=0|exit_code=0|detail=checks=24001_failures=1_cycles=8000_ok=0\nAI_EDA_TRACE|cycle=57952|test=t09_branch|event=load_program|halted=0|exit_code=0|detail=instrs=60\nAI_EDA_TRACE|cycle=57952|test=t09_branch|event=test_start|halted=0|exit_code=0|detail=instrs=60\nAI_EDA_TRACE|cycle=57952|test=t09_branch|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t09_branch — 等待 halted 超时（1200 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=77152|test=t09_branch|event=timeout|halted=0|exit_code=0|detail=max_cycles=1200_pc=0x00000000\nAI_EDA_TRACE|cycle=77152|test=t09_branch|event=test_end|halted=0|exit_code=0|detail=checks=57601_failures=1_cycles=19200_ok=0\nAI_EDA_TRACE|cycle=77155|test=t10_jump|event=load_program|halted=0|exit_code=0|detail=instrs=32\nAI_EDA_TRACE|cycle=77155|test=t10_jump|event=test_start|halted=0|exit_code=0|detail=instrs=32\nAI_EDA_TRACE|cycle=77155|test=t10_jump|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t10_jump — 等待 halted 超时（600 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=86755|test=t10_jump|event=timeout|halted=0|exit_code=0|detail=max_cycles=600_pc=0x00000000\nAI_EDA_TRACE|cycle=86755|test=t10_jump|event=test_end|halted=0|exit_code=0|detail=checks=28801_failures=1_cycles=9600_ok=0\nAI_EDA_TRACE|cycle=86758|test=t11_halt|event=load_program|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=86758|test=t11_halt|event=test_start|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=86758|test=t11_halt|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t11_halt — 等待 halted 超时（300 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=91558|test=t11_halt|event=timeout|halted=0|exit_code=0|detail=max_cycles=300_pc=0x00000000\nAI_EDA_TRACE|cycle=91564|test=t11_halt|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=91564|test=t11_halt|event=test_end|halted=0|exit_code=0|detail=checks=14437_failures=1_cycles=4800_ok=0\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=load_program|halted=0|exit_code=0|detail=instrs=57\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=test_start|halted=0|exit_code=0|detail=instrs=57\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=0|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=1|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=2|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=3|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=4|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=5|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=6|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=7|x=1|expected_x=1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=8|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=9|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=10|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=11|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=12|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=13|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=14|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=source|n=15|x=-1|expected_x=-1\nAI_EDA_TRACE|cycle=91567|test=t13_dft|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: t13_dft — 等待 halted 超时（60000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1051567|test=t13_dft|event=timeout|halted=0|exit_code=0|detail=max_cycles=60000_pc=0x00000000\nAI_EDA_TRACE|cycle=1051567|test=t13_dft|event=test_end|halted=0|exit_code=0|detail=checks=2880001_failures=1_cycles=960000_ok=0\nAI_EDA_SUITE|name=base|passed=0|skipped=0|checks=3153808\nAI_EDA_TRACE|cycle=1051570|test=cache_line_conflict|event=load_program|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=1051570|test=cache_line_conflict|event=test_start|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=1051570|test=cache_line_conflict|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: cache_line_conflict — 等待 halted 超时（1000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1067570|test=cache_line_conflict|event=timeout|halted=0|exit_code=0|detail=max_cycles=1000_pc=0x00000000\nAI_EDA_TRACE|cycle=1067570|test=cache_line_conflict|event=test_end|halted=0|exit_code=0|detail=checks=48001_failures=1_cycles=16000_ok=0\nAI_EDA_TRACE|cycle=1067573|test=cache_instruction_reuse|event=load_program|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=1067573|test=cache_instruction_reuse|event=test_start|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=1067573|test=cache_instruction_reuse|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: cache_instruction_reuse — 等待 halted 超时（2000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1099573|test=cache_instruction_reuse|event=timeout|halted=0|exit_code=0|detail=max_cycles=2000_pc=0x00000000\nCHECK: cache_instruction_reuse — x1 期望 0x00000040 得到 0x00000000\nAI_EDA_TRACE|cycle=1099573|test=cache_instruction_reuse|event=check_reg|halted=0|exit_code=0|detail=x1_exp=0x00000040_got=0x00000000_FAIL\nAI_EDA_TRACE|cycle=1099573|test=cache_instruction_reuse|event=test_end|halted=0|exit_code=0|detail=checks=96003_failures=2_cycles=32000_ok=0\nAI_EDA_SUITE|name=cache|passed=0|skipped=0|checks=144004\nAI_EDA_TRACE|cycle=1099576|test=predictor_training|event=load_program|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=1099576|test=predictor_training|event=test_start|halted=0|exit_code=0|detail=instrs=6\nAI_EDA_TRACE|cycle=1099576|test=predictor_training|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: predictor_training — 等待 halted 超时（2000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1131576|test=predictor_training|event=timeout|halted=0|exit_code=0|detail=max_cycles=2000_pc=0x00000000\nCHECK: predictor_training — x1 期望 0x00000040 得到 0x00000000\nAI_EDA_TRACE|cycle=1131576|test=predictor_training|event=check_reg|halted=0|exit_code=0|detail=x1_exp=0x00000040_got=0x00000000_FAIL\nCHECK: predictor_training — missing branch-resolution evidence\nCHECK: predictor_training — retired count expected 132 got 0\nAI_EDA_PERF|benchmark=trained_branch64|cycles=32000|instructions=132|branches=0|mispredicts=0\nAI_EDA_TRACE|cycle=1131576|test=predictor_training|event=test_end|halted=0|exit_code=0|detail=checks=96005_failures=4_cycles=32000_ok=0\nAI_EDA_SUITE|name=predictor|passed=0|skipped=0|checks=96005\nAI_EDA_TRACE|cycle=1131579|test=ooo_load_overlap_rename|event=load_program|halted=0|exit_code=0|detail=instrs=21\nAI_EDA_TRACE|cycle=1131579|test=ooo_load_overlap_rename|event=test_start|halted=0|exit_code=0|detail=instrs=21\nAI_EDA_TRACE|cycle=1131579|test=ooo_load_overlap_rename|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: ooo_load_overlap_rename — 等待 halted 超时（2000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=timeout|halted=0|exit_code=0|detail=max_cycles=2000_pc=0x00000000\nCHECK: ooo_load_overlap_rename — x16 期望 0x00000073 得到 0x00000000\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=check_reg|halted=0|exit_code=0|detail=x16_exp=0x00000073_got=0x00000000_FAIL\nCHECK: ooo_load_overlap_rename — x17 期望 0x00000002 得到 0x00000000\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=check_reg|halted=0|exit_code=0|detail=x17_exp=0x00000002_got=0x00000000_FAIL\nCHECK: ooo_load_overlap_rename — x18 期望 0x00000075 得到 0x00000000\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=check_reg|halted=0|exit_code=0|detail=x18_exp=0x00000075_got=0x00000000_FAIL\nCHECK: ooo_load_overlap_rename — DMEM[0x00000304] 期望 0x00000075 得到 0xa5a5a5a5\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=check_mem|halted=0|exit_code=0|detail=addr=0x00000304_exp=0x00000075_got=0xa5a5a5a5_FAIL\nCHECK: ooo_load_overlap_rename — missing issue evidence\nCHECK: ooo_load_overlap_rename — no independent younger ALU execution while older load waits for external memory\nCHECK: ooo_load_overlap_rename — retired count expected 21 got 0\nAI_EDA_TRACE|cycle=1163579|test=ooo_load_overlap_rename|event=test_end|halted=0|exit_code=0|detail=checks=96008_failures=8_cycles=32000_ok=0\nAI_EDA_SUITE|name=ooo|passed=0|skipped=0|checks=96008\nAI_EDA_TRACE|cycle=1163582|test=bench_crc32_64bytes|event=load_program|halted=0|exit_code=0|detail=instrs=19\nAI_EDA_TRACE|cycle=1163582|test=bench_crc32_64bytes|event=test_start|halted=0|exit_code=0|detail=instrs=19\nAI_EDA_TRACE|cycle=1163582|test=bench_crc32_64bytes|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: bench_crc32_64bytes — 等待 halted 超时（20000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1483582|test=bench_crc32_64bytes|event=timeout|halted=0|exit_code=0|detail=max_cycles=20000_pc=0x00000000\nAI_EDA_TRACE|cycle=1483582|test=bench_crc32_64bytes|event=test_end|halted=0|exit_code=0|detail=checks=960001_failures=1_cycles=320000_ok=0\nAI_EDA_TRACE|cycle=1483585|test=bench_array_sum64|event=load_program|halted=0|exit_code=0|detail=instrs=9\nAI_EDA_TRACE|cycle=1483585|test=bench_array_sum64|event=test_start|halted=0|exit_code=0|detail=instrs=9\nAI_EDA_TRACE|cycle=1483585|test=bench_array_sum64|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: bench_array_sum64 — 等待 halted 超时（5000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1563585|test=bench_array_sum64|event=timeout|halted=0|exit_code=0|detail=max_cycles=5000_pc=0x00000000\nAI_EDA_TRACE|cycle=1563585|test=bench_array_sum64|event=test_end|halted=0|exit_code=0|detail=checks=240001_failures=1_cycles=80000_ok=0\nAI_EDA_TRACE|cycle=1563588|test=bench_branch_predict64|event=load_program|halted=0|exit_code=0|detail=instrs=10\nAI_EDA_TRACE|cycle=1563588|test=bench_branch_predict64|event=test_start|halted=0|exit_code=0|detail=instrs=10\nAI_EDA_TRACE|cycle=1563588|test=bench_branch_predict64|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: bench_branch_predict64 — 等待 halted 超时（3000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1611588|test=bench_branch_predict64|event=timeout|halted=0|exit_code=0|detail=max_cycles=3000_pc=0x00000000\nAI_EDA_TRACE|cycle=1611588|test=bench_branch_predict64|event=test_end|halted=0|exit_code=0|detail=checks=144001_failures=1_cycles=48000_ok=0\nAI_EDA_TRACE|cycle=1611591|test=bench_ooo_overlap64|event=load_program|halted=0|exit_code=0|detail=instrs=12\nAI_EDA_TRACE|cycle=1611591|test=bench_ooo_overlap64|event=test_start|halted=0|exit_code=0|detail=instrs=12\nAI_EDA_TRACE|cycle=1611591|test=bench_ooo_overlap64|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nCHECK: bench_ooo_overlap64 — 等待 halted 超时（6000 周期），imem_addr=0x00000000\nAI_EDA_TRACE|cycle=1707591|test=bench_ooo_overlap64|event=timeout|halted=0|exit_code=0|detail=max_cycles=6000_pc=0x00000000\nAI_EDA_TRACE|cycle=1707591|test=bench_ooo_overlap64|event=test_end|halted=0|exit_code=0|detail=checks=288001_failures=1_cycles=96000_ok=0\nAI_EDA_SUITE|name=performance_correctness|passed=0|skipped=0|checks=1632004\nAI_EDA_CAPABILITY|level=3|name=rv32i|declared=3|verified=-1|expected=3|features=7\nLAB_RESULT: FAIL (33 failures / 5121830 checks)\nFATAL: /Users/abel/Documents/ChatGPT/EDA_AGENT/THU_AI_EDA_2026/content/tasks/homework_rv32i5/tb/run.svh:39: \n       Time: 17075926000  Scope: tb_agent_rv32i5.u_teacher_tb\n",
+  "stderr": "",
+  "trace": [
+    {
+      "cycle": 3,
+      "test": "enc",
+      "event": "check_encoding",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rv32i_encoders_selfchecked"
+    },
+    {
+      "cycle": 6,
+      "test": "t01_reset",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 6,
+      "test": "t01_reset",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 9,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 9,
+      "test": "t01_reset",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 309,
+      "test": "t01_reset",
+      "event": "loop_progress",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x1=0x00000000_writes=0"
+    },
+    {
+      "cycle": 315,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 315,
+      "test": "t01_reset",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 318,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 319,
+      "test": "t01_reset",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 3519,
+      "test": "t01_reset",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=200_pc=0x00000000"
+    },
+    {
+      "cycle": 3525,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 3525,
+      "test": "t01_reset",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=9749_failures=2_cycles=3200_ok=0"
+    },
+    {
+      "cycle": 3528,
+      "test": "t02_alu_r",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=30"
+    },
+    {
+      "cycle": 3528,
+      "test": "t02_alu_r",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=30"
+    },
+    {
+      "cycle": 3528,
+      "test": "t02_alu_r",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 9928,
+      "test": "t02_alu_r",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=400_pc=0x00000000"
+    },
+    {
+      "cycle": 9928,
+      "test": "t02_alu_r",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=19201_failures=1_cycles=6400_ok=0"
+    },
+    {
+      "cycle": 9931,
+      "test": "t03_alu_imm",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=24"
+    },
+    {
+      "cycle": 9931,
+      "test": "t03_alu_imm",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=24"
+    },
+    {
+      "cycle": 9931,
+      "test": "t03_alu_imm",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 16331,
+      "test": "t03_alu_imm",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=400_pc=0x00000000"
+    },
+    {
+      "cycle": 16331,
+      "test": "t03_alu_imm",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=19201_failures=1_cycles=6400_ok=0"
+    },
+    {
+      "cycle": 16334,
+      "test": "t04_upper",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=11"
+    },
+    {
+      "cycle": 16334,
+      "test": "t04_upper",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=11"
+    },
+    {
+      "cycle": 16334,
+      "test": "t04_upper",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 22734,
+      "test": "t04_upper",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=400_pc=0x00000000"
+    },
+    {
+      "cycle": 22734,
+      "test": "t04_upper",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=19201_failures=1_cycles=6400_ok=0"
+    },
+    {
+      "cycle": 22737,
+      "test": "t05_forward",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=26"
+    },
+    {
+      "cycle": 22737,
+      "test": "t05_forward",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=26"
+    },
+    {
+      "cycle": 22737,
+      "test": "t05_forward",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 29137,
+      "test": "t05_forward",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=400_pc=0x00000000"
+    },
+    {
+      "cycle": 29137,
+      "test": "t05_forward",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=19201_failures=1_cycles=6400_ok=0"
+    },
+    {
+      "cycle": 29140,
+      "test": "t06_load_store",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=31"
+    },
+    {
+      "cycle": 29140,
+      "test": "t06_load_store",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=31"
+    },
+    {
+      "cycle": 29140,
+      "test": "t06_load_store",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 37140,
+      "test": "t06_load_store",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=500_pc=0x00000000"
+    },
+    {
+      "cycle": 37140,
+      "test": "t06_load_store",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=24001_failures=1_cycles=8000_ok=0"
+    },
+    {
+      "cycle": 37143,
+      "test": "t06b_neg_imm",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 37143,
+      "test": "t06b_neg_imm",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 37143,
+      "test": "t06b_neg_imm",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 41943,
+      "test": "t06b_neg_imm",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=300_pc=0x00000000"
+    },
+    {
+      "cycle": 41943,
+      "test": "t06b_neg_imm",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=14401_failures=1_cycles=4800_ok=0"
+    },
+    {
+      "cycle": 41946,
+      "test": "t07_load_use",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=14"
+    },
+    {
+      "cycle": 41946,
+      "test": "t07_load_use",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=14"
+    },
+    {
+      "cycle": 41946,
+      "test": "t07_load_use",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 49946,
+      "test": "t07_load_use",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=500_pc=0x00000000"
+    },
+    {
+      "cycle": 49946,
+      "test": "t07_load_use",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=24001_failures=1_cycles=8000_ok=0"
+    },
+    {
+      "cycle": 49949,
+      "test": "t08_store_fwd",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=19"
+    },
+    {
+      "cycle": 49949,
+      "test": "t08_store_fwd",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=19"
+    },
+    {
+      "cycle": 49949,
+      "test": "t08_store_fwd",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 57949,
+      "test": "t08_store_fwd",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=500_pc=0x00000000"
+    },
+    {
+      "cycle": 57949,
+      "test": "t08_store_fwd",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=24001_failures=1_cycles=8000_ok=0"
+    },
+    {
+      "cycle": 57952,
+      "test": "t09_branch",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=60"
+    },
+    {
+      "cycle": 57952,
+      "test": "t09_branch",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=60"
+    },
+    {
+      "cycle": 57952,
+      "test": "t09_branch",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 77152,
+      "test": "t09_branch",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=1200_pc=0x00000000"
+    },
+    {
+      "cycle": 77152,
+      "test": "t09_branch",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=57601_failures=1_cycles=19200_ok=0"
+    },
+    {
+      "cycle": 77155,
+      "test": "t10_jump",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=32"
+    },
+    {
+      "cycle": 77155,
+      "test": "t10_jump",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=32"
+    },
+    {
+      "cycle": 77155,
+      "test": "t10_jump",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 86755,
+      "test": "t10_jump",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=600_pc=0x00000000"
+    },
+    {
+      "cycle": 86755,
+      "test": "t10_jump",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=28801_failures=1_cycles=9600_ok=0"
+    },
+    {
+      "cycle": 86758,
+      "test": "t11_halt",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 86758,
+      "test": "t11_halt",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 86758,
+      "test": "t11_halt",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 91558,
+      "test": "t11_halt",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=300_pc=0x00000000"
+    },
+    {
+      "cycle": 91564,
+      "test": "t11_halt",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 91564,
+      "test": "t11_halt",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=14437_failures=1_cycles=4800_ok=0"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=57"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=57"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "0",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "1",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "2",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "3",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "4",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "5",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "6",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "7",
+      "x": "1",
+      "expected_x": "1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "8",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "9",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "10",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "11",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "12",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "13",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "14",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "source",
+      "n": "15",
+      "x": "-1",
+      "expected_x": "-1"
+    },
+    {
+      "cycle": 91567,
+      "test": "t13_dft",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1051567,
+      "test": "t13_dft",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=60000_pc=0x00000000"
+    },
+    {
+      "cycle": 1051567,
+      "test": "t13_dft",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=2880001_failures=1_cycles=960000_ok=0"
+    },
+    {
+      "cycle": 1051570,
+      "test": "cache_line_conflict",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 1051570,
+      "test": "cache_line_conflict",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 1051570,
+      "test": "cache_line_conflict",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1067570,
+      "test": "cache_line_conflict",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=1000_pc=0x00000000"
+    },
+    {
+      "cycle": 1067570,
+      "test": "cache_line_conflict",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=48001_failures=1_cycles=16000_ok=0"
+    },
+    {
+      "cycle": 1067573,
+      "test": "cache_instruction_reuse",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 1067573,
+      "test": "cache_instruction_reuse",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 1067573,
+      "test": "cache_instruction_reuse",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1099573,
+      "test": "cache_instruction_reuse",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=2000_pc=0x00000000"
+    },
+    {
+      "cycle": 1099573,
+      "test": "cache_instruction_reuse",
+      "event": "check_reg",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x1_exp=0x00000040_got=0x00000000_FAIL"
+    },
+    {
+      "cycle": 1099573,
+      "test": "cache_instruction_reuse",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=96003_failures=2_cycles=32000_ok=0"
+    },
+    {
+      "cycle": 1099576,
+      "test": "predictor_training",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 1099576,
+      "test": "predictor_training",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=6"
+    },
+    {
+      "cycle": 1099576,
+      "test": "predictor_training",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1131576,
+      "test": "predictor_training",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=2000_pc=0x00000000"
+    },
+    {
+      "cycle": 1131576,
+      "test": "predictor_training",
+      "event": "check_reg",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x1_exp=0x00000040_got=0x00000000_FAIL"
+    },
+    {
+      "cycle": 1131576,
+      "test": "predictor_training",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=96005_failures=4_cycles=32000_ok=0"
+    },
+    {
+      "cycle": 1131579,
+      "test": "ooo_load_overlap_rename",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=21"
+    },
+    {
+      "cycle": 1131579,
+      "test": "ooo_load_overlap_rename",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=21"
+    },
+    {
+      "cycle": 1131579,
+      "test": "ooo_load_overlap_rename",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=2000_pc=0x00000000"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "check_reg",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x16_exp=0x00000073_got=0x00000000_FAIL"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "check_reg",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x17_exp=0x00000002_got=0x00000000_FAIL"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "check_reg",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x18_exp=0x00000075_got=0x00000000_FAIL"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "check_mem",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000304_exp=0x00000075_got=0xa5a5a5a5_FAIL"
+    },
+    {
+      "cycle": 1163579,
+      "test": "ooo_load_overlap_rename",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=96008_failures=8_cycles=32000_ok=0"
+    },
+    {
+      "cycle": 1163582,
+      "test": "bench_crc32_64bytes",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=19"
+    },
+    {
+      "cycle": 1163582,
+      "test": "bench_crc32_64bytes",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=19"
+    },
+    {
+      "cycle": 1163582,
+      "test": "bench_crc32_64bytes",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1483582,
+      "test": "bench_crc32_64bytes",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=20000_pc=0x00000000"
+    },
+    {
+      "cycle": 1483582,
+      "test": "bench_crc32_64bytes",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=960001_failures=1_cycles=320000_ok=0"
+    },
+    {
+      "cycle": 1483585,
+      "test": "bench_array_sum64",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=9"
+    },
+    {
+      "cycle": 1483585,
+      "test": "bench_array_sum64",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=9"
+    },
+    {
+      "cycle": 1483585,
+      "test": "bench_array_sum64",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1563585,
+      "test": "bench_array_sum64",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=5000_pc=0x00000000"
+    },
+    {
+      "cycle": 1563585,
+      "test": "bench_array_sum64",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=240001_failures=1_cycles=80000_ok=0"
+    },
+    {
+      "cycle": 1563588,
+      "test": "bench_branch_predict64",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=10"
+    },
+    {
+      "cycle": 1563588,
+      "test": "bench_branch_predict64",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=10"
+    },
+    {
+      "cycle": 1563588,
+      "test": "bench_branch_predict64",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1611588,
+      "test": "bench_branch_predict64",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=3000_pc=0x00000000"
+    },
+    {
+      "cycle": 1611588,
+      "test": "bench_branch_predict64",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=144001_failures=1_cycles=48000_ok=0"
+    },
+    {
+      "cycle": 1611591,
+      "test": "bench_ooo_overlap64",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=12"
+    },
+    {
+      "cycle": 1611591,
+      "test": "bench_ooo_overlap64",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=12"
+    },
+    {
+      "cycle": 1611591,
+      "test": "bench_ooo_overlap64",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 1707591,
+      "test": "bench_ooo_overlap64",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=6000_pc=0x00000000"
+    },
+    {
+      "cycle": 1707591,
+      "test": "bench_ooo_overlap64",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=288001_failures=1_cycles=96000_ok=0"
+    }
+  ],
+  "checks": [
+    {
+      "name": "t01_reset",
+      "detail": "死循环程序没有产生任何 DMEM 写，无法验证复位屏蔽在途 store"
+    },
+    {
+      "name": "t01_reset",
+      "detail": "等待 halted 超时（200 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t02_alu_r",
+      "detail": "等待 halted 超时（400 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t03_alu_imm",
+      "detail": "等待 halted 超时（400 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t04_upper",
+      "detail": "等待 halted 超时（400 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t05_forward",
+      "detail": "等待 halted 超时（400 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t06_load_store",
+      "detail": "等待 halted 超时（500 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t06b_neg_imm",
+      "detail": "等待 halted 超时（300 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t07_load_use",
+      "detail": "等待 halted 超时（500 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t08_store_fwd",
+      "detail": "等待 halted 超时（500 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t09_branch",
+      "detail": "等待 halted 超时（1200 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t10_jump",
+      "detail": "等待 halted 超时（600 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t11_halt",
+      "detail": "等待 halted 超时（300 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "t13_dft",
+      "detail": "等待 halted 超时（60000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "cache_line_conflict",
+      "detail": "等待 halted 超时（1000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "cache_instruction_reuse",
+      "detail": "等待 halted 超时（2000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "cache_instruction_reuse",
+      "detail": "x1 期望 0x00000040 得到 0x00000000"
+    },
+    {
+      "name": "predictor_training",
+      "detail": "等待 halted 超时（2000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "predictor_training",
+      "detail": "x1 期望 0x00000040 得到 0x00000000"
+    },
+    {
+      "name": "predictor_training",
+      "detail": "missing branch-resolution evidence"
+    },
+    {
+      "name": "predictor_training",
+      "detail": "retired count expected 132 got 0"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "等待 halted 超时（2000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "x16 期望 0x00000073 得到 0x00000000"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "x17 期望 0x00000002 得到 0x00000000"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "x18 期望 0x00000075 得到 0x00000000"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "DMEM[0x00000304] 期望 0x00000075 得到 0xa5a5a5a5"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "missing issue evidence"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "no independent younger ALU execution while older load waits for external memory"
+    },
+    {
+      "name": "ooo_load_overlap_rename",
+      "detail": "retired count expected 21 got 0"
+    },
+    {
+      "name": "bench_crc32_64bytes",
+      "detail": "等待 halted 超时（20000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "bench_array_sum64",
+      "detail": "等待 halted 超时（5000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "bench_branch_predict64",
+      "detail": "等待 halted 超时（3000 周期），imem_addr=0x00000000"
+    },
+    {
+      "name": "bench_ooo_overlap64",
+      "detail": "等待 halted 超时（6000 周期），imem_addr=0x00000000"
+    }
+  ],
+  "cpu_capability": {
+    "level": 3,
+    "name": "rv32i",
+    "declared": 3,
+    "verified": -1,
+    "expected": 3,
+    "features": 7,
+    "declared_level": 3,
+    "verified_level": -1,
+    "expected_level": 3
+  },
+  "test_suites": [
+    {
+      "name": "base",
+      "passed": false,
+      "skipped": false,
+      "checks": 3153808
+    },
+    {
+      "name": "cache",
+      "passed": false,
+      "skipped": false,
+      "checks": 144004
+    },
+    {
+      "name": "predictor",
+      "passed": false,
+      "skipped": false,
+      "checks": 96005
+    },
+    {
+      "name": "ooo",
+      "passed": false,
+      "skipped": false,
+      "checks": 96008
+    },
+    {
+      "name": "performance_correctness",
+      "passed": false,
+      "skipped": false,
+      "checks": 1632004
+    }
+  ],
+  "performance": {
+    "benchmarks": [
+      {
+        "benchmark": "trained_branch64",
+        "cycles": 32000,
+        "instructions": 132,
+        "branches": 0,
+        "mispredicts": 0,
+        "cpi": 242.424242,
+        "ipc": 0.004125
+      }
+    ]
+  },
+  "teacher_passed": false,
+  "retirement_observation": {
+    "status": "observed",
+    "samples": [
+      "RESET|imem_valid=0|dmem_valid=0|imem_addr=xxxxxxxx",
+      "RETIREMENT|cycles=256|imem_accepts=4|dmem_accepts=0|retired=0|ecalls=0|first_pc=ffffffff|first_insn=ffffffff|last_pc=00000000|last_insn=00000000|halted=0|exit=00000000|x10=00000000|final_imem_valid=0|final_imem_addr=00000000"
+    ],
+    "program": "addi x10,x0,7; ecall; nop; zero-wait external memory",
+    "expected": "reset bus quiet, first retirement PC 0, ECALL retires once, halted with exit=7",
+    "field_semantics": "When retired=0, first_pc and first_insn are sentinels, not observed CPU values."
+  },
+  "icache_word_observation": {
+    "status": "observed",
+    "samples": [
+      "WORD|address=00000100|accepted=1|response=1|expected=5a003d00|actual=5a003d00|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=00000104|accepted=1|response=1|expected=5a003d04|actual=5a003d04|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=00000108|accepted=1|response=1|expected=5a003d08|actual=5a003d08|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=0000010c|accepted=1|response=1|expected=5a003d0c|actual=5a003d0c|first_refill=00000100|read_beats=4|refill_match=1|match=1"
+    ],
+    "experiment": "Four independent cold requests, one per word offset, with address-dependent memory data. After acceptance the idle request address changes to the next offset; the response must still match the accepted address."
+  },
+  "dcache_lane_observation": {
+    "status": "observed",
+    "samples": [
+      "DCACHE|case=cold_load|address=00000204|accepted=1|response=1|expected=11223345|actual=11223345|read_beats=4|write_beats=0|bus_write_addr=00000000|bus_write_data=00000000|bus_write_be=0000|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=halfword_hit|address=00000206|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=0|write_beats=1|bus_write_addr=00000206|bus_write_data=abcdabcd|bus_write_be=1100|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_sh|address=00000204|accepted=1|response=1|expected=abcd3345|actual=abcd3345|read_beats=0|write_beats=0|bus_write_addr=00000206|bus_write_data=abcdabcd|bus_write_be=1100|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=byte_hit|address=00000205|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=0|write_beats=1|bus_write_addr=00000205|bus_write_data=7e7e7e7e|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_sb|address=00000204|accepted=1|response=1|expected=abcd7e45|actual=abcd7e45|read_beats=0|write_beats=0|bus_write_addr=00000205|bus_write_data=7e7e7e7e|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=byte_miss|address=00000225|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=4|write_beats=1|bus_write_addr=00000225|bus_write_data=aaaaaaaa|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_miss_store|address=00000224|accepted=1|response=1|expected=1122aa4d|actual=1122aa4d|read_beats=0|write_beats=0|bus_write_addr=00000225|bus_write_data=aaaaaaaa|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=final_beat_store_miss|address=0000023f|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=4|write_beats=1|bus_write_addr=0000023f|bus_write_data=dddddddd|bus_write_be=1000|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_final_beat_store|address=0000023c|accepted=1|response=1|expected=dd22334b|actual=dd22334b|read_beats=0|write_beats=0|bus_write_addr=0000023f|bus_write_data=dddddddd|bus_write_be=1000|first_refill_addr=00000200|refill_addresses_match=1|match=1"
+    ],
+    "experiment": "Cold load at word offset one, then halfword and byte stores with an immediate readback after each store. Repeat on cold stores to the second and final words of newly allocated lines. Check external refill addresses, store byte address, mask and data, plus cached data."
+  },
+  "execution_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=3|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed cold load with two younger independent integer operations.",
+    "expected": "four read beats, x2=41, exit=10, five ordered retirements and a D-wait bypass event"
+  },
+  "l3_fetch_backpressure_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=10|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed load fills the ROB while twelve independent writes arrive from fetch.",
+    "expected": "All sixteen instructions retire in order, with one cold refill and exit 53."
+  },
+  "l3_rename_reuse_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=7|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "Twelve dependent increments of x2, copy x2 to x10, then ECALL.",
+    "expected": "Fourteen ordered retirements, x2 and exit equal 12, no data memory operations."
+  },
+  "l3_rename_allocation_observation": {
+    "status": "observed",
+    "samples": [
+      "RENAME|case=nonwriter|prd=0|match=1",
+      "RENAME|case=allocate_0|ready=1|prd=33|match=1",
+      "RENAME|case=allocate_1|ready=1|prd=34|match=1",
+      "RENAME|case=allocate_2|ready=1|prd=35|match=1",
+      "RENAME|case=allocate_3|ready=1|prd=36|match=1",
+      "RENAME|case=allocate_4|ready=1|prd=37|match=1",
+      "RENAME|case=allocate_5|ready=1|prd=38|match=1",
+      "RENAME|case=allocate_6|ready=1|prd=39|match=1",
+      "RENAME|case=allocate_7|ready=0|prd=32|match=0",
+      "RENAME|case=full|ready=0|match=1"
+    ],
+    "experiment": "Allocate all eight free registers without commits, then try a nonwriter."
+  },
+  "l3_iq_selection_observation": {
+    "status": "observed",
+    "samples": [
+      "IQ|case=ready_bypass|tag=7|match=0",
+      "IQ|case=age_wrap|tag=7|match=1"
+    ],
+    "experiment": "Select a younger ready instruction past an unready older entry, then compare age across tag wrap."
+  },
+  "l3_redirect_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=4|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "JAL from PC 4 to a cold instruction line at 0x20, over a wrong-path write and ECALL.",
+    "expected": "Only PCs 0, 4, 0x20 and 0x24 retire, with their original instructions and exit=7."
+  },
+  "l3_repeated_redirect_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=6|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "The same JALR resolves first to 0x20 and then to 0x40, with a BTB index alias at 0x48 and a wrong-path store and ECALL on the fall-through path.",
+    "expected": "Ten ordered retirements, three resolves/mispredicts, no writes, exit=8."
+  },
+  "l3_memory_queue_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=8|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed cold word load followed by a byte load from the same cache line.",
+    "expected": "Five ordered retirements, x2=0x292a, exit=41, four external reads and no writes."
+  },
+  "l3_link_recovery_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=4|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A cold JAL writes x5; its target reads the link immediately after recovery.",
+    "expected": "Four ordered retirements and exit=11 from link 8 plus 3."
+  },
+  "l3_lsu_completion_observation": {
+    "status": "observed",
+    "samples": [
+      "LSU|case=store_wait|match=1",
+      "LSU|case=store_completion|match=0",
+      "LSU|case=load_after_response_enqueue|match=1",
+      "LSU|case=signed_load_completion|match=0"
+    ],
+    "experiment": "Hold a byte store until accepted, enqueue a load on its response, then check signed byte writeback."
+  },
+  "l3_store_writeback_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=9|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed store completes after younger independent writes to x3 and x10.",
+    "expected": "Six ordered retirements, one bus write, and x3 and exit both equal 19."
+  },
+  "l3_predictor_training_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=2|cycles=1024|retired=0|last_pc=ffffffff|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=4|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=0|overlaps=0|first_retirements=|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A 16-iteration backward branch loop using an already warm instruction line.",
+    "expected": "35 retirements, x1=0, ECALL at PC 0x10, halted with exit=7"
+  },
+  "pipeline_observation": {
+    "status": "observed",
+    "samples": [
+      "PIPE|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|1|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|2|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|3|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|4|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|1|10000093|0",
+      "PIPE|5|0|0|0|4|1|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|6|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|7|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|8|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|9|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|10|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|11|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|12|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|13|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|14|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|15|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|16|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|17|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|18|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|19|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|20|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|21|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|22|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|23|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|24|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|25|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|26|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|27|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|28|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|29|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|30|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|31|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|32|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|33|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|34|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|35|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|36|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|37|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|38|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|39|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|40|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|41|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|42|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|43|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|44|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|45|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|46|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|47|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|48|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|49|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|50|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|51|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|52|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|53|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|54|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|55|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|56|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|57|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|58|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|59|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|60|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|61|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|62|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|63|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|64|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|65|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|66|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|67|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|68|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|69|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|70|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|71|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|72|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|73|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|74|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|75|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|76|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|77|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|78|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|79|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|80|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|81|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|82|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|83|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|84|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|85|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|86|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|87|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|88|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|89|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|90|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|91|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|92|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|93|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|94|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|95|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0"
+    ],
+    "fields": [
+      "cycle",
+      "retire_valid",
+      "retire_pc",
+      "fetch_accept_at_edge",
+      "fetch_addr_at_edge",
+      "fetch_response_at_edge",
+      "allocate_at_edge",
+      "allocate_alloc_rob_idx_at_edge",
+      "allocate_alloc_pc_at_edge",
+      "issue_at_edge",
+      "issue_issue_rob_idx_at_edge",
+      "issue_issue_pc_at_edge",
+      "lsu_issue_at_edge",
+      "lsu_issue_cpu_req_addr_at_edge",
+      "load_complete_at_edge",
+      "load_complete_complete_tag_at_edge",
+      "retire_at_edge",
+      "retire_commit_pc_at_edge",
+      "fetch_pc",
+      "cur_epoch",
+      "ic_flush_epoch",
+      "lsu_complete_valid",
+      "ic_cpu_req_valid",
+      "ic_cpu_req_ready",
+      "ic_cpu_req_addr",
+      "ic_cpu_resp_valid",
+      "ic_cpu_resp_data",
+      "rob_alloc_idx"
+    ],
+    "trace_cycles": 96,
+    "field_semantics": "The at_edge fields sample the fetch request and response immediately before the rising edge update. Other signals are sampled after the update. Cycle is decimal; all other values are hex. Ignore a PC when its valid is zero.",
+    "top_assignments": [
+      "ic_cpu_req_valid = !halted_r && !ecall_pending && !fetch_outstanding && !buf_valid && !squash",
+      "ic_cpu_req_addr = fetch_pc",
+      "ic_flush_epoch = cur_epoch"
+    ],
+    "constant_capability_outputs": {},
+    "instance_connections": {
+      "reorder_buffer.alloc_valid": "rob_alloc_valid",
+      "reorder_buffer.alloc_ready": "rob_alloc_ready",
+      "reorder_buffer.alloc_rob_idx": "rob_alloc_idx",
+      "reorder_buffer.commit_valid": "rob_commit_valid",
+      "issue_queue.disp_rob_idx": "iq_disp_rob_idx",
+      "issue_queue.issue_ready": "iq_issue_ready",
+      "load_store_unit.disp_rob_idx": "lsu_disp_rob_idx",
+      "load_store_unit.complete_valid": "lsu_complete_valid",
+      "rename_unit.commit_prd": "rob_commit_prd"
+    },
+    "l3_accepted_transfers": {
+      "allocate_at_edge": {
+        "count": 0,
+        "first": []
+      },
+      "issue_at_edge": {
+        "count": 0,
+        "first": []
+      },
+      "lsu_issue_at_edge": {
+        "count": 0,
+        "first": []
+      },
+      "load_complete_at_edge": {
+        "count": 0,
+        "first": []
+      },
+      "retire_at_edge": {
+        "count": 0,
+        "first": []
+      }
+    },
+    "asserted_signals": {
+      "lsu_complete_valid": {
+        "sample_count": 0,
+        "first_samples": []
+      },
+      "retire_valid": {
+        "sample_count": 0,
+        "first_samples": []
+      }
+    },
+    "first_fetch_accept": {
+      "cycle": "0",
+      "fetch_addr_at_edge": "0"
+    },
+    "fetch_transfer": {
+      "accepted": true,
+      "response_seen": true
+    }
+  },
+  "logic_loop_observation": {
+    "status": "observed",
+    "loops": [],
+    "undriven": [],
+    "undriven_count": 0
+  }
+}

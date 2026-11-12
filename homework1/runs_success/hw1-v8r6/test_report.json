@@ -1,0 +1,196 @@
+{
+  "task_name": "homework_aes128",
+  "rtl_path": "/Users/abel/Documents/THU_AI_EDA_2026/runs/prompt/homework_aes128/hw1-v8r6/generated.sv",
+  "passed": true,
+  "stage": "simulation",
+  "return_code": 0,
+  "stdout": "AI_EDA_TRACE|cycle=4|test=reset|event=ready|ok=1|detail=ready_high\nAI_EDA_TRACE|cycle=4|test=reset|event=done|ok=1|detail=done_low\nAI_EDA_TRACE|cycle=5|test=fips_c1|event=start|ok=1|detail=start_asserted\nAI_EDA_TRACE|cycle=66|test=fips_c1|event=done|ok=1|detail=ciphertext_ok\nAI_EDA_TRACE|cycle=67|test=fips_c1|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=67|test=fips_c1|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=67|test=fips_c2|event=start|ok=1|detail=start_asserted\nAI_EDA_TRACE|cycle=128|test=fips_c2|event=done|ok=1|detail=ciphertext_ok\nAI_EDA_TRACE|cycle=129|test=fips_c2|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=129|test=fips_c2|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=129|test=fips_b|event=start|ok=1|detail=start_asserted\nAI_EDA_TRACE|cycle=190|test=fips_b|event=done|ok=1|detail=ciphertext_ok\nAI_EDA_TRACE|cycle=191|test=fips_b|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=191|test=fips_b|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=191|test=fips_c1_repeat|event=start|ok=1|detail=start_asserted\nAI_EDA_TRACE|cycle=252|test=fips_c1_repeat|event=done|ok=1|detail=ciphertext_ok\nAI_EDA_TRACE|cycle=253|test=fips_c1_repeat|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=253|test=fips_c1_repeat|event=ready_after_done|ok=1|detail=ready_restored\nAI_EDA_TRACE|cycle=259|test=mid_reset|event=done_cleared|ok=1|detail=done_cleared\nAI_EDA_TRACE|cycle=259|test=mid_reset|event=ready_restored|ok=1|detail=ready_ok\nAI_EDA_TRACE|cycle=260|test=after_mid_reset|event=start|ok=1|detail=start_asserted\nAI_EDA_TRACE|cycle=321|test=after_mid_reset|event=done|ok=1|detail=ciphertext_ok\nAI_EDA_TRACE|cycle=322|test=after_mid_reset|event=done_pulse|ok=1|detail=done_one_cycle\nAI_EDA_TRACE|cycle=322|test=after_mid_reset|event=ready_after_done|ok=1|detail=ready_restored\nLAB_RESULT: PASS (5 vectors)\n/Users/abel/Documents/THU_AI_EDA_2026/content/tasks/homework_aes128/tb.sv:227: $finish called at 3216000 (1ps)\n",
+  "stderr": "",
+  "trace": [
+    {
+      "cycle": 4,
+      "test": "reset",
+      "event": "ready",
+      "ok": "1",
+      "detail": "ready_high"
+    },
+    {
+      "cycle": 4,
+      "test": "reset",
+      "event": "done",
+      "ok": "1",
+      "detail": "done_low"
+    },
+    {
+      "cycle": 5,
+      "test": "fips_c1",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 66,
+      "test": "fips_c1",
+      "event": "done",
+      "ok": "1",
+      "detail": "ciphertext_ok"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c1",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c1",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 67,
+      "test": "fips_c2",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 128,
+      "test": "fips_c2",
+      "event": "done",
+      "ok": "1",
+      "detail": "ciphertext_ok"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_c2",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_c2",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 129,
+      "test": "fips_b",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 190,
+      "test": "fips_b",
+      "event": "done",
+      "ok": "1",
+      "detail": "ciphertext_ok"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_b",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_b",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 191,
+      "test": "fips_c1_repeat",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 252,
+      "test": "fips_c1_repeat",
+      "event": "done",
+      "ok": "1",
+      "detail": "ciphertext_ok"
+    },
+    {
+      "cycle": 253,
+      "test": "fips_c1_repeat",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 253,
+      "test": "fips_c1_repeat",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    },
+    {
+      "cycle": 259,
+      "test": "mid_reset",
+      "event": "done_cleared",
+      "ok": "1",
+      "detail": "done_cleared"
+    },
+    {
+      "cycle": 259,
+      "test": "mid_reset",
+      "event": "ready_restored",
+      "ok": "1",
+      "detail": "ready_ok"
+    },
+    {
+      "cycle": 260,
+      "test": "after_mid_reset",
+      "event": "start",
+      "ok": "1",
+      "detail": "start_asserted"
+    },
+    {
+      "cycle": 321,
+      "test": "after_mid_reset",
+      "event": "done",
+      "ok": "1",
+      "detail": "ciphertext_ok"
+    },
+    {
+      "cycle": 322,
+      "test": "after_mid_reset",
+      "event": "done_pulse",
+      "ok": "1",
+      "detail": "done_one_cycle"
+    },
+    {
+      "cycle": 322,
+      "test": "after_mid_reset",
+      "event": "ready_after_done",
+      "ok": "1",
+      "detail": "ready_restored"
+    }
+  ],
+  "checks": [],
+  "metrics": {
+    "status": "ok",
+    "library": "gscl45nm.lib",
+    "top_module": "aes128",
+    "area": 17140.7132,
+    "area_unit": "library area units (gscl45nm)",
+    "power_status": "ok",
+    "power_reason": null,
+    "power_method": "OpenSTA gate-level VCD estimate",
+    "internal_power_w": 0.00631,
+    "switching_power_w": 0.00345,
+    "dynamic_power_w": 0.00976,
+    "leakage_power_w": 8.03e-05,
+    "total_power_w": 0.00983,
+    "vcd_scope": "tb_power_homework_aes128/dut"
+  }
+}

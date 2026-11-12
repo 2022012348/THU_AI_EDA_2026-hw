@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "run_id": "agent-20261112T050852828836",
+  "project_id": "rv32i5_ooo",
+  "started_at": "2026-11-12T05:08:52.830+00:00",
+  "finished_at": "2026-11-12T05:20:34.125+00:00",
+  "status": "failed",
+  "duration_s": 701.289,
+  "independent": true,
+  "resumed_from": null,
+  "model_calls": 24,
+  "max_calls": 100,
+  "max_repair_attempts": 8,
+  "tester_attempts": 6,
+  "call_settings": [
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 1500,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "parser",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": true,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "planner",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 16000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "coder",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "length",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "length",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "length",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 3500,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "diagnoser",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    },
+    {
+      "model": "DeepSeek-V4.1-Flash-1017",
+      "max_tokens": 12000,
+      "thinking": false,
+      "reasoning_effort": "low",
+      "temperature": 0.2,
+      "node": "patch",
+      "finish_reason": "stop",
+      "usage": null
+    }
+  ],
+  "tokens": {
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "total_tokens": null
+  },
+  "error": null,
+  "teacher_spec_sha256": "0ff959abf7f5cbd2669691d19b11fb6ccd7b0eb1884a5924ece4d542a5ffa89d",
+  "teacher_tb_sha256": "061cdef4bfc137f99b6ad5086ef9f5d1d516276965ed87bf653d5830e134407b",
+  "teacher_passed": false,
+  "verified_level": -1,
+  "failed_checks": 49,
+  "test_suites": [
+    {
+      "name": "base",
+      "passed": false,
+      "skipped": false,
+      "checks": 3139767
+    },
+    {
+      "name": "cache",
+      "passed": false,
+      "skipped": false,
+      "checks": 144004
+    },
+    {
+      "name": "predictor",
+      "passed": false,
+      "skipped": false,
+      "checks": 96005
+    },
+    {
+      "name": "ooo",
+      "passed": false,
+      "skipped": false,
+      "checks": 96008
+    },
+    {
+      "name": "performance_correctness",
+      "passed": false,
+      "skipped": false,
+      "checks": 1632004
+    }
+  ],
+  "performance": null,
+  "metrics": null,
+  "passed": false,
+  "selected_report": "tester-01/test_report.json",
+  "selected_manifest": "artifacts/rtl_manifest_attempt1.json",
+  "repair_stop": "repair_protocol: rtl/icache.sv still fails the standalone cache probe.\nWORD|address=00000100|accepted=1|response=0|expected=5a003d00|actual=xxxxxxxx|first_refill=xxxxxxxx|read_beats=0|refill_match=0|match=0\nWORD|address=00000104|accepted=1|response=0|expected=5a003d04|actual=xxxxxxxx|first_refill=xxxxxxxx|read_beats=0|refill_match=0|match=0\nWORD|address=00000108|accepted=1|response=0|expected=5a003d08|actual=xxxxxxxx|first_refill=xxxxxxxx|read_beats=0|refill_match=0|match=0"
+}

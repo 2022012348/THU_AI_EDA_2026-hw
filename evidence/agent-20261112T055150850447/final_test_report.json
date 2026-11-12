@@ -1,0 +1,1843 @@
+{
+  "task_name": "agent_rv32i5",
+  "rtl_path": "/Users/abel/Documents/ChatGPT/EDA_AGENT/THU_AI_EDA_2026/runs/agent/agent-20261112T055150850447/artifacts/generated_attempt9.sv",
+  "passed": false,
+  "stage": "simulation",
+  "timed_out": true,
+  "timeout_seconds": 90,
+  "return_code": null,
+  "stdout": "AI_EDA_TRACE|cycle=3|test=enc|event=check_encoding|halted=0|exit_code=0|detail=rv32i_encoders_selfchecked\nAI_EDA_TRACE|cycle=6|test=t01_reset|event=load_program|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=6|test=t01_reset|event=test_start|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=9|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=9|test=t01_reset|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=23|test=t01_reset|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000200_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=24|test=t01_reset|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000204_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=25|test=t01_reset|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000208_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=26|test=t01_reset|event=mem_read|halted=0|exit_code=0|detail=addr=0x0000020c_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=27|test=t01_reset|event=mem_write|halted=0|exit_code=0|detail=addr=0x00000204_data=0x00000204_be=1111\nAI_EDA_TRACE|cycle=309|test=t01_reset|event=loop_progress|halted=0|exit_code=0|detail=x1=0x00000204_writes=1\nAI_EDA_TRACE|cycle=315|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=315|test=t01_reset|event=load_program|halted=0|exit_code=0|detail=instrs=4\nAI_EDA_TRACE|cycle=318|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=319|test=t01_reset|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=halted|halted=1|exit_code=0|detail=run_cycles=17_budget=68_x10=0x00000000_exit_code=0x00000000\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_halted|halted=1|exit_code=0|detail=halted=1\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_reg|halted=1|exit_code=0|detail=x0=0x00000000\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_reg|halted=1|exit_code=0|detail=x1=0x00000005\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_reg|halted=1|exit_code=0|detail=x2=0xffffffff\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_reg|halted=1|exit_code=0|detail=x10=0x00000000\nAI_EDA_TRACE|cycle=336|test=t01_reset|event=check_exit|halted=1|exit_code=0|detail=exit_code=0x00000000\nAI_EDA_TRACE|cycle=339|test=t01_reset|event=check_exit_x10|halted=1|exit_code=0|detail=exit_code=0x00000000\nAI_EDA_TRACE|cycle=347|test=t01_reset|event=check_stability|halted=1|exit_code=0|detail=halted_pc_regs_dmem_stable\nAI_EDA_TRACE|cycle=347|test=t01_reset|event=check_dmem_ops|halted=1|exit_code=0|detail=reads=0_writes=0\nAI_EDA_TRACE|cycle=353|test=t01_reset|event=check_reset|halted=0|exit_code=0|detail=regs_zero_halted=0_exit_0_writes=0\nAI_EDA_TRACE|cycle=353|test=t01_reset|event=test_end|halted=0|exit_code=0|detail=checks=515_failures=0_cycles=17_ok=1\nAI_EDA_TRACE|cycle=356|test=t02_alu_r|event=load_program|halted=0|exit_code=0|detail=instrs=30\nAI_EDA_TRACE|cycle=356|test=t02_alu_r|event=test_start|halted=0|exit_code=0|detail=instrs=30\nAI_EDA_TRACE|cycle=356|test=t02_alu_r|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=halted|halted=1|exit_code=66|detail=run_cycles=123_budget=46_x10=0x00000042_exit_code=0x00000042\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_halted|halted=1|exit_code=66|detail=halted=1\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x0=0x00000000\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x3=0xfffffffb\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x4=0x0000000b\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x5=0x00000000\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x6=0xfffffffb\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x7=0xfffffffb\nAI_EDA_TRACE|cycle=479|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x8=0x03000000\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x9=0x1fffffff\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x11=0xffffffff\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x12=0x00000001\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x13=0x00000000\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x14=0x80000000\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x15=0xffffffff\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x16=0x00000001\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x17=0x00000001\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x18=0x00000000\nAI_EDA_TRACE|cycle=480|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x19=0x00000000\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x20=0x80000001\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x21=0xfffffffe\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x22=0x80000000\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x23=0x00000001\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x24=0xffffffff\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x25=0x00000001\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x26=0xffffffff\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x27=0x0fffffff\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_reg|halted=1|exit_code=66|detail=x10=0x00000042\nAI_EDA_TRACE|cycle=481|test=t02_alu_r|event=check_exit|halted=1|exit_code=66|detail=exit_code=0x00000042\nAI_EDA_TRACE|cycle=485|test=t02_alu_r|event=check_exit_x10|halted=1|exit_code=66|detail=exit_code=0x00000042\nAI_EDA_TRACE|cycle=493|test=t02_alu_r|event=check_stability|halted=1|exit_code=66|detail=halted_pc_regs_dmem_stable\nAI_EDA_TRACE|cycle=493|test=t02_alu_r|event=check_dmem_ops|halted=1|exit_code=66|detail=reads=0_writes=0\nAI_EDA_TRACE|cycle=493|test=t02_alu_r|event=test_end|halted=1|exit_code=66|detail=checks=707_failures=0_cycles=123_ok=1\nAI_EDA_TRACE|cycle=496|test=t03_alu_imm|event=load_program|halted=0|exit_code=0|detail=instrs=24\nAI_EDA_TRACE|cycle=496|test=t03_alu_imm|event=test_start|halted=0|exit_code=0|detail=instrs=24\nAI_EDA_TRACE|cycle=496|test=t03_alu_imm|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=halted|halted=1|exit_code=67|detail=run_cycles=97_budget=40_x10=0x00000043_exit_code=0x00000043\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_halted|halted=1|exit_code=67|detail=halted=1\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x0=0x00000000\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x1=0xfffff800\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x2=0x000007ff\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x3=0xfffff7ff\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x4=0x000000f0\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x5=0xffffffff\nAI_EDA_TRACE|cycle=593|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x6=0xfffff800\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x7=0x00000001\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x8=0x00000000\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x9=0x00000001\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x11=0x00000001\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x12=0x00000000\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x13=0x00000000\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x14=0x00007ff0\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x15=0x000fffff\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x16=0xffffffff\nAI_EDA_TRACE|cycle=594|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x17=0x00000000\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x18=0x000007ff\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x19=0x000007ff\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x20=0x00000000\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x21=0x00000001\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_reg|halted=1|exit_code=67|detail=x10=0x00000043\nAI_EDA_TRACE|cycle=595|test=t03_alu_imm|event=check_exit|halted=1|exit_code=67|detail=exit_code=0x00000043\nAI_EDA_TRACE|cycle=598|test=t03_alu_imm|event=check_exit_x10|halted=1|exit_code=67|detail=exit_code=0x00000043\nAI_EDA_TRACE|cycle=606|test=t03_alu_imm|event=check_stability|halted=1|exit_code=67|detail=halted_pc_regs_dmem_stable\nAI_EDA_TRACE|cycle=606|test=t03_alu_imm|event=check_dmem_ops|halted=1|exit_code=67|detail=reads=0_writes=0\nAI_EDA_TRACE|cycle=606|test=t03_alu_imm|event=test_end|halted=1|exit_code=67|detail=checks=625_failures=0_cycles=97_ok=1\nAI_EDA_TRACE|cycle=609|test=t04_upper|event=load_program|halted=0|exit_code=0|detail=instrs=11\nAI_EDA_TRACE|cycle=609|test=t04_upper|event=test_start|halted=0|exit_code=0|detail=instrs=11\nAI_EDA_TRACE|cycle=609|test=t04_upper|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=halted|halted=1|exit_code=68|detail=run_cycles=46_budget=27_x10=0x00000044_exit_code=0x00000044\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_halted|halted=1|exit_code=68|detail=halted=1\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x0=0x00000000\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x1=0x12345000\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x2=0x00000004\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x3=0x00001008\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x4=0xfffff00c\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x5=0x00000007\nAI_EDA_TRACE|cycle=655|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x6=0x80000000\nAI_EDA_TRACE|cycle=656|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x7=0x80000020\nAI_EDA_TRACE|cycle=656|test=t04_upper|event=check_reg|halted=1|exit_code=68|detail=x10=0x00000044\nAI_EDA_TRACE|cycle=656|test=t04_upper|event=check_exit|halted=1|exit_code=68|detail=exit_code=0x00000044\nAI_EDA_TRACE|cycle=659|test=t04_upper|event=check_exit_x10|halted=1|exit_code=68|detail=exit_code=0x00000044\nAI_EDA_TRACE|cycle=667|test=t04_upper|event=check_stability|halted=1|exit_code=68|detail=halted_pc_regs_dmem_stable\nAI_EDA_TRACE|cycle=667|test=t04_upper|event=check_dmem_ops|halted=1|exit_code=68|detail=reads=0_writes=0\nAI_EDA_TRACE|cycle=667|test=t04_upper|event=test_end|halted=1|exit_code=68|detail=checks=459_failures=0_cycles=46_ok=1\nAI_EDA_TRACE|cycle=670|test=t05_forward|event=load_program|halted=0|exit_code=0|detail=instrs=26\nAI_EDA_TRACE|cycle=670|test=t05_forward|event=test_start|halted=0|exit_code=0|detail=instrs=26\nAI_EDA_TRACE|cycle=670|test=t05_forward|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=halted|halted=1|exit_code=69|detail=run_cycles=107_budget=42_x10=0x00000045_exit_code=0x00000045\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_halted|halted=1|exit_code=69|detail=halted=1\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x0=0x00000000\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x2=0x0000000f\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x3=0x00000014\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x4=0x0000001e\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x5=0x0000000f\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x7=0x00000002\nAI_EDA_TRACE|cycle=777|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x12=0x0000002a\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x13=0x00000054\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x14=0x0000007e\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x16=0xfffffffe\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x17=0x00000000\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x18=0x00000000\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x19=0x00000001\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x21=0x000000c8\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x22=0x00000064\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x23=0x00000007\nAI_EDA_TRACE|cycle=778|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x24=0x00000007\nAI_EDA_TRACE|cycle=779|test=t05_forward|event=check_reg|halted=1|exit_code=69|detail=x10=0x00000045\nAI_EDA_TRACE|cycle=779|test=t05_forward|event=check_exit|halted=1|exit_code=69|detail=exit_code=0x00000045\nAI_EDA_TRACE|cycle=782|test=t05_forward|event=check_exit_x10|halted=1|exit_code=69|detail=exit_code=0x00000045\nAI_EDA_TRACE|cycle=790|test=t05_forward|event=check_stability|halted=1|exit_code=69|detail=halted_pc_regs_dmem_stable\nAI_EDA_TRACE|cycle=790|test=t05_forward|event=check_dmem_ops|halted=1|exit_code=69|detail=reads=0_writes=0\nAI_EDA_TRACE|cycle=790|test=t05_forward|event=test_end|halted=1|exit_code=69|detail=checks=651_failures=0_cycles=107_ok=1\nAI_EDA_TRACE|cycle=793|test=t06_load_store|event=load_program|halted=0|exit_code=0|detail=instrs=31\nAI_EDA_TRACE|cycle=793|test=t06_load_store|event=test_start|halted=0|exit_code=0|detail=instrs=31\nAI_EDA_TRACE|cycle=793|test=t06_load_store|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=804|test=t06_load_store|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000100_rdata=0x80ff7f01\nAI_EDA_TRACE|cycle=805|test=t06_load_store|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000104_rdata=0x7fff8000\nAI_EDA_TRACE|cycle=806|test=t06_load_store|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000108_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=807|test=t06_load_store|event=mem_read|halted=0|exit_code=0|detail=addr=0x0000010c_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=858|test=t06_load_store|event=mem_write|halted=0|exit_code=0|detail=addr=0x00000108_data=0x80ff7f01_be=1111\nCHECK: t06_load_store — 等待 halted 超时（500 周期），imem_addr=0x00000040\nAI_EDA_TRACE|cycle=8793|test=t06_load_store|event=timeout|halted=0|exit_code=0|detail=max_cycles=500_pc=0x00000040\nAI_EDA_TRACE|cycle=8793|test=t06_load_store|event=test_end|halted=0|exit_code=0|detail=checks=24001_failures=1_cycles=8000_ok=0\nAI_EDA_TRACE|cycle=8796|test=t06b_neg_imm|event=load_program|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=8796|test=t06b_neg_imm|event=test_start|halted=0|exit_code=0|detail=instrs=13\nAI_EDA_TRACE|cycle=8796|test=t06b_neg_imm|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=8807|test=t06b_neg_imm|event=mem_read|halted=0|exit_code=0|detail=addr=0x000003f0_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=8808|test=t06b_neg_imm|event=mem_read|halted=0|exit_code=0|detail=addr=0x000003f4_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=8809|test=t06b_neg_imm|event=mem_read|halted=0|exit_code=0|detail=addr=0x000003f8_rdata=0xa5a5a5a5\nAI_EDA_TRACE|cycle=8810|test=t06b_neg_imm|event=mem_read|halted=0|exit_code=0|detail=addr=0x000003fc_rdata=0x11223344\nAI_EDA_TRACE|cycle=8826|test=t06b_neg_imm|event=mem_write|halted=0|exit_code=0|detail=addr=0x000003f8_data=0x55667788_be=1111\nCHECK: t06b_neg_imm — 等待 halted 超时（300 周期），imem_addr=0x00000030\nAI_EDA_TRACE|cycle=13596|test=t06b_neg_imm|event=timeout|halted=0|exit_code=0|detail=max_cycles=300_pc=0x00000030\nAI_EDA_TRACE|cycle=13596|test=t06b_neg_imm|event=test_end|halted=0|exit_code=0|detail=checks=14401_failures=1_cycles=4800_ok=0\nAI_EDA_TRACE|cycle=13599|test=t07_load_use|event=load_program|halted=0|exit_code=0|detail=instrs=14\nAI_EDA_TRACE|cycle=13599|test=t07_load_use|event=test_start|halted=0|exit_code=0|detail=instrs=14\nAI_EDA_TRACE|cycle=13599|test=t07_load_use|event=reset_release|halted=0|exit_code=0|detail=rst_n=1\nAI_EDA_TRACE|cycle=13610|test=t07_load_use|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000100_rdata=0x12345678\nAI_EDA_TRACE|cycle=13611|test=t07_load_use|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000104_rdata=0xfffffff9\nAI_EDA_TRACE|cycle=13612|test=t07_load_use|event=mem_read|halted=0|exit_code=0|detail=addr=0x00000108_rdata=0x00008000\nAI_EDA_TRACE|cycle=13613|test=t07_load_use|event=mem_read|halted=0|exit_code=0|detail=addr=0x0000010c_rdata=0xa5a5a5a5\n",
+  "stderr": "",
+  "trace": [
+    {
+      "cycle": 3,
+      "test": "enc",
+      "event": "check_encoding",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rv32i_encoders_selfchecked"
+    },
+    {
+      "cycle": 6,
+      "test": "t01_reset",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 6,
+      "test": "t01_reset",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 9,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 9,
+      "test": "t01_reset",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 23,
+      "test": "t01_reset",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000200_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 24,
+      "test": "t01_reset",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000204_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 25,
+      "test": "t01_reset",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000208_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 26,
+      "test": "t01_reset",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x0000020c_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 27,
+      "test": "t01_reset",
+      "event": "mem_write",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000204_data=0x00000204_be=1111"
+    },
+    {
+      "cycle": 309,
+      "test": "t01_reset",
+      "event": "loop_progress",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "x1=0x00000204_writes=1"
+    },
+    {
+      "cycle": 315,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 315,
+      "test": "t01_reset",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=4"
+    },
+    {
+      "cycle": 318,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 319,
+      "test": "t01_reset",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "halted",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "run_cycles=17_budget=68_x10=0x00000000_exit_code=0x00000000"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_halted",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "halted=1"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "x0=0x00000000"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "x1=0x00000005"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "x2=0xffffffff"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "x10=0x00000000"
+    },
+    {
+      "cycle": 336,
+      "test": "t01_reset",
+      "event": "check_exit",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "exit_code=0x00000000"
+    },
+    {
+      "cycle": 339,
+      "test": "t01_reset",
+      "event": "check_exit_x10",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "exit_code=0x00000000"
+    },
+    {
+      "cycle": 347,
+      "test": "t01_reset",
+      "event": "check_stability",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "halted_pc_regs_dmem_stable"
+    },
+    {
+      "cycle": 347,
+      "test": "t01_reset",
+      "event": "check_dmem_ops",
+      "halted": "1",
+      "exit_code": "0",
+      "detail": "reads=0_writes=0"
+    },
+    {
+      "cycle": 353,
+      "test": "t01_reset",
+      "event": "check_reset",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "regs_zero_halted=0_exit_0_writes=0"
+    },
+    {
+      "cycle": 353,
+      "test": "t01_reset",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=515_failures=0_cycles=17_ok=1"
+    },
+    {
+      "cycle": 356,
+      "test": "t02_alu_r",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=30"
+    },
+    {
+      "cycle": 356,
+      "test": "t02_alu_r",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=30"
+    },
+    {
+      "cycle": 356,
+      "test": "t02_alu_r",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "halted",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "run_cycles=123_budget=46_x10=0x00000042_exit_code=0x00000042"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_halted",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "halted=1"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x0=0x00000000"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x3=0xfffffffb"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x4=0x0000000b"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x5=0x00000000"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x6=0xfffffffb"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x7=0xfffffffb"
+    },
+    {
+      "cycle": 479,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x8=0x03000000"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x9=0x1fffffff"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x11=0xffffffff"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x12=0x00000001"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x13=0x00000000"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x14=0x80000000"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x15=0xffffffff"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x16=0x00000001"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x17=0x00000001"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x18=0x00000000"
+    },
+    {
+      "cycle": 480,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x19=0x00000000"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x20=0x80000001"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x21=0xfffffffe"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x22=0x80000000"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x23=0x00000001"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x24=0xffffffff"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x25=0x00000001"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x26=0xffffffff"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x27=0x0fffffff"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "x10=0x00000042"
+    },
+    {
+      "cycle": 481,
+      "test": "t02_alu_r",
+      "event": "check_exit",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "exit_code=0x00000042"
+    },
+    {
+      "cycle": 485,
+      "test": "t02_alu_r",
+      "event": "check_exit_x10",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "exit_code=0x00000042"
+    },
+    {
+      "cycle": 493,
+      "test": "t02_alu_r",
+      "event": "check_stability",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "halted_pc_regs_dmem_stable"
+    },
+    {
+      "cycle": 493,
+      "test": "t02_alu_r",
+      "event": "check_dmem_ops",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "reads=0_writes=0"
+    },
+    {
+      "cycle": 493,
+      "test": "t02_alu_r",
+      "event": "test_end",
+      "halted": "1",
+      "exit_code": "66",
+      "detail": "checks=707_failures=0_cycles=123_ok=1"
+    },
+    {
+      "cycle": 496,
+      "test": "t03_alu_imm",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=24"
+    },
+    {
+      "cycle": 496,
+      "test": "t03_alu_imm",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=24"
+    },
+    {
+      "cycle": 496,
+      "test": "t03_alu_imm",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "halted",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "run_cycles=97_budget=40_x10=0x00000043_exit_code=0x00000043"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_halted",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "halted=1"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x0=0x00000000"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x1=0xfffff800"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x2=0x000007ff"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x3=0xfffff7ff"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x4=0x000000f0"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x5=0xffffffff"
+    },
+    {
+      "cycle": 593,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x6=0xfffff800"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x7=0x00000001"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x8=0x00000000"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x9=0x00000001"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x11=0x00000001"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x12=0x00000000"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x13=0x00000000"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x14=0x00007ff0"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x15=0x000fffff"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x16=0xffffffff"
+    },
+    {
+      "cycle": 594,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x17=0x00000000"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x18=0x000007ff"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x19=0x000007ff"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x20=0x00000000"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x21=0x00000001"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "x10=0x00000043"
+    },
+    {
+      "cycle": 595,
+      "test": "t03_alu_imm",
+      "event": "check_exit",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "exit_code=0x00000043"
+    },
+    {
+      "cycle": 598,
+      "test": "t03_alu_imm",
+      "event": "check_exit_x10",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "exit_code=0x00000043"
+    },
+    {
+      "cycle": 606,
+      "test": "t03_alu_imm",
+      "event": "check_stability",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "halted_pc_regs_dmem_stable"
+    },
+    {
+      "cycle": 606,
+      "test": "t03_alu_imm",
+      "event": "check_dmem_ops",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "reads=0_writes=0"
+    },
+    {
+      "cycle": 606,
+      "test": "t03_alu_imm",
+      "event": "test_end",
+      "halted": "1",
+      "exit_code": "67",
+      "detail": "checks=625_failures=0_cycles=97_ok=1"
+    },
+    {
+      "cycle": 609,
+      "test": "t04_upper",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=11"
+    },
+    {
+      "cycle": 609,
+      "test": "t04_upper",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=11"
+    },
+    {
+      "cycle": 609,
+      "test": "t04_upper",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "halted",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "run_cycles=46_budget=27_x10=0x00000044_exit_code=0x00000044"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_halted",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "halted=1"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x0=0x00000000"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x1=0x12345000"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x2=0x00000004"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x3=0x00001008"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x4=0xfffff00c"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x5=0x00000007"
+    },
+    {
+      "cycle": 655,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x6=0x80000000"
+    },
+    {
+      "cycle": 656,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x7=0x80000020"
+    },
+    {
+      "cycle": 656,
+      "test": "t04_upper",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "x10=0x00000044"
+    },
+    {
+      "cycle": 656,
+      "test": "t04_upper",
+      "event": "check_exit",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "exit_code=0x00000044"
+    },
+    {
+      "cycle": 659,
+      "test": "t04_upper",
+      "event": "check_exit_x10",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "exit_code=0x00000044"
+    },
+    {
+      "cycle": 667,
+      "test": "t04_upper",
+      "event": "check_stability",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "halted_pc_regs_dmem_stable"
+    },
+    {
+      "cycle": 667,
+      "test": "t04_upper",
+      "event": "check_dmem_ops",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "reads=0_writes=0"
+    },
+    {
+      "cycle": 667,
+      "test": "t04_upper",
+      "event": "test_end",
+      "halted": "1",
+      "exit_code": "68",
+      "detail": "checks=459_failures=0_cycles=46_ok=1"
+    },
+    {
+      "cycle": 670,
+      "test": "t05_forward",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=26"
+    },
+    {
+      "cycle": 670,
+      "test": "t05_forward",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=26"
+    },
+    {
+      "cycle": 670,
+      "test": "t05_forward",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "halted",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "run_cycles=107_budget=42_x10=0x00000045_exit_code=0x00000045"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_halted",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "halted=1"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x0=0x00000000"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x2=0x0000000f"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x3=0x00000014"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x4=0x0000001e"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x5=0x0000000f"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x7=0x00000002"
+    },
+    {
+      "cycle": 777,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x12=0x0000002a"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x13=0x00000054"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x14=0x0000007e"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x16=0xfffffffe"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x17=0x00000000"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x18=0x00000000"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x19=0x00000001"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x21=0x000000c8"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x22=0x00000064"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x23=0x00000007"
+    },
+    {
+      "cycle": 778,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x24=0x00000007"
+    },
+    {
+      "cycle": 779,
+      "test": "t05_forward",
+      "event": "check_reg",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "x10=0x00000045"
+    },
+    {
+      "cycle": 779,
+      "test": "t05_forward",
+      "event": "check_exit",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "exit_code=0x00000045"
+    },
+    {
+      "cycle": 782,
+      "test": "t05_forward",
+      "event": "check_exit_x10",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "exit_code=0x00000045"
+    },
+    {
+      "cycle": 790,
+      "test": "t05_forward",
+      "event": "check_stability",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "halted_pc_regs_dmem_stable"
+    },
+    {
+      "cycle": 790,
+      "test": "t05_forward",
+      "event": "check_dmem_ops",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "reads=0_writes=0"
+    },
+    {
+      "cycle": 790,
+      "test": "t05_forward",
+      "event": "test_end",
+      "halted": "1",
+      "exit_code": "69",
+      "detail": "checks=651_failures=0_cycles=107_ok=1"
+    },
+    {
+      "cycle": 793,
+      "test": "t06_load_store",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=31"
+    },
+    {
+      "cycle": 793,
+      "test": "t06_load_store",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=31"
+    },
+    {
+      "cycle": 793,
+      "test": "t06_load_store",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 804,
+      "test": "t06_load_store",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000100_rdata=0x80ff7f01"
+    },
+    {
+      "cycle": 805,
+      "test": "t06_load_store",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000104_rdata=0x7fff8000"
+    },
+    {
+      "cycle": 806,
+      "test": "t06_load_store",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000108_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 807,
+      "test": "t06_load_store",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x0000010c_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 858,
+      "test": "t06_load_store",
+      "event": "mem_write",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000108_data=0x80ff7f01_be=1111"
+    },
+    {
+      "cycle": 8793,
+      "test": "t06_load_store",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=500_pc=0x00000040"
+    },
+    {
+      "cycle": 8793,
+      "test": "t06_load_store",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=24001_failures=1_cycles=8000_ok=0"
+    },
+    {
+      "cycle": 8796,
+      "test": "t06b_neg_imm",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 8796,
+      "test": "t06b_neg_imm",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=13"
+    },
+    {
+      "cycle": 8796,
+      "test": "t06b_neg_imm",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 8807,
+      "test": "t06b_neg_imm",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x000003f0_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 8808,
+      "test": "t06b_neg_imm",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x000003f4_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 8809,
+      "test": "t06b_neg_imm",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x000003f8_rdata=0xa5a5a5a5"
+    },
+    {
+      "cycle": 8810,
+      "test": "t06b_neg_imm",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x000003fc_rdata=0x11223344"
+    },
+    {
+      "cycle": 8826,
+      "test": "t06b_neg_imm",
+      "event": "mem_write",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x000003f8_data=0x55667788_be=1111"
+    },
+    {
+      "cycle": 13596,
+      "test": "t06b_neg_imm",
+      "event": "timeout",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "max_cycles=300_pc=0x00000030"
+    },
+    {
+      "cycle": 13596,
+      "test": "t06b_neg_imm",
+      "event": "test_end",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "checks=14401_failures=1_cycles=4800_ok=0"
+    },
+    {
+      "cycle": 13599,
+      "test": "t07_load_use",
+      "event": "load_program",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=14"
+    },
+    {
+      "cycle": 13599,
+      "test": "t07_load_use",
+      "event": "test_start",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "instrs=14"
+    },
+    {
+      "cycle": 13599,
+      "test": "t07_load_use",
+      "event": "reset_release",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "rst_n=1"
+    },
+    {
+      "cycle": 13610,
+      "test": "t07_load_use",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000100_rdata=0x12345678"
+    },
+    {
+      "cycle": 13611,
+      "test": "t07_load_use",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000104_rdata=0xfffffff9"
+    },
+    {
+      "cycle": 13612,
+      "test": "t07_load_use",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x00000108_rdata=0x00008000"
+    },
+    {
+      "cycle": 13613,
+      "test": "t07_load_use",
+      "event": "mem_read",
+      "halted": "0",
+      "exit_code": "0",
+      "detail": "addr=0x0000010c_rdata=0xa5a5a5a5"
+    }
+  ],
+  "checks": [
+    {
+      "name": "t06_load_store",
+      "detail": "等待 halted 超时（500 周期），imem_addr=0x00000040"
+    },
+    {
+      "name": "t06b_neg_imm",
+      "detail": "等待 halted 超时（300 周期），imem_addr=0x00000030"
+    },
+    {
+      "name": "simulation_timeout",
+      "detail": "教师 TB 达到主机等待上限 90 s，已保留部分测试证据。"
+    }
+  ],
+  "teacher_passed": false,
+  "retirement_observation": {
+    "status": "observed",
+    "samples": [
+      "RESET|imem_valid=0|dmem_valid=0|imem_addr=xxxxxxxx",
+      "RETIREMENT|cycles=11|imem_accepts=4|dmem_accepts=0|retired=2|ecalls=1|first_pc=00000000|first_insn=00700513|last_pc=00000000|last_insn=00000000|halted=1|exit=00000007|x10=00000007|final_imem_valid=0|final_imem_addr=0000000c"
+    ],
+    "program": "addi x10,x0,7; ecall; nop; zero-wait external memory",
+    "expected": "reset bus quiet, first retirement PC 0, ECALL retires once, halted with exit=7",
+    "field_semantics": "When retired=0, first_pc and first_insn are sentinels, not observed CPU values."
+  },
+  "icache_word_observation": {
+    "status": "observed",
+    "samples": [
+      "WORD|address=00000100|accepted=1|response=1|expected=5a003d00|actual=5a003d00|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=00000104|accepted=1|response=1|expected=5a003d04|actual=5a003d04|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=00000108|accepted=1|response=1|expected=5a003d08|actual=5a003d08|first_refill=00000100|read_beats=4|refill_match=1|match=1",
+      "WORD|address=0000010c|accepted=1|response=1|expected=5a003d0c|actual=5a003d0c|first_refill=00000100|read_beats=4|refill_match=1|match=1"
+    ],
+    "experiment": "Four independent cold requests, one per word offset, with address-dependent memory data. After acceptance the idle request address changes to the next offset; the response must still match the accepted address."
+  },
+  "dcache_lane_observation": {
+    "status": "observed",
+    "samples": [
+      "DCACHE|case=cold_load|address=00000204|accepted=1|response=1|expected=11223345|actual=11223345|read_beats=4|write_beats=0|bus_write_addr=00000000|bus_write_data=00000000|bus_write_be=0000|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=halfword_hit|address=00000206|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=0|write_beats=1|bus_write_addr=00000206|bus_write_data=abcdabcd|bus_write_be=1100|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_sh|address=00000204|accepted=1|response=1|expected=abcd3345|actual=abcd3345|read_beats=0|write_beats=0|bus_write_addr=00000206|bus_write_data=abcdabcd|bus_write_be=1100|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=byte_hit|address=00000205|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=0|write_beats=1|bus_write_addr=00000205|bus_write_data=7e7e7e7e|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_sb|address=00000204|accepted=1|response=1|expected=abcd7e45|actual=abcd7e45|read_beats=0|write_beats=0|bus_write_addr=00000205|bus_write_data=7e7e7e7e|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=byte_miss|address=00000225|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=4|write_beats=1|bus_write_addr=00000225|bus_write_data=aaaaaaaa|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_miss_store|address=00000224|accepted=1|response=1|expected=1122aa4d|actual=1122aa4d|read_beats=0|write_beats=0|bus_write_addr=00000225|bus_write_data=aaaaaaaa|bus_write_be=0010|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=final_beat_store_miss|address=0000023f|accepted=1|response=1|expected=00000000|actual=00000000|read_beats=4|write_beats=1|bus_write_addr=0000023f|bus_write_data=dddddddd|bus_write_be=1000|first_refill_addr=00000200|refill_addresses_match=1|match=1",
+      "DCACHE|case=load_after_final_beat_store|address=0000023c|accepted=1|response=1|expected=dd22334b|actual=dd22334b|read_beats=0|write_beats=0|bus_write_addr=0000023f|bus_write_data=dddddddd|bus_write_be=1000|first_refill_addr=00000200|refill_addresses_match=1|match=1"
+    ],
+    "experiment": "Cold load at word offset one, then halfword and byte stores with an immediate readback after each store. Repeat on cold stores to the second and final words of newly allocated lines. Check external refill addresses, store byte address, mask and data, plus cached data."
+  },
+  "execution_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=3|cycles=68|retired=5|last_pc=00000010|ordered=1|halted=1|exit=0000000a|register=00000029|if_reads=8|if_changes=0|reads=4|writes=0|resolved=0|mispredicts=0|issues=4|overlaps=2|first_retirements=00000000:10000093,00000004:0000a103,00000008:00900193,0000000c:00118513,00000010:00000073,|first_reads=00000100:00000029,00000104:00000000,00000108:00000000,0000010c:00000000,|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed cold load with two younger independent integer operations.",
+    "expected": "four read beats, x2=41, exit=10, five ordered retirements and a D-wait bypass event"
+  },
+  "l3_fetch_backpressure_observation": {
+    "status": "timeout",
+    "experiment": "A delayed load fills the ROB while twelve independent writes arrive from fetch.",
+    "expected": "All sixteen instructions retire in order, with one cold refill and exit 53."
+  },
+  "l3_rename_reuse_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=7|cycles=59|retired=14|last_pc=00000034|ordered=1|halted=1|exit=0000000c|register=0000000c|if_reads=16|if_changes=0|reads=0|writes=0|resolved=0|mispredicts=0|issues=13|overlaps=0|first_retirements=00000000:00110113,00000004:00110113,00000008:00110113,0000000c:00110113,00000010:00110113,00000014:00110113,00000018:00110113,0000001c:00110113,|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "Twelve dependent increments of x2, copy x2 to x10, then ECALL.",
+    "expected": "Fourteen ordered retirements, x2 and exit equal 12, no data memory operations."
+  },
+  "l3_rename_allocation_observation": {
+    "status": "observed",
+    "samples": [
+      "RENAME|case=nonwriter|prd=0|match=1",
+      "RENAME|case=allocate_0|ready=1|prd=32|match=1",
+      "RENAME|case=allocate_1|ready=1|prd=33|match=1",
+      "RENAME|case=allocate_2|ready=1|prd=34|match=1",
+      "RENAME|case=allocate_3|ready=1|prd=35|match=1",
+      "RENAME|case=allocate_4|ready=1|prd=36|match=1",
+      "RENAME|case=allocate_5|ready=1|prd=37|match=1",
+      "RENAME|case=allocate_6|ready=1|prd=38|match=1",
+      "RENAME|case=allocate_7|ready=1|prd=39|match=1",
+      "RENAME|case=full|ready=0|match=1"
+    ],
+    "experiment": "Allocate all eight free registers without commits, then try a nonwriter."
+  },
+  "l3_iq_selection_observation": {
+    "status": "observed",
+    "samples": [
+      "IQ|case=ready_bypass|tag=7|match=0",
+      "IQ|case=age_wrap|tag=7|match=1"
+    ],
+    "experiment": "Select a younger ready instruction past an unready older entry, then compare age across tag wrap."
+  },
+  "l3_redirect_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=4|cycles=22|retired=4|last_pc=00000024|ordered=1|halted=1|exit=00000007|register=00000007|if_reads=8|if_changes=0|reads=0|writes=0|resolved=1|mispredicts=1|issues=3|overlaps=0|first_retirements=00000000:00100093,00000004:01c0006f,00000020:00700513,00000024:00000073,|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "JAL from PC 4 to a cold instruction line at 0x20, over a wrong-path write and ECALL.",
+    "expected": "Only PCs 0, 4, 0x20 and 0x24 retire, with their original instructions and exit=7."
+  },
+  "l3_repeated_redirect_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=6|cycles=1024|retired=5|last_pc=00000024|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=8|if_changes=0|reads=0|writes=0|resolved=2|mispredicts=2|issues=5|overlaps=0|first_retirements=00000000:02000093,00000004:00000013,00000008:00008067,00000020:04000093,00000024:fe5ff06f,|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "The same JALR resolves first to 0x20 and then to 0x40, with a BTB index alias at 0x48 and a wrong-path store and ECALL on the fall-through path.",
+    "expected": "Ten ordered retirements, three resolves/mispredicts, no writes, exit=8."
+  },
+  "l3_memory_queue_observation": {
+    "status": "timeout",
+    "experiment": "A delayed cold word load followed by a byte load from the same cache line.",
+    "expected": "Five ordered retirements, x2=0x292a, exit=41, four external reads and no writes."
+  },
+  "l3_link_recovery_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=4|cycles=1024|retired=2|last_pc=00000004|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=8|if_changes=0|reads=0|writes=0|resolved=1|mispredicts=1|issues=2|overlaps=0|first_retirements=00000000:00100093,00000004:01c002ef,|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A cold JAL writes x5; its target reads the link immediately after recovery.",
+    "expected": "Four ordered retirements and exit=11 from link 8 plus 3."
+  },
+  "l3_lsu_completion_observation": {
+    "status": "observed",
+    "samples": [
+      "LSU|case=store_wait|match=1",
+      "LSU|case=store_completion|match=0",
+      "LSU|case=load_after_response_enqueue|match=1",
+      "LSU|case=signed_load_completion|match=0"
+    ],
+    "experiment": "Hold a byte store until accepted, enqueue a load on its response, then check signed byte writeback."
+  },
+  "l3_store_writeback_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=9|cycles=1024|retired=2|last_pc=00000004|ordered=1|halted=0|exit=00000000|register=00000000|if_reads=8|if_changes=0|reads=4|writes=1|resolved=0|mispredicts=0|issues=5|overlaps=0|first_retirements=00000000:10000093,00000004:00700113,|first_reads=00000100:00000029,00000104:00000000,00000108:00000000,0000010c:00000000,|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A delayed store completes after younger independent writes to x3 and x10.",
+    "expected": "Six ordered retirements, one bus write, and x3 and exit both equal 19."
+  },
+  "l3_predictor_training_observation": {
+    "status": "observed",
+    "samples": [
+      "EXEC|scenario=2|cycles=1024|retired=3|last_pc=00000008|ordered=1|halted=0|exit=00000000|register=0000000f|if_reads=4|if_changes=0|reads=0|writes=0|resolved=1|mispredicts=1|issues=3|overlaps=0|first_retirements=00000000:01000093,00000004:fff08093,00000008:fe009ee3,|first_reads=|dmem_changes=0|halt_changes=0"
+    ],
+    "experiment": "A 16-iteration backward branch loop using an already warm instruction line.",
+    "expected": "35 retirements, x1=0, ECALL at PC 0x10, halted with exit=7"
+  },
+  "pipeline_observation": {
+    "status": "observed",
+    "samples": [
+      "PIPE|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|1|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|2|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|3|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|0|0|0",
+      "PIPE|4|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|0|4|1|10000093|0",
+      "PIPE|5|0|0|0|4|1|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|0|1|4|0|10000093|0",
+      "PIPE|6|0|0|0|4|0|1|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|1|1|4|0|10000093|1",
+      "PIPE|7|1|0|1|4|0|0|1|0|1|0|0|0|0|0|0|0|0|8|0|0|0|0|0|8|1|a103|1",
+      "PIPE|8|0|0|0|8|1|0|1|0|0|0|0|0|0|0|0|1|0|8|0|0|0|0|1|8|0|a103|1",
+      "PIPE|9|0|4|0|8|0|1|1|4|0|0|0|0|0|0|0|0|0|8|0|0|0|1|1|8|0|a103|2",
+      "PIPE|10|0|4|1|8|0|0|2|4|0|0|0|1|100|0|0|0|4|c|0|0|0|0|0|c|1|900193|2",
+      "PIPE|11|0|4|0|c|1|0|2|4|0|0|0|0|100|0|1|0|4|c|0|0|0|0|1|c|0|900193|2",
+      "PIPE|12|0|4|0|c|0|1|2|8|0|0|0|0|100|0|1|0|4|c|0|0|0|1|1|c|0|900193|3",
+      "PIPE|13|0|4|1|c|0|0|3|8|1|2|8|0|100|0|1|0|4|10|0|0|0|0|0|10|1|118513|3",
+      "PIPE|14|0|4|0|10|1|0|3|8|0|0|0|0|100|0|1|0|4|10|0|0|0|0|1|10|0|118513|3",
+      "PIPE|15|0|4|0|10|0|1|3|c|0|0|0|0|100|0|1|0|4|10|0|0|0|1|1|10|0|118513|4",
+      "PIPE|16|0|4|1|10|0|0|4|c|1|3|c|0|100|0|1|0|4|14|0|0|0|0|0|14|0|118513|4",
+      "PIPE|17|0|4|0|14|0|0|4|c|0|0|0|0|100|0|1|0|4|14|0|0|0|0|0|14|0|118513|4",
+      "PIPE|18|0|4|0|14|0|0|4|c|0|0|0|0|100|0|1|0|4|14|0|0|0|0|0|14|0|118513|4",
+      "PIPE|19|0|4|0|14|0|0|4|c|0|0|0|0|100|0|1|0|4|14|0|0|0|0|0|14|0|118513|4",
+      "PIPE|20|0|4|0|14|0|0|4|c|0|0|0|0|100|0|1|0|4|14|0|0|0|0|0|14|1|73|4",
+      "PIPE|21|0|4|0|14|1|0|4|c|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|4",
+      "PIPE|22|0|4|0|14|0|1|4|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|23|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|24|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|25|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|26|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|27|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|28|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|29|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|30|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|31|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|32|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|33|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|34|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|35|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|36|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|37|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|38|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|39|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|40|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|41|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|42|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|43|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|44|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|45|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|46|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|47|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|48|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|49|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|50|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|51|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|52|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|53|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|54|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|55|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|56|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|57|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|58|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|59|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|60|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|61|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|62|0|4|0|14|0|0|5|10|0|0|0|0|100|0|1|0|4|14|0|0|1|0|1|14|0|73|5",
+      "PIPE|63|1|4|0|14|0|0|5|10|0|0|0|0|100|1|1|0|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|64|1|8|0|14|0|0|5|10|0|0|0|0|0|0|1|1|4|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|65|1|c|0|14|0|0|5|10|0|0|0|0|0|0|1|1|8|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|66|1|10|0|14|0|0|5|10|0|0|0|0|0|0|1|1|c|14|0|0|0|0|1|14|0|73|5",
+      "PIPE|67|0|0|0|14|0|0|5|10|0|0|0|0|0|0|1|1|10|14|0|0|0|0|1|14|0|73|5"
+    ],
+    "fields": [
+      "cycle",
+      "retire_valid",
+      "retire_pc",
+      "fetch_accept_at_edge",
+      "fetch_addr_at_edge",
+      "fetch_response_at_edge",
+      "allocate_at_edge",
+      "allocate_alloc_rob_idx_at_edge",
+      "allocate_alloc_pc_at_edge",
+      "issue_at_edge",
+      "issue_issue_rob_idx_at_edge",
+      "issue_issue_pc_at_edge",
+      "lsu_issue_at_edge",
+      "lsu_issue_cpu_req_addr_at_edge",
+      "load_complete_at_edge",
+      "load_complete_complete_tag_at_edge",
+      "retire_at_edge",
+      "retire_commit_pc_at_edge",
+      "fetch_pc",
+      "cur_epoch",
+      "ic_flush_epoch",
+      "lsu_complete_valid",
+      "ic_cpu_req_valid",
+      "ic_cpu_req_ready",
+      "ic_cpu_req_addr",
+      "ic_cpu_resp_valid",
+      "ic_cpu_resp_data",
+      "rob_alloc_idx"
+    ],
+    "trace_cycles": 96,
+    "field_semantics": "The at_edge fields sample the fetch request and response immediately before the rising edge update. Other signals are sampled after the update. Cycle is decimal; all other values are hex. Ignore a PC when its valid is zero.",
+    "top_assignments": [
+      "ic_cpu_req_valid = !halted_r && !ecall_pending && !fetch_outstanding && !buf_valid && !squash",
+      "ic_cpu_req_addr = fetch_pc",
+      "ic_flush_epoch = cur_epoch"
+    ],
+    "constant_capability_outputs": {},
+    "instance_connections": {
+      "reorder_buffer.alloc_valid": "rob_alloc_valid",
+      "reorder_buffer.alloc_ready": "rob_alloc_ready",
+      "reorder_buffer.alloc_rob_idx": "rob_alloc_idx",
+      "reorder_buffer.commit_valid": "rob_commit_valid",
+      "issue_queue.disp_rob_idx": "iq_disp_rob_idx",
+      "issue_queue.issue_ready": "iq_issue_ready",
+      "load_store_unit.disp_rob_idx": "lsu_disp_rob_idx",
+      "load_store_unit.complete_valid": "lsu_complete_valid",
+      "rename_unit.commit_prd": "rob_commit_prd"
+    },
+    "l3_accepted_transfers": {
+      "allocate_at_edge": {
+        "count": 5,
+        "first": [
+          {
+            "cycle": "6",
+            "allocate_alloc_rob_idx_at_edge": "0",
+            "allocate_alloc_pc_at_edge": "0"
+          },
+          {
+            "cycle": "9",
+            "allocate_alloc_rob_idx_at_edge": "1",
+            "allocate_alloc_pc_at_edge": "4"
+          },
+          {
+            "cycle": "12",
+            "allocate_alloc_rob_idx_at_edge": "2",
+            "allocate_alloc_pc_at_edge": "8"
+          },
+          {
+            "cycle": "15",
+            "allocate_alloc_rob_idx_at_edge": "3",
+            "allocate_alloc_pc_at_edge": "c"
+          }
+        ]
+      },
+      "issue_at_edge": {
+        "count": 3,
+        "first": [
+          {
+            "cycle": "7",
+            "issue_issue_rob_idx_at_edge": "0",
+            "issue_issue_pc_at_edge": "0"
+          },
+          {
+            "cycle": "13",
+            "issue_issue_rob_idx_at_edge": "2",
+            "issue_issue_pc_at_edge": "8"
+          },
+          {
+            "cycle": "16",
+            "issue_issue_rob_idx_at_edge": "3",
+            "issue_issue_pc_at_edge": "c"
+          }
+        ]
+      },
+      "lsu_issue_at_edge": {
+        "count": 1,
+        "first": [
+          {
+            "cycle": "10",
+            "lsu_issue_cpu_req_addr_at_edge": "100"
+          }
+        ]
+      },
+      "load_complete_at_edge": {
+        "count": 1,
+        "first": [
+          {
+            "cycle": "63",
+            "load_complete_complete_tag_at_edge": "1"
+          }
+        ]
+      },
+      "retire_at_edge": {
+        "count": 5,
+        "first": [
+          {
+            "cycle": "8",
+            "retire_commit_pc_at_edge": "0"
+          },
+          {
+            "cycle": "64",
+            "retire_commit_pc_at_edge": "4"
+          },
+          {
+            "cycle": "65",
+            "retire_commit_pc_at_edge": "8"
+          },
+          {
+            "cycle": "66",
+            "retire_commit_pc_at_edge": "c"
+          }
+        ]
+      }
+    },
+    "asserted_signals": {
+      "lsu_complete_valid": {
+        "sample_count": 1,
+        "first_samples": [
+          {
+            "cycle": "62"
+          }
+        ]
+      },
+      "retire_valid": {
+        "sample_count": 5,
+        "first_samples": [
+          {
+            "cycle": "7",
+            "retire_pc": "0"
+          },
+          {
+            "cycle": "63",
+            "retire_pc": "4"
+          },
+          {
+            "cycle": "64",
+            "retire_pc": "8"
+          },
+          {
+            "cycle": "65",
+            "retire_pc": "c"
+          }
+        ]
+      }
+    },
+    "first_fetch_accept": {
+      "cycle": "0",
+      "fetch_addr_at_edge": "0"
+    },
+    "fetch_transfer": {
+      "accepted": true,
+      "response_seen": true
+    }
+  },
+  "logic_loop_observation": {
+    "status": "observed",
+    "loops": [],
+    "undriven": [],
+    "undriven_count": 0
+  },
+  "repair_verification": {
+    "schema_version": 1,
+    "rtl_manifest": "artifacts/rtl_manifest_attempt9.json",
+    "baseline_manifest": "artifacts/rtl_manifest_attempt2.json",
+    "baseline_stage": "simulation",
+    "candidate_stage": "simulation",
+    "verification": "No integer entry is removed without the corresponding ROB completion.",
+    "probe": null,
+    "before_failures": null,
+    "after_failures": null,
+    "probe_failure_counts": {
+      "icache_word_observation": {
+        "before": 0,
+        "after": 0
+      },
+      "dcache_lane_observation": {
+        "before": 0,
+        "after": 0
+      },
+      "retirement_observation": {
+        "before": 3,
+        "after": 0
+      },
+      "execution_observation": {
+        "before": 8,
+        "after": 0
+      },
+      "logic_loop_observation": {
+        "before": 0,
+        "after": 0
+      },
+      "pipeline_observation": {
+        "before": 0,
+        "after": 0
+      },
+      "l3_rename_reuse_observation": {
+        "before": 4,
+        "after": 0
+      },
+      "l3_redirect_observation": {
+        "before": 4,
+        "after": 0
+      },
+      "l3_repeated_redirect_observation": {
+        "before": 5,
+        "after": 5
+      },
+      "l3_link_recovery_observation": {
+        "before": 4,
+        "after": 4
+      },
+      "l3_predictor_training_observation": {
+        "before": 4,
+        "after": 5
+      },
+      "l3_store_writeback_observation": {
+        "before": 5,
+        "after": 4
+      },
+      "l3_lsu_completion_observation": {
+        "before": 2,
+        "after": 2
+      },
+      "l3_rename_allocation_observation": {
+        "before": 0,
+        "after": 0
+      },
+      "l3_iq_selection_observation": {
+        "before": 1,
+        "after": 1
+      }
+    },
+    "resolved": null,
+    "teacher_passed": false
+  }
+}

@@ -554,7 +554,7 @@ def run_agent(
             failing = len(report.get("checks") or [])
             if tester_attempts == 1:
                 initial_failed_checks = failing
-            runaway_limit = int(os.environ.get("EDA_RUNAWAY_CHECKS", "50000"))
+            runaway_limit = int(os.environ.get("EDA_RUNAWAY_CHECKS", "2000"))
             if (
                 tester_attempts == 1 and not report.get("passed")
                 and report.get("stage") == "simulation" and failing > runaway_limit

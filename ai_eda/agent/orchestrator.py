@@ -7,6 +7,7 @@ Parser 需要补充 Spec 时通过 ``request_input`` 暂停并等待用户输入
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import time
 from datetime import datetime, timezone
@@ -550,6 +551,21 @@ def run_agent(
             tester_artifacts = context.read_handoff(tester_handoff)["payload"]["artifacts"]
             report = context.read_json_artifact(tester_artifacts["report"])
             accepted, reason = (True, "initial_candidate") if final_report is None else repair_verdict(final_report, report)
+            failing = len(report.get("checks") or [])
+            if tester_attempts == 1:
+                initial_failed_checks = failing
+            runaway_limit = int(os.environ.get("EDA_RUNAWAY_CHECKS", "50000"))
+            if (
+                tester_attempts == 1 and not report.get("passed")
+                and report.get("stage") == "simulation" and failing > runaway_limit
+            ):
+                # 首轮就是断言风暴（实测 23 万条）：这类设计靠 9 轮小补丁救不回来，
+                # 每轮却要一次 40 s 教师仿真。直接停，省下整段修复预算。
+                repair_stop = f"runaway_design: {failing} failing checks"
+                final_report = report
+                selected = tester_handoff
+                final_report_preview = report_preview(report, tester_artifacts["report"])
+                break
             if accepted:
                 selected = tester_handoff
                 final_report = report
@@ -659,6 +675,7 @@ def run_agent(
             "selected_report": final_artifacts["report"],
             "selected_manifest": manifest_ref,
             "repair_stop": repair_stop,
+            "initial_failed_checks": locals().get("initial_failed_checks"),
             "resumed_from": resume_from,
             **({"architecture_profile": architecture_profile} if architecture_profile else {}),
             **({"component_seed_from": component_seed_from, "component_seed_files": sorted(seed_files)}

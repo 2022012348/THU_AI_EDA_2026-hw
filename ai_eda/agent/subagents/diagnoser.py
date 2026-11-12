@@ -13,6 +13,7 @@ from ai_eda.agent.cpu_workflow import (
     l3_rob_head_feedback, l3_rob_tail_advances_without_allocation, module_instance_body,
 )
 from ai_eda.agent.patches import PatchProtocolError
+from ai_eda.agent.skills.teacher_tests import test_source
 from ai_eda.agent.snapshots import load_snapshot
 
 from .base import SubAgent
@@ -2104,6 +2105,14 @@ class DiagnoserAgent(SubAgent):
             "spec_sections": [x for x in (raw.get("spec_sections") or []) if x in headings][:6],
             "verification": str(raw.get("verification") or "")[:750],
         }
+        failing_names = [group["name"] for group in (selected_checks or checks)[:3]]
+        test_sources = [
+            source for source in (test_source(name) for name in failing_names) if source
+        ]
+        if test_sources:
+            # 教师用例原文（建程序 + 检查项）是决定性的：只给 "等待 halted 超时 0x0c"
+            # 时，Patch 必须猜这段程序装了什么。
+            brief["teacher_test_source"] = "\n\n".join(test_sources)[:6000]
         scoped_connections = relevant_l3_connections(connections, brief["files"], brief["symbols"])
         if scoped_connections:
             brief["current_top_bindings"] = scoped_connections

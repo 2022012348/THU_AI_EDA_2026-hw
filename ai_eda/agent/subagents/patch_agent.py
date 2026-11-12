@@ -102,7 +102,7 @@ class PatchAgent(SubAgent):
             try:
                 result = self.runtime.call_model(
                     event, request, system_prompt,
-                    model_options={"thinking": False, "max_tokens": min(self.runtime.options["max_tokens"], 12000)},
+                    model_options={"thinking": False, "max_tokens": min(self.runtime.options["max_tokens"], 24000)},
                 )
                 application = self._apply(result["answer"], selected)
                 changed_interfaces = set()
@@ -121,7 +121,9 @@ class PatchAgent(SubAgent):
                     l3_allocation_wiring(candidate)
                 if plan.get("in_order_boundary_contract"):
                     in_order_boundary_wiring(candidate)
-                if cpu_simulation:
+                if cpu_level is not None:
+                    # 编译阶段也要验：否则模型可以连续提交无法展开的整份文件，
+                    # 每一轮都由 Tester 花掉一次修复预算（实测 9 轮全 compile）。
                     self._check_cpu_compile(candidate, changed_interfaces)
                 if cpu_level == 3:
                     self._check_cache_repair(target, evidence, application.changed_files)
@@ -131,7 +133,7 @@ class PatchAgent(SubAgent):
                     raise
                 instruction = (
                     "The response exceeded the output limit. Return only compact anchored edits, with the smallest "
-                    "unique exact snippets and no full files."
+                    "unique exact snippets and no full files; edit one file at a time."
                     if isinstance(error, ModelOutputTruncated)
                     else f"The previous response failed patch validation: {error}. Fix the reported problem. "
                          "Use compact anchored edits or a complete replacement for a small changed file."

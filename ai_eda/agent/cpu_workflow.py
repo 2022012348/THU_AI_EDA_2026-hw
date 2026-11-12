@@ -458,6 +458,16 @@ def forwarding_select_outputs(interfaces: str, module: str) -> set[str]:
     return {pin for pin in ("fwd_rs1_sel", "fwd_rs2_sel") if signatures.get(pin, "").startswith("output")}
 
 
+def if_id_ready_message(name: str, actual: str, expected: str) -> str:
+    """报错必须写出实际方向：旧文案把期望值当实际值，模型只会重复同一份计划。"""
+
+    return (
+        f"{name}.if_id_ready is {actual}, expected {expected} "
+        "(ID owns decode readiness; if_id_ready is an output of id_stage "
+        "and an input of everyone else)"
+    )
+
+
 def validate_cpu_plan(plan: dict, level: int) -> None:
     modules = {item["name"]: item for item in plan["modules"]}
     missing = set(required_modules(level)) - modules.keys()
@@ -483,7 +493,7 @@ def validate_cpu_plan(plan: dict, level: int) -> None:
                 if port and port[2] == "if_id_ready":
                     expected_direction = "output" if name == "id_stage" else "input"
                     if port[1] != expected_direction:
-                        errors.append(f"{name}.if_id_ready is {expected_direction}; ID owns decode readiness")
+                        errors.append(if_id_ready_message(name, port[1], expected_direction))
         if level == 2 and name == "if_stage":
             directions = {"bp_lookup_pc": "output", "bp_lookup_next_pc": "input", "bp_lookup_valid": "input"}
             for port in ports:

@@ -18,6 +18,23 @@ from ai_eda.api_key import resolve_api_key
 from .prompts import DEFAULT_SYSTEM_PROMPT, RTL_SYSTEM_PROMPT
 
 
+def _usage_payload(usage: Any) -> dict[str, Any]:
+    """归一化不同网关的 usage 字段，含缓存命中量（计费要用）。"""
+
+    details = getattr(usage, "prompt_tokens_details", None)
+    cached = getattr(details, "cached_tokens", None) if details is not None else None
+    if cached is None:
+        cached = getattr(usage, "prompt_cache_hit_tokens", None)
+    payload = {
+        "prompt_tokens": getattr(usage, "prompt_tokens", None),
+        "completion_tokens": getattr(usage, "completion_tokens", None),
+        "total_tokens": getattr(usage, "total_tokens", None),
+    }
+    if cached is not None:
+        payload["cached_tokens"] = cached
+    return payload
+
+
 class ModelClient:
     """课程实验共用的 DeepSeek 单模型客户端。"""
 
@@ -130,15 +147,7 @@ class ModelClient:
             if not reasoning:
                 reasoning = getattr(message, "reasoning", None)
             usage = getattr(completion, "usage", None)
-            usage_payload = (
-                {
-                    "prompt_tokens": getattr(usage, "prompt_tokens", None),
-                    "completion_tokens": getattr(usage, "completion_tokens", None),
-                    "total_tokens": getattr(usage, "total_tokens", None),
-                }
-                if usage is not None
-                else None
-            )
+            usage_payload = _usage_payload(usage) if usage is not None else None
             if content.strip():
                 return {
                     "answer": content,
@@ -163,6 +172,8 @@ class ModelClient:
             "messages": messages,
             "max_tokens": self.max_tokens,
             "stream": True,
+            # 让服务端在最后一个 chunk 里带上 usage，否则每轮到底花了多少 token 全是空的。
+            "stream_options": {"include_usage": True},
             "extra_body": {
                 "thinking": {"type": "enabled" if self.thinking else "disabled"}
             },
@@ -181,11 +192,7 @@ class ModelClient:
             for chunk in completion:
                 usage = getattr(chunk, "usage", None)
                 if usage is not None:
-                    usage_payload = {
-                        "prompt_tokens": getattr(usage, "prompt_tokens", None),
-                        "completion_tokens": getattr(usage, "completion_tokens", None),
-                        "total_tokens": getattr(usage, "total_tokens", None),
-                    }
+                    usage_payload = _usage_payload(usage)
                 choices = getattr(chunk, "choices", None) or []
                 if not choices:
                     continue

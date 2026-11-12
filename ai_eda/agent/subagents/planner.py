@@ -6,8 +6,17 @@ import json
 from pathlib import Path
 
 from ai_eda.agent.cpu_workflow import (
-    CPU_PLANNING, IN_ORDER_BOUNDARIES, L2_PREDICTOR, L3_EDGE_CONTRACT, L3_OPERAND_PORTS, L3_PLANNING,
-    required_modules, validate_cpu_plan, validate_frozen_components, validate_l3_operand_ports,
+    CPU_PLANNING,
+    IN_ORDER_BOUNDARIES,
+    L2_PREDICTOR,
+    L3_EDGE_CONTRACT,
+    L3_OPERAND_PORTS,
+    L3_PLANNING,
+    dedupe_plan_ports,
+    required_modules,
+    validate_cpu_plan,
+    validate_frozen_components,
+    validate_l3_operand_ports,
 )
 from ai_eda.agent.skills.fifo_area_power import evaluate as evaluate_fifo_skill
 from ai_eda.agent.skills.l3_architecture import l3_generation_plan
@@ -140,7 +149,7 @@ class PlannerAgent(SubAgent):
                 )
                 payload = extract_json_payload(result.get("answer") or "")
                 if fixed_l3_plan is None:
-                    plan = validate_plan(payload)
+                    plan = dedupe_plan_ports(validate_plan(payload))
                 else:
                     notes = payload.get("notes")
                     if not isinstance(notes, str) or not notes.strip():

@@ -219,11 +219,13 @@ endmodule
                 handoff = PlannerAgent(runtime).run(incoming)
             self.assertEqual(runtime.read_handoff(handoff)["target"], "coder")
 
-        self.assertEqual([r["extra_body"]["thinking"]["type"] for r in requests], ["enabled", "disabled", "disabled"])
-        self.assertEqual([r["max_tokens"] for r in requests], [12000, 12000, 12000])
+        # 第二轮返回的是重名端口的计划：现在由 dedupe_plan_ports 机械修掉，
+        # 不再要求模型重写一次（原本会多花一轮 Planner 调用）。
+        self.assertEqual([r["extra_body"]["thinking"]["type"] for r in requests], ["enabled", "disabled"])
+        self.assertEqual([r["max_tokens"] for r in requests], [12000, 12000])
         self.assertEqual(events[0]["finish_reason"], "length")
         self.assertIn("12000", events[0]["error"])
-        self.assertIn("duplicate formal ports", events[1]["error"])
+        self.assertEqual(events[1]["status"], "info")  # 重名端口被机械修掉，不再进反馈重试
 
     def test_l3_group_preserves_ports_and_reports_a_real_width_change(self):
         path = "rtl/rename_unit.sv"

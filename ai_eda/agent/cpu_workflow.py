@@ -468,16 +468,47 @@ def if_id_ready_message(name: str, actual: str, expected: str) -> str:
     )
 
 
+PORT_DECLARATION = re.compile(
+    r"(input|output|inout)\s+(?:(?:logic|wire|reg|signed|unsigned)\s+)*"
+    r"(?:\[\s*\d+\s*:\s*\d+\s*\]\s*)?([A-Za-z_]\w*)"
+)
+
+
+def dedupe_plan_ports(plan: dict) -> dict:
+    """删掉同名的重复端口声明（保留第一条）。
+
+    实测 Planner 生成的计划里 mem_stage 把 mem_wb_fwd_data 声明两遍，
+    校验连拒 4 轮、模型每次都重复同样的错误，整次运行 105 秒作废。
+    重名是机械可判定的，直接修掉比回喂给模型更省。
+    """
+
+    modules = []
+    for module in plan.get("modules", []):
+        interfaces = module.get("interfaces") or ""
+        if not isinstance(interfaces, str):
+            modules.append(module)
+            continue
+        parts = [part.strip() for part in re.split(r"[;,\n]", interfaces) if part.strip()]
+        seen: set[str] = set()
+        kept: list[str] = []
+        for part in parts:
+            match = PORT_DECLARATION.fullmatch(part)
+            name = match.group(2) if match else part
+            if name in seen:
+                continue
+            seen.add(name)
+            kept.append(part)
+        modules.append(dict(module, interfaces="; ".join(kept)))
+    return dict(plan, modules=modules)
+
+
 def validate_cpu_plan(plan: dict, level: int) -> None:
     modules = {item["name"]: item for item in plan["modules"]}
     missing = set(required_modules(level)) - modules.keys()
     if missing or plan["top_module"] != "rv32i5":
         raise ValueError(f"CPU Plan 缺少模块或顶层不符：{sorted(missing)}")
     errors = []
-    declaration = re.compile(
-        r"(input|output|inout)\s+(?:(?:logic|wire|reg|signed|unsigned)\s+)*"
-        r"(?:\[\s*\d+\s*:\s*\d+\s*\]\s*)?([A-Za-z_]\w*)"
-    )
+    declaration = PORT_DECLARATION
     for name, item in modules.items():
         if item["file"] != f"rtl/{name}.sv":
             errors.append(f"{name}: expected rtl/{name}.sv")

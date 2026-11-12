@@ -16,6 +16,11 @@ from ai_eda.agent.patches import PatchProtocolError
 from ai_eda.agent.skills.teacher_tests import test_source
 from ai_eda.agent.snapshots import load_snapshot
 
+PATCH_INERT_WARNING = (
+    "最近两轮补丁都编译通过、仿真结果逐字相同（失败 check 数不变）：上一轮假设不在决定性路径上。"
+    "本轮必须换一个机制或换一个模块，并允许整份重写该文件；不要在原条件表达式上继续微调。"
+)
+
 from .base import SubAgent
 from .common import extract_json_payload
 from .repair import PROBE_TARGETS, l3_connections, probe_failures, relevant_l3_connections
@@ -2029,6 +2034,13 @@ class DiagnoserAgent(SubAgent):
                 "observations": measurements,
             })
         packet["rejected_attempts"] = rejected
+        trailing = [d for d in previous[-2:] if not d["accepted"]]
+        inert = (
+            len(trailing) == 2
+            and all(d["reason"] == "no_verified_progress" for d in trailing)
+            and trailing[-1]["observations"].get("failed_checks")
+            == trailing[-2]["observations"].get("failed_checks")
+        )
         spec = self.runtime.read_text_artifact(artifacts["spec"])
         headings = re.findall(r"(?m)^#{2,6} +(.+)$", spec)
         module_map = [
@@ -2054,6 +2066,7 @@ class DiagnoserAgent(SubAgent):
             **({"previous_patch_validation_error": protocol_error} if protocol_error else {}),
             **({"format_hint": "上次输出被截断：只返回最短 JSON。hypothesis 一行，constraints 至多 4 条，files 只列必要项。"}
                if protocol_error and "截断" in protocol_error else {}),
+            **({"patch_inert_warning": PATCH_INERT_WARNING} if inert else {}),
         }, ensure_ascii=False)
         event = self.runtime.begin_event(self.name, self.node_type, self.title, prompt, attempt)
         if raw is None:
@@ -2113,6 +2126,8 @@ class DiagnoserAgent(SubAgent):
             # 教师用例原文（建程序 + 检查项）是决定性的：只给 "等待 halted 超时 0x0c"
             # 时，Patch 必须猜这段程序装了什么。
             brief["teacher_test_source"] = "\n\n".join(test_sources)[:6000]
+        if inert:
+            brief["patch_inert_warning"] = PATCH_INERT_WARNING
         scoped_connections = relevant_l3_connections(connections, brief["files"], brief["symbols"])
         if scoped_connections:
             brief["current_top_bindings"] = scoped_connections

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import time
 from datetime import datetime, timezone
@@ -43,6 +44,17 @@ from ai_eda.agent.skills.l3_architecture import L3_ARCHITECTURE, load_l3_archite
 from ai_eda.config import AGENT_RUNS_ROOT
 
 EventSink = Callable[[dict[str, Any]], None]
+
+
+def _first_retirements(report: dict) -> int | None:
+    """从整机冒烟观测里读退休条数；读不到就返回 None（不据此判断）。"""
+
+    observation = report.get("execution_observation") or {}
+    samples = observation.get("samples") or []
+    if not samples:
+        return None
+    match = re.search(r"retired=(\d+)", str(samples[0]))
+    return int(match.group(1)) if match else None
 
 
 def _check_cancel(cancel_event: Any) -> None:
@@ -554,6 +566,20 @@ def run_agent(
             failing = len(report.get("checks") or [])
             if tester_attempts == 1:
                 initial_failed_checks = failing
+            retired = _first_retirements(report)
+            stalled_limit = int(os.environ.get("EDA_STALL_RETIREMENTS", "5"))
+            if (
+                tester_attempts == 1 and not report.get("passed")
+                and report.get("stage") == "simulation"
+                and retired is not None and retired <= stalled_limit
+            ):
+                # 1024 周期只退休个位数：这类设计是死的，修补 10 轮也回不来
+                # （实测 100458_088：11 轮零效果，20 条检查逐字不变）。
+                repair_stop = f"stalled_design: retired={retired} in observation window"
+                final_report = report
+                selected = tester_handoff
+                final_report_preview = report_preview(report, tester_artifacts["report"])
+                break
             runaway_limit = int(os.environ.get("EDA_RUNAWAY_CHECKS", "2000"))
             if (
                 tester_attempts == 1 and not report.get("passed")

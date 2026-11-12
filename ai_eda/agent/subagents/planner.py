@@ -70,6 +70,8 @@ class PlannerAgent(SubAgent):
                 "not by the I-cache CPU request handshake. The same hold must govern both the IF/ID "
                 "consumption and the ID/EX acceptance, with load-use injecting a bubble when MEM is free. "
                 "If the contract names if_id_ready, ID drives it and IF consumes it. "
+                "Hazard's own output is a distinct stall signal, such as if_id_hold. If hazard "
+                "needs if_id_ready, declare it as an input there. Never have hazard drive if_id_ready. "
                 "A fetch request or response never drives readiness of the decode consumer. "
                 "List each internal feedback port explicitly, including registered ID/EX operand-use flags "
                 "at each consumer. Use dedicated owners for the active epoch and ECALL acceptance.\n"

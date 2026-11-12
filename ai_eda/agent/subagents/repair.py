@@ -71,6 +71,7 @@ def make_packet(report: dict, files: dict[str, str], report_ref: str, snapshot: 
     summary["execution_observation"] = report.get("execution_observation")
     summary["l3_rename_reuse_observation"] = report.get("l3_rename_reuse_observation")
     summary["l3_rename_allocation_observation"] = report.get("l3_rename_allocation_observation")
+    summary["l3_rob_allocation_observation"] = report.get("l3_rob_allocation_observation")
     summary["l3_iq_selection_observation"] = report.get("l3_iq_selection_observation")
     summary["l3_redirect_observation"] = report.get("l3_redirect_observation")
     summary["l3_repeated_redirect_observation"] = report.get("l3_repeated_redirect_observation")
@@ -214,7 +215,8 @@ PROBE_TARGETS = (
     "l3_rename_reuse_observation", "l3_redirect_observation", "l3_memory_queue_observation",
     "l3_repeated_redirect_observation", "l3_link_recovery_observation", "l3_predictor_training_observation",
     "l3_store_writeback_observation", "l3_fetch_backpressure_observation",
-    "l3_lsu_completion_observation", "l3_rename_allocation_observation", "l3_iq_selection_observation",
+    "l3_lsu_completion_observation", "l3_rename_allocation_observation", "l3_rob_allocation_observation",
+    "l3_iq_selection_observation",
 )
 
 
@@ -377,6 +379,10 @@ def may_continue_probe_repair(report: dict, selected: dict | None = None) -> boo
     if report.get("stage") != "simulation":
         return False
     if report.get("timed_out"):
+        if ((selected or {}).get("timed_out")
+                and receipt.get("probe") in ("icache_word_observation", "dcache_lane_observation")
+                and isinstance(before, list) and isinstance(after, list) and set(after) < set(before)):
+            return True
         old_samples = ((selected or {}).get("retirement_observation") or {}).get("samples", ())
         fetch = (report.get("pipeline_observation") or {}).get("fetch_transfer") or {}
         return (

@@ -149,6 +149,10 @@ the payload's consumption and replacement with the same transfer event.
 An EX redirect is accepted only when that instruction can advance past EX.
 It squashes younger IF/ID and ID/EX slots. The redirecting instruction still
 enters EX/MEM and retires, including an rd=x0 jump or a taken conditional branch.
+Hold EX/MEM from the older memory instruction's first request cycle through
+its wait for a response. Derive that hold from the MEM transaction state,
+independently of the younger EX redirect, so qualifying redirect cannot
+feed back into its own enable.
 Connect the EX-computed branch/jump target to IF in the top-level design.
 The hazard unit may qualify when a redirect fires. Every qualified redirect
 must deliver the computed target on that edge, including nonzero targets.
@@ -170,7 +174,8 @@ new MEM/WB payload, clear MEM/WB valid. Adjacent valid WB payloads may retire
 on consecutive edges even at the same PC.
 Drive the debug retirement valid, PC and instruction from the same MEM/WB
 accept event. Expose the ECALL retirement on its commit edge, including when
-that edge sets halted.
+that edge sets halted. Drive debug retirement directly from the WB commit
+event and current MEM/WB payload, without a second retirement register.
 For ECALL use committed architectural x10 independently of dbg_reg_addr.
 Hold the external imem_addr from immediately before entering halted.
 While halted neither bus is valid. Do not use an internal fetch PC for this hold.
@@ -475,7 +480,7 @@ PORT_DECLARATION = re.compile(
 
 
 def dedupe_plan_ports(plan: dict) -> dict:
-    """删掉同名的重复端口声明（保留第一条）。
+    """Remove repeated declarations while retaining conflicting directions and widths for validation.
 
     实测 Planner 生成的计划里 mem_stage 把 mem_wb_fwd_data 声明两遍，
     校验连拒 4 轮、模型每次都重复同样的错误，整次运行 105 秒作废。
@@ -492,11 +497,10 @@ def dedupe_plan_ports(plan: dict) -> dict:
         seen: set[str] = set()
         kept: list[str] = []
         for part in parts:
-            match = PORT_DECLARATION.fullmatch(part)
-            name = match.group(2) if match else part
-            if name in seen:
+            declaration = re.sub(r"\s*([\[\]:])\s*", r"\1", " ".join(part.split()))
+            if declaration in seen:
                 continue
-            seen.add(name)
+            seen.add(declaration)
             kept.append(part)
         modules.append(dict(module, interfaces="; ".join(kept)))
     return dict(plan, modules=modules)

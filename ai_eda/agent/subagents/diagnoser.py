@@ -233,6 +233,46 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
     undriven = structural.get("undriven", ())
     top_path = "rtl/rv32i5.sv"
     top = files.get(top_path, "")
+    if ("rtl/branch_predictor.sv" in files
+            and any(row["name"] == "t04_upper" for row in evidence.get("first_checks", ()))):
+        decode = files.get("rtl/id_stage.sv", "")
+        auipc = re.search(r"7'b0010111\s*:\s*begin(.*?)\bend\b", decode, re.S)
+        if (auipc and "dec_alu_src_pc" in auipc[1] and "imm_u" in auipc[1]
+                and "dec_alu_src_imm" not in auipc[1]
+                and re.search(r"else\s+if\s*\(id_ex_alu_src_imm\)\s*alu_b\s*=\s*id_ex_imm",
+                              files.get("rtl/ex_stage.sv", ""))):
+            return {
+                "stage": "simulation",
+                "hypothesis": "AUIPC selects the PC and decodes the upper immediate, but ID leaves the "
+                              "ALU immediate select clear. EX therefore adds rs2 instead of the immediate.",
+                "confidence": "high",
+                "files": ["rtl/id_stage.sv"],
+                "symbols": ["dec_alu_src_pc", "dec_alu_src_imm", "imm_u"],
+                "constraints": [
+                    "Assert dec_alu_src_imm in the AUIPC decode case. Preserve the PC select, upper "
+                    "immediate, ALU add and all other opcode cases.",
+                ],
+                "teacher_checks": ["t04_upper"],
+                "verification": "AUIPC writes the instruction's PC plus its upper immediate.",
+            }
+    if ("rtl/branch_predictor.sv" in files
+            and any("应等于停机时 x10" in row["detail"] for row in evidence.get("first_checks", ()))
+            and re.search(r"\bassign\s+arch_x10\s*=[^;]*\bdbg_reg_addr\b[^;]*\bdbg_reg_data\b", top)
+            and re.search(r"\.arch_x10\s*\(\s*arch_x10\s*\)", module_instance_body(top, "wb_stage"))):
+        return {
+            "stage": "simulation",
+            "hypothesis": "The top derives the ECALL exit value from the address-selected debug read. "
+                          "Architectural x10 is correct, but selecting another debug register supplies zero.",
+            "confidence": "high",
+            "files": [top_path],
+            "symbols": ["arch_x10", "dbg_reg_addr", "dbg_reg_data"],
+            "constraints": [
+                "Track architectural x10 from the existing WB write enable, destination and data that drive ID. "
+                "Reset it to zero, update it only on a committed write to register 10 and bind it to the "
+                "existing WB port. Preserve the debug mux and ECALL commit timing.",
+            ],
+            "verification": "ECALL exit equals committed x10 regardless of the debug address.",
+        }
     if ({"rv32i5.squash", "rv32i5.iq_issue_ready"} <= set(undriven)
             and re.search(r"\bassign\s+recover_evt\s*=\s*mispredict_evt\s*;", top)
             and re.search(r"\bassign\s+fetch_req_valid\s*=[^;]*!squash", top)):
@@ -271,7 +311,26 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
             "verification_probe": "retirement_observation",
             "verification": "The word 00700513 retires at PC zero, with subsequent responses paired to their own PCs.",
         }
-    if "ecall_complete" in (probes.get("l3_rob_allocation_observation") or ()):
+    rob_failures = probes.get("l3_rob_allocation_observation") or ()
+    rob_source = files.get("rtl/reorder_buffer.sv", "")
+    if ("younger_complete" in rob_failures
+            and re.search(r"\bassign\s+commit_valid\s*=\s*valid\[head_r\]\s*;", rob_source)
+            and re.search(r"\bassign\s+commit_fire\s*=\s*valid\[head_r\]\s*&&\s*done\[head_r\]\s*;", rob_source)):
+        return {
+            "stage": "simulation",
+            "hypothesis": "ROB exposes an incomplete head as commit_valid while its internal commit_fire "
+                          "requires done. External retirement can then repeat a head that ROB has not consumed.",
+            "confidence": "high",
+            "files": ["rtl/reorder_buffer.sv"],
+            "symbols": ["commit_valid", "commit_fire", "head_r"],
+            "constraints": [
+                "Drive commit_valid from the same existing commit_fire condition that consumes the head. "
+                "Keep the head-indexed payload, completion tags and sequential recovery intact.",
+            ],
+            "verification_probe": "l3_rob_allocation_observation",
+            "verification": "Completing only a younger entry never makes the incomplete head commit.",
+        }
+    if "ecall_complete" in rob_failures:
         dispatch_blocks_ecall = re.search(r"\bassign\s+disp_accept\s*=[^;]*!disp_is_ecall\b", top)
         paths = ["rtl/reorder_buffer.sv"]
         constraints = [
@@ -1225,6 +1284,24 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
             "verification": "Train and lookup at distinct indices, then check both direction changes and the tag alias.",
         }
     ex_source = files.get("rtl/ex_stage.sv", "")
+    if (set(probes.get("l2_branch_direction_observation") or ()) == {"mispredicts"}
+            and re.search(r"\bassign\s+ex_bp_train_target\s*=\s*actual_next_pc\s*;", ex_source)
+            and re.search(r"\bassign\s+branch_target\s*=", ex_source)
+            and "btb_target[train_idx] != train_target" in predictor):
+        return {
+            "stage": "simulation",
+            "hypothesis": "EX sends the fall-through PC as the BTB target on a not-taken outcome, "
+                          "and the predictor overwrites the existing taken target.",
+            "confidence": "high",
+            "files": ["rtl/ex_stage.sv"],
+            "symbols": ["ex_bp_train_target", "branch_target", "actual_next_pc"],
+            "constraints": [
+                "Send branch_target as the training target for conditional branches regardless of direction. "
+                "Preserve actual_next_pc for redirect and comparison. Preserve JAL and JALR targets.",
+            ],
+            "verification_probe": "l2_branch_direction_observation",
+            "verification": "The alternating-direction branch reaches the expected misprediction count.",
+        }
     if (any(row["name"] == "t02_alu_r" for row in failure_checks)
             and re.search(r"\bassign\s+alu_b\s*=\s*[^;]*\?\s*id_ex_imm\s*:\s*id_ex_imm\s*;", ex_source)
             and re.search(r"\bassign\s+rs2_fwd\s*=", ex_source)):
@@ -1285,6 +1362,24 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
             "verification": "ALU register arithmetic and dependent branch comparisons use the intended operands.",
         }
     mem_source = files.get("rtl/mem_stage.sv", "")
+    if (any(row["name"] == "t07_load_use" for row in failure_checks)
+            and re.search(r"\bassign\s+mem_busy\s*=\s*txn_active\s*&&\s*!complete\s*;", mem_source)
+            and re.search(r"\bassign\s+issue\s*=\s*need_txn\s*&&\s*!txn_active", mem_source)):
+        return {
+            "stage": "simulation",
+            "hypothesis": "The first cycle of a memory operation can overwrite EX/MEM, because mem_busy "
+                          "only becomes active after request acceptance.",
+            "confidence": "high",
+            "files": ["rtl/mem_stage.sv"],
+            "symbols": ["mem_busy", "need_txn", "txn_active", "complete", "issue"],
+            "constraints": [
+                "Assert mem_busy when need_txn or txn_active is true, until complete. Allow the request "
+                "to be accepted while EX/MEM is held. Release on the response capture edge and retain "
+                "the existing load extension, saved metadata and MEM/WB valid logic.",
+            ],
+            "teacher_checks": ["t07_load_use", "t08_store_fwd"],
+            "verification": "Back-to-back memory and dependent instructions each transfer once with correct data.",
+        }
     if (probe_failures("dcache_lane_observation", evidence) == []
             and any("DMEM 写事务数期望" in row["detail"] for row in failure_checks)
             and re.search(r"\bassign\s+mem_busy\s*=\s*req_issued\s*&\s*req_is_mem\s*;", mem_source)
@@ -1632,10 +1727,12 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
         if (counts := re.search(r"reference instruction count (\d+) != retirement count (\d+)", row["detail"]))
         and int(counts[1]) > int(counts[2])
     ]
-    if (len(set(missed_instructions)) >= 2
-            and re.search(r"\bassign\s+dbg_retire_valid\s*=\s*retire_q\s*;", wb_source)
-            and re.search(r"if\s*\(mem_wb_valid\)\s*begin\s*retire_q\s*<=\s*1'b1", wb_source)
-            and re.search(r"if\s*\(mem_wb_is_ecall\)\s*begin\s*halted_q\s*<=\s*1'b1", wb_source)):
+    retirement_signal = re.search(r"\bassign\s+dbg_retire_valid\s*=\s*(\w+)\s*;", wb_source)
+    halt_signal = re.search(r"\bassign\s+halted\s*=\s*(\w+)\s*;", wb_source)
+    if (len(set(missed_instructions)) >= 2 and retirement_signal and halt_signal
+            and re.search(rf"\b{retirement_signal[1]}\s*<=\s*1'b1", wb_source)
+            and re.search(rf"\bif\s*\(mem_wb_(?:is_)?ecall\)\s*begin\s*{halt_signal[1]}\s*<=\s*1'b1",
+                          wb_source)):
         return {
             "stage": "simulation",
             "hypothesis": "The WB commits ECALL and asserts halted on the edge that first registers "
@@ -1643,10 +1740,10 @@ def _observed_diagnosis(evidence: dict, files: dict[str, str], probes: dict) -> 
                           "the program finishes before the next sampling edge.",
             "confidence": "high",
             "files": [wb_path],
-            "symbols": ["dbg_retire_valid", "dbg_retire_pc", "dbg_retire_insn", "mem_wb_valid", "halted_q"],
+            "symbols": ["dbg_retire_valid", "dbg_retire_pc", "dbg_retire_insn", retirement_signal[1], halt_signal[1]],
             "constraints": [
-                "Drive dbg_retire_valid from the actual WB accept event, mem_wb_valid && !halted_q, "
-                "and drive the matching PC and instruction directly from the same MEM/WB entry. "
+                "Drive dbg_retire_valid from the existing WB commit event, preserving all its qualifiers "
+                "including store completion and halt. Drive PC and instruction directly from that same MEM/WB entry. "
                 "Remove the unused retire registers. Preserve halted and exit code timing and register writes.",
             ],
             "teacher_checks": list(dict.fromkeys(missed_instructions)),

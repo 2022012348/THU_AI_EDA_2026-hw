@@ -20,6 +20,7 @@ from ai_eda.agent.skills.cpu_observation import (
     l3_memory_queue_observation,
     l3_rename_reuse_observation,
     l3_rename_allocation_observation,
+    l3_rob_allocation_observation,
     l3_store_writeback_observation,
     icache_word_observation,
     l1_control_observation,
@@ -98,11 +99,6 @@ class TesterAgent(SubAgent):
                 metrics_on_failure=False,
             )
             self.check_cancel()
-            if expected_level == 1 and report.get("stage") == "simulation":
-                # 教师 TB 一次 40 s 以上，而整机探针 1–2 s 就能指出"cold load 拿回 0"这类
-                # 决定性反例。先跑探针再交给 Diagnoser，避免 86 条断言只换来"load 全 0"。
-                report["execution_observation"] = execution_observation(combined_path, 1)
-                report["l1_control_observation"] = l1_control_observation(combined_path)
         if width_warnings:
             report["width_warnings"] = width_warnings
         brief = self.runtime.read_json_artifact(artifacts["repair_brief"]) if "repair_brief" in artifacts else None
@@ -139,6 +135,7 @@ class TesterAgent(SubAgent):
                         "l3_fetch_backpressure_observation": l3_fetch_backpressure_observation,
                         "l3_rename_reuse_observation": l3_rename_reuse_observation,
                         "l3_rename_allocation_observation": l3_rename_allocation_observation,
+                        "l3_rob_allocation_observation": l3_rob_allocation_observation,
                         "l3_iq_selection_observation": l3_iq_selection_observation,
                         "l3_redirect_observation": l1_redirect_observation,
                         "l3_repeated_redirect_observation": l2_recovery_observation,

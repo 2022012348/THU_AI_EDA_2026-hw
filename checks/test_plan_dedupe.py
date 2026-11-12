@@ -8,10 +8,15 @@ from ai_eda.agent.cpu_workflow import dedupe_plan_ports
 class PlanDedupeTests(unittest.TestCase):
     def test_duplicate_port_dropped(self):
         plan = {"modules": [{"name": "mem_stage", "file": "rtl/mem_stage.sv",
-                             "interfaces": "input clk; input mem_wb_fwd_data; output mem_wb_fwd_data"}]}
+                             "interfaces": "input clk; input mem_wb_fwd_data; input mem_wb_fwd_data"}]}
         interfaces = dedupe_plan_ports(plan)["modules"][0]["interfaces"]
         self.assertEqual(interfaces.count("mem_wb_fwd_data"), 1)
         self.assertIn("input mem_wb_fwd_data", interfaces)
+
+    def test_conflicting_port_declarations_are_preserved_for_validation(self):
+        interfaces = "input [31:0] a; output [31:0] a; input [7:0] a"
+        plan = {"modules": [{"name": "m", "interfaces": interfaces}]}
+        self.assertEqual(dedupe_plan_ports(plan)["modules"][0]["interfaces"], interfaces)
 
     def test_width_declaration_preserved(self):
         plan = {"modules": [{"name": "m", "file": "rtl/m.sv",

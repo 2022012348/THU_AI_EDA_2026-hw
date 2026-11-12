@@ -205,6 +205,7 @@ class CoderAgent(SubAgent):
             )
             feedback = ""
             generated = None
+            best_diagnostics = ""
             requested = group
             frozen_interfaces = bool(plan.get("interface_origin"))
             attempt_limit = 3 if frozen_interfaces else 2
@@ -231,21 +232,23 @@ class CoderAgent(SubAgent):
                         raise
                     feedback += f"\nCorrect this validation error: {error}. Return the complete requested files only."
                 else:
-                    generated = candidate
                     diagnostics = self._l3_group_diagnostics(
                         files | candidate if top_path in candidate else candidate,
                         editable=candidate.keys(), final=top_path in candidate,
                         check_module_behavior=frozen_interfaces,
                     )
+                    if generated is None or self._group_diagnostic_score(diagnostics) <= self._group_diagnostic_score(best_diagnostics):
+                        generated = candidate
+                        best_diagnostics = diagnostics
                     if diagnostics:
                         self.finish(event, "failed", error=diagnostics)
                         if attempt == attempt_limit or self.runtime.model_calls >= self.runtime.max_calls:
                             break
-                        affected = {line.split(":", 1)[0] for line in diagnostics.splitlines()}
+                        affected = {line.split(":", 1)[0] for line in best_diagnostics.splitlines()}
                         requested = [module for module in group if module["file"] in affected]
                         feedback = (
                             "\nFix these measured diagnostics while keeping the frozen ports and functioning logic. "
-                            "Return the complete requested files only.\n" + diagnostics + "\nCurrent sources:\n"
+                            "Return the complete requested files only.\n" + best_diagnostics + "\nCurrent sources:\n"
                             + "\n".join(f"// file: {module['file']}\n{generated[module['file']]}" for module in requested)
                         )
                         continue
@@ -253,6 +256,20 @@ class CoderAgent(SubAgent):
                     break
             files.update(generated)
         return self.write_tester_handoff(spec_ref, plan_ref, files)
+
+    @staticmethod
+    def _group_diagnostic_score(diagnostics: str) -> tuple[int, int, int]:
+        compiler_errors = stalled_modules = failed_checks = 0
+        for line in diagnostics.splitlines():
+            if not line.startswith("rtl/"):
+                continue
+            if re.search(r"\b(?:syntax error|error:)", line, re.I):
+                compiler_errors += 1
+            elif "timed out" in line or "combinational feedback" in line or "Latch inferred" in line:
+                stalled_modules += 1
+            else:
+                failed_checks += len(line.split("Failed: ", 1)[1].split(", ")) if "Failed: " in line else 1
+        return compiler_errors, stalled_modules, failed_checks
 
     @staticmethod
     def _l3_group_diagnostics(

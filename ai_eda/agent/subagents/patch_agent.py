@@ -121,9 +121,8 @@ class PatchAgent(SubAgent):
                     l3_allocation_wiring(candidate)
                 if plan.get("in_order_boundary_contract"):
                     in_order_boundary_wiring(candidate)
-                if cpu_level is not None:
-                    # 编译阶段也要验：否则模型可以连续提交无法展开的整份文件，
-                    # 每一轮都由 Tester 花掉一次修复预算（实测 9 轮全 compile）。
+                # Let Tester compare incremental progress when the baseline already fails compilation.
+                if cpu_simulation:
                     self._check_cpu_compile(candidate, changed_interfaces)
                 if cpu_level == 3:
                     self._check_cache_repair(target, evidence, application.changed_files)
@@ -159,7 +158,8 @@ class PatchAgent(SubAgent):
             "icache_word_observation": ("rtl/icache.sv", icache_word_observation),
             "dcache_lane_observation": ("rtl/dcache.sv", dcache_lane_observation),
         }.get(target)
-        if not cache_probe or not probe_failures(target, evidence):
+        before = probe_failures(target, evidence) if target else None
+        if not cache_probe or not before:
             return
         path, observe = cache_probe
         if path not in changed_files:
@@ -169,7 +169,7 @@ class PatchAgent(SubAgent):
             rtl.write_text(changed_files[path], encoding="utf-8")
             observation = observe(rtl)
         failures = probe_failures(target, {target: observation})
-        if failures == []:
+        if failures is not None and set(failures) < set(before):
             return
         samples = [sample for sample in observation.get("samples", [])
                    if sample.endswith("|match=0") or "|refill_match=0|" in sample]

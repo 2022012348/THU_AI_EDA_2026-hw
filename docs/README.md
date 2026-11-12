@@ -21,3 +21,9 @@ python scripts/run_cpu_agent.py --level 3 --max-calls 25 --max-repairs 8
 ```
 
 独立空白运行去掉 `--resume-from`；教师 Spec/TB 未作任何修改（`content/tasks/` 只读）。
+
+## 凭据安全
+
+仓库内不包含任何 API Key。`scripts/check_secrets.py` 会在提交前扫描 `sk-` 字面量，
+通过 `.githooks/pre-commit` 生效（`git config core.hooksPath .githooks` 已设置）；
+本地 key 只存在于 `.api_key`（`.gitignore` 第 30 行，权限 600）。

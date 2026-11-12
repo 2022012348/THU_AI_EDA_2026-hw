@@ -1,5 +1,6 @@
 """Bounded failure packets and teacher-based candidate selection."""
 
+import os
 import re
 
 from ai_eda.agent.cpu_workflow import module_instance_body
@@ -184,9 +185,19 @@ def repair_verdict(old: dict, new: dict) -> tuple[bool, str]:
     new_timeouts = {x["name"] for x in new_checks if "等待 halted 超时" in x["detail"]}
     old_cases = {x["name"] for x in old_checks}
     new_cases = {x["name"] for x in new_checks}
-    if new_timeouts - old_timeouts:
-        return False, "additional_halt_timeouts"
-    if new_cases - old_cases:
+    novel_timeouts = new_timeouts - old_timeouts
+    novel_cases = new_cases - old_cases
+    if novel_timeouts or novel_cases:
+        # 一次大幅收敛的补丁常顺带把一个用例改成长超时、或新增一条断言。
+        # 历史上 103 → 34 被 "new_failing_cases" 整份判负（REFACTOR.md:198），
+        # 因此允许"断言数大幅下降 + 至多两条新用例"的候选进入复测。
+        drop = len(old_checks) - len(new_checks)
+        bulk = int(os.environ.get("EDA_BULK_DROP", "40"))
+        if (os.environ.get("EDA_VERDICT_STRICT") != "1" and drop >= bulk
+                and len(novel_cases) <= 2):
+            return True, "substantial_assertion_drop"
+        if novel_timeouts:
+            return False, "additional_halt_timeouts"
         return False, "new_failing_cases"
     if new_timeouts < old_timeouts:
         return True, "more_tests_reached_halt"

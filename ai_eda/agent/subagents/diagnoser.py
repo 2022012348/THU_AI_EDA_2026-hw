@@ -1,6 +1,7 @@
 """Diagnoser turns a Tester failure packet into one testable repair brief."""
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -2050,12 +2051,17 @@ class DiagnoserAgent(SubAgent):
             **({"current_top_bindings": connections} if connections else {}),
             **({"source_evidence": source_evidence} if source_evidence else {}),
             **({"previous_patch_validation_error": protocol_error} if protocol_error else {}),
+            **({"format_hint": "上次输出被截断：只返回最短 JSON。hypothesis 一行，constraints 至多 4 条，files 只列必要项。"}
+               if protocol_error and "截断" in protocol_error else {}),
         }, ensure_ascii=False)
         event = self.runtime.begin_event(self.name, self.node_type, self.title, prompt, attempt)
         if raw is None:
             result = self.runtime.call_model(
                 event, prompt, DIAGNOSE,
-                model_options={"thinking": False, "max_tokens": min(self.runtime.options["max_tokens"], 3500)},
+                model_options={"thinking": False, "max_tokens": min(
+                    self.runtime.options["max_tokens"],
+                    int(os.environ.get("EDA_DIAGNOSE_TOKENS", "6000")),
+                )},
             )
             raw = extract_json_payload(result["answer"])
         else:

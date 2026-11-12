@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 import re
 import shutil
 import time
@@ -314,6 +315,9 @@ def run_agent(
         seed_interfaces = frozen_component_interfaces(seed_files)
     spec_base = agent_task_spec(project["id"])
     run_id = f"agent-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}"
+    if os.environ.get("EDA_PARALLEL_SAFE", "1") != "0":
+        # 并发启动时微秒时间戳仍可能相撞（实测撞过一次，进程直接崩）。
+        run_id = f"{run_id}-{secrets.token_hex(3)}"
     run_dir = AGENT_RUNS_ROOT / run_id
     run_dir.mkdir(parents=True, exist_ok=False)
     _write_json(run_dir / "graph.json", graph)

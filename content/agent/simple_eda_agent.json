@@ -1,0 +1,80 @@
+{
+  "name": "EDA Auto-Design Agent",
+  "entry": "parser",
+  "nodes": [
+    {
+      "id": "parser",
+      "type": "model",
+      "title": "01 · Spec Parser",
+      "prompt": "Decide whether the Spec is sufficient. Ask only for blocking gaps in interfaces, timing, reset, latency, or test expectations; record non-blocking assumptions.",
+      "x": 48,
+      "y": 200
+    },
+    {
+      "id": "planner",
+      "type": "model",
+      "title": "02 · RTL Planner",
+      "prompt": "Read the Spec and plan the module and file structure for the RTL project.",
+      "x": 352,
+      "y": 200
+    },
+    {
+      "id": "coder",
+      "type": "model",
+      "title": "03 · Coder",
+      "prompt": "Implement each RTL file from the Planner structure, one file at a time.",
+      "x": 656,
+      "y": 200
+    },
+    {
+      "id": "tester",
+      "type": "verify",
+      "title": "04 · Tester",
+      "prompt": "Compile all RTL, run the teacher TB, and evaluate area and power. Finish when everything passes.",
+      "x": 960,
+      "y": 200
+    },
+    {
+      "id": "diagnoser",
+      "type": "model",
+      "title": "05 · Diagnoser",
+      "prompt": "Extract the first actionable failure and select the source files.",
+      "x": 960,
+      "y": 8
+    },
+    {
+      "id": "patch",
+      "type": "model",
+      "title": "06 · Patch Agent",
+      "x": 656,
+      "y": 8,
+      "prompt": "Apply a bounded patch against the diagnosed snapshot.",
+      "retry": {
+        "target": "tester",
+        "max": 8
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "parser",
+      "to": "planner"
+    },
+    {
+      "from": "planner",
+      "to": "coder"
+    },
+    {
+      "from": "coder",
+      "to": "tester"
+    },
+    {
+      "from": "tester",
+      "to": "diagnoser"
+    },
+    {
+      "from": "diagnoser",
+      "to": "patch"
+    }
+  ]
+}

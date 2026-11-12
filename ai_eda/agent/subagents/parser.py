@@ -1,0 +1,148 @@
+"""Parser 子 Agent：判断 Spec 是否充分，不充分时请求用户补充。"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+from .base import SubAgent
+from .common import MAX_PARSER_ROUNDS, PARSER_SYSTEM_PROMPT, extract_json_payload
+
+
+class ParserAgent(SubAgent):
+    name = "parser"
+    title = "01 · Spec Parser"
+    node_type = "parser"
+
+    @staticmethod
+    def _compose_spec(spec_base: str, supplements: list[str], addendum: str) -> str:
+        """保留原 Spec，并追加用户补充与 Parser 补充/修正。"""
+        parts = [spec_base.strip()]
+        if supplements:
+            parts.append("## 用户补充\n\n" + "\n\n".join(supplements))
+        if addendum:
+            parts.append("## Parser 实现假设（以教师原始规格为准）\n\n" + addendum)
+        return "\n\n".join(part for part in parts if part)
+
+    def run(self, input_handoff: Path) -> Path:
+        incoming = self.runtime.read_handoff(input_handoff)["payload"]
+        artifacts = incoming.get("artifacts") or {}
+        spec_ref = artifacts.get("spec")
+        if not isinstance(spec_ref, str):
+            raise ValueError("Spec → Parser handoff 缺少 spec artifact")
+        spec_base = self.runtime.read_text_artifact(spec_ref)
+        supplements = list(self.context.get("supplements", []))
+        addendum = str(self.context.get("addendum") or "")
+        rounds = int(self.context.get("rounds", 0))
+        level = self.runtime.options["project"].get("expected_cpu_level")
+        fixed_cpu_spec = level in (1, 3)
+        feedback = ""
+        while True:
+            rounds += 1
+            if rounds > MAX_PARSER_ROUNDS:
+                raise ValueError("Spec 补充轮次超过限制，仍未得到充分规格")
+            supplement_text = "\n\n".join(supplements) or "（无）"
+            prompt = (
+                "判断下面的数字电路设计 Spec 是否足以实现、编译并通过教师 TB，"
+                "以及是否足以规划模块与文件结构。只对阻断项提问：顶层端口/复位/时钟/ISA/"
+                "外部总线行为/ECALL 停机/文件与测试预期/不可实现的矛盾。"
+                "内部模块端口、FSM、Cache refill 仲裁、预测器编码、ROB 内部结构等"
+                "属于 Planner/Coder/Modifier 的实现自由，不要因此提问；把必要假设写进 spec_addendum。\n\n"
+                "固定 Spec：\n"
+                f"{spec_base}\n\n"
+                "用户补充：\n"
+                f"{supplement_text}\n\n"
+                "已有 Parser 补充/修正：\n"
+                f"{addendum or '（无）'}\n\n"
+                "请判断是否充分；只返回补充/修正，不要重写或缩短原 Spec。"
+                "若原文已定义外部契约，missing、questions 和 spec_addendum 留空。"
+                "请只返回约定的 JSON 对象。" + feedback
+            )
+            event = self.runtime.begin_event("parser", self.node_type, self.title, prompt, rounds)
+            try:
+                result = self.runtime.call_model(
+                    event, prompt, PARSER_SYSTEM_PROMPT,
+                    model_options={"thinking": False, "max_tokens": min(self.runtime.options["max_tokens"], 1500)},
+                )
+                parsed = extract_json_payload(result.get("answer") or "")
+            except ValueError as error:
+                self.finish(event, "failed", error=str(error))
+                if level not in (1, 2, 3) or rounds >= min(3, MAX_PARSER_ROUNDS) or self.runtime.model_calls >= self.runtime.max_calls:
+                    raise ValueError(f"Parser 返回格式无效：{error}") from error
+                feedback = "\n请返回精简的 JSON。若有阻断项，仅列出阻断项和对应问题，spec_addendum 留空。"
+                continue
+            missing = [str(item)[:500] for item in (parsed.get("missing") or []) if str(item).strip()]
+            questions = [str(item)[:500] for item in (parsed.get("questions") or []) if str(item).strip()]
+            sufficient = parsed.get("sufficient") is True and not missing and not questions
+            # 兼容旧输出：refined_spec 只作为补充内容，不再替换原 Spec。
+            addendum_value = parsed.get("spec_addendum")
+            if not isinstance(addendum_value, str) or not addendum_value.strip():
+                legacy = parsed.get("refined_spec")
+                addendum_value = legacy if isinstance(legacy, str) else ""
+            if addendum_value.strip():
+                addendum = addendum_value.strip()
+            effective_spec = self._compose_spec(spec_base, supplements, addendum)
+            self.save_context(
+                spec_ref=spec_ref,
+                supplements=supplements,
+                rounds=rounds,
+                addendum=addendum,
+                last_result={"sufficient": sufficient, "missing": missing, "questions": questions},
+            )
+            if sufficient or fixed_cpu_spec:
+                effective_spec_ref = self.runtime.write_text_artifact(
+                    "effective_spec.md", effective_spec
+                )
+                parser_result_ref = self.runtime.write_json_artifact(
+                    "parser_result.json",
+                    {
+                        "supplements": supplements,
+                        "rounds": rounds,
+                        "sufficient": sufficient,
+                        **({"unresolved_by_parser": missing + questions} if not sufficient else {}),
+                    },
+                )
+                self.finish(
+                    event,
+                    "info",
+                    response=(
+                        "Spec is sufficient; proceeding to RTL planning."
+                        if sufficient else f"Planning against the fixed L{level} spec. Parser concerns recorded."
+                    ),
+                    reasoning=event.get("reasoning"),
+                    usage=event.get("usage"),
+                )
+                return self.runtime.write_handoff(
+                    "parser",
+                    "planner",
+                    {
+                        "artifacts": {
+                            "spec": effective_spec_ref,
+                            "parser_result": parser_result_ref,
+                        },
+                    },
+                    label="Parser → Planner: frozen Spec artifact",
+                )
+            if self.runtime.request_input is None:
+                raise ValueError(
+                    "Spec 需要用户补充，但当前运行没有交互输入通道："
+                    + "；".join(missing or questions)
+                )
+            request = {
+                "prompt": "Parser 判断 Spec 仍不充分，请补充以下信息：",
+                "missing": missing,
+                "questions": questions,
+                "round": rounds,
+            }
+            self.runtime.mark_waiting(event, request)
+            supplement = self.runtime.request_input(request)
+            self.check_cancel()
+            if not isinstance(supplement, str) or not supplement.strip():
+                raise ValueError("用户没有提供有效的 Spec 补充内容")
+            supplements.append(supplement.strip())
+            effective_spec = self._compose_spec(spec_base, supplements, addendum)
+            self.finish(
+                event,
+                "info",
+                response="已收到用户补充：" + supplement.strip(),
+                input_response=supplement.strip(),
+            )

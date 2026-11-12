@@ -1,0 +1,797 @@
+/* ------------------------------ Design space ------------------------------ */
+
+async function loadAgentDesigns() {
+  try {
+    const payload = await api("/api/agent/designs");
+    state.agent.designs = payload.designs || [];
+    renderAgentDesigns();
+  } catch (error) {
+    showToast(`Unable to load design space: ${error.message}`, "error");
+  }
+}
+
+function renderAgentDesigns() {
+  const list = $("#agent-design-list");
+  const designs = state.agent.designs || [];
+  $("#agent-design-count").textContent = `${designs.length}`;
+  list.replaceChildren();
+  if (!designs.length) {
+    list.className = "design-list empty-copy";
+    list.textContent = "No saved designs";
+    return;
+  }
+  list.className = "design-list";
+  designs.forEach((design) => {
+    const item = document.createElement("div");
+    item.className = `design-item ${design.id === state.agent.designId ? "current" : ""}`;
+    const main = document.createElement("button");
+    main.type = "button";
+    main.className = "design-item-main";
+    main.title = design.description || design.name;
+    const name = document.createElement("span");
+    name.className = "design-item-name";
+    name.textContent = design.name;
+    const meta = document.createElement("span");
+    meta.className = "design-item-meta";
+    meta.textContent = `${design.node_count} nodes · ${design.retry_count} retry · ${formatClock(design.updated_at)}`;
+    main.append(name, meta);
+    main.addEventListener("click", () => loadAgentDesign(design.id));
+
+    const actions = document.createElement("div");
+    actions.className = "design-item-actions";
+    const load = document.createElement("button");
+    load.type = "button";
+    load.className = "design-load-button";
+    load.textContent = "Load";
+    load.addEventListener("click", () => loadAgentDesign(design.id));
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "design-delete-button";
+    remove.textContent = "Delete";
+    remove.addEventListener("click", () => deleteAgentDesign(design.id));
+    actions.append(load, remove);
+    item.append(main, actions);
+    list.append(item);
+  });
+}
+
+async function saveAgentDesign() {
+  if (state.agent.running) {
+    showToast("Agent is running; save after it finishes", "warning");
+    return;
+  }
+  const name = $("#agent-design-name").value.trim();
+  if (!name) {
+    showToast("Name the design first", "warning");
+    $("#agent-design-name").focus();
+    return;
+  }
+  const button = $("#agent-design-save");
+  button.disabled = true;
+  try {
+    const record = await api("/api/agent/designs", {
+      method: "POST",
+      body: JSON.stringify({ name, graph: agentGraph() }),
+    });
+    state.agent.graph = record.graph;
+    setCurrentDesign(record);
+    renderAgentCanvas();
+    $("#agent-design-name").value = "";
+    await loadAgentDesigns();
+    showToast(`Design saved: ${record.name}`, "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function loadAgentDesign(designId) {
+  if (state.agent.running) {
+    showToast("Agent is running; wait or stop before loading a design", "warning");
+    return;
+  }
+  const approved = await confirmAction(
+    "Load design",
+    "Loading replaces the canvas and discards unsaved edits. Undo can restore the previous graph.",
+    "Load"
+  );
+  if (!approved) return;
+  try {
+    const design = await api(`/api/agent/designs/${designId}`);
+    const snapshot = graphSnapshot();
+    state.agent.graph = normalizeAgentGraph(design.graph);
+    state.agent.selectedNodeId = null;
+    clearAgentInspector();
+    setCurrentDesign(design);
+    pushHistorySnapshot(snapshot);
+    renderAgentCanvas();
+    fitAgentView();
+    scheduleAgentSave();
+    await loadAgentDesigns();
+    showToast(`Design loaded: ${design.name}`, "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+}
+
+async function deleteAgentDesign(designId) {
+  const design = state.agent.designs.find((item) => item.id === designId);
+  const approved = await confirmAction(
+    "Delete design",
+    `Delete design ${design?.name || designId}? Saved runs are not affected.`,
+    "Delete"
+  );
+  if (!approved) return;
+  try {
+    await api(`/api/agent/designs/${designId}`, { method: "DELETE" });
+    if (state.agent.designId === designId) setCurrentDesign(null);
+    await loadAgentDesigns();
+    showToast("Design deleted", "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+}
+
+function renderAgentComparison(runs) {
+  state.agent.runs = runs || [];
+  const body = $("#agent-compare-body");
+  const summary = $("#agent-compare-summary");
+  body.replaceChildren();
+  if (!state.agent.runs.length) {
+    summary.textContent = "No runs yet";
+    body.className = "agent-compare-body empty-copy";
+    body.textContent = "Run the agent to compare pass/fail, attempts, duration, output tokens, and circuit metrics.";
+    return;
+  }
+
+  const passed = state.agent.runs.filter((run) => run.status === "passed").length;
+  const failed = state.agent.runs.filter((run) => run.status === "failed").length;
+  const durations = state.agent.runs.map((run) => run.duration_ms).filter((value) => Number.isFinite(value));
+  const tokenRuns = state.agent.runs.map((run) => run.output_tokens ?? run.total_tokens).filter((value) => Number(value) > 0);
+  const average = (values) => values.length ? values.reduce((total, value) => total + Number(value), 0) / values.length : null;
+  const averageDuration = average(durations);
+  summary.textContent = `${state.agent.runs.length} runs · ${passed} pass · ${failed} fail`;
+
+  const chips = document.createElement("div");
+  chips.className = "compare-summary";
+  [
+    ["RUNS", `${state.agent.runs.length}`, ""],
+    ["PASS", `${passed}`, "pass"],
+    ["FAIL", `${failed}`, "fail"],
+    ["AVG TIME", averageDuration === null ? "—" : formatDuration(averageDuration), ""],
+  ].forEach(([label, value, tone]) => {
+    const chip = document.createElement("span");
+    chip.className = `compare-chip ${tone}`;
+    const strong = document.createElement("b");
+    strong.textContent = label;
+    chip.append(strong, document.createTextNode(value));
+    chips.append(chip);
+  });
+  body.append(chips);
+
+  const wrap = document.createElement("div");
+  wrap.className = "compare-table-wrap";
+  const table = document.createElement("table");
+  table.className = "compare-table";
+  const colgroup = document.createElement("colgroup");
+  ["23%", "9%", "7%", "9%", "9%", "15%", "18%", "10%"].forEach((width) => {
+    const col = document.createElement("col");
+    col.style.width = width;
+    colgroup.append(col);
+  });
+  table.append(colgroup);
+  const head = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  ["Run", "Result", "Attempts", "Duration", "OUT TOKENS", "CPU / CPI", "Area / Power", "Action"].forEach((label, index) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    if (index === 7) th.className = "compare-action";
+    else if (index >= 2) th.className = "compare-num";
+    headRow.append(th);
+  });
+  head.append(headRow);
+  const tbody = document.createElement("tbody");
+  state.agent.runs.forEach((run) => {
+    const tr = document.createElement("tr");
+    tr.tabIndex = 0;
+    tr.title = `Load ${run.run_id}`;
+    if (state.agent.run?.run_id === run.run_id) tr.classList.add("active");
+    const addCell = (text, className = "") => {
+      const td = document.createElement("td");
+      td.textContent = text;
+      if (className) td.className = className;
+      tr.append(td);
+      return td;
+    };
+    addCell(run.run_id.replace(/^agent-/, ""), "compare-design");
+    const statusCell = document.createElement("td");
+    const [label, tone] = statusMeta(run.status);
+    const badge = document.createElement("span");
+    badge.className = `compare-status ${tone}`;
+    badge.textContent = label;
+    statusCell.append(badge);
+    if (run.architecture_profile === "l3_architecture") {
+      statusCell.append(document.createTextNode(" · Bundled"));
+    }
+    tr.append(statusCell);
+    addCell(`${run.attempts ?? 1}`, "compare-num");
+    addCell(formatDuration(run.duration_ms), "compare-num");
+    addCell((run.output_tokens ?? run.total_tokens) ? `${run.output_tokens ?? run.total_tokens}` : "—", "compare-num");
+    const level = run.cpu_level === null || run.cpu_level === undefined ? "—" : `L${run.cpu_level}`;
+    const cpi = run.cpu_cpi === null || run.cpu_cpi === undefined ? "—" : Number(run.cpu_cpi).toFixed(3);
+    addCell(`${level} / ${cpi}`, "compare-num compare-metric");
+    const area = run.area !== null && run.area !== undefined ? Number(run.area).toFixed(3) : "—";
+    const power = run.total_power_w !== null && run.total_power_w !== undefined
+      ? `${(Number(run.total_power_w) * 1e6).toFixed(3)} µW`
+      : "—";
+    addCell(`${area} / ${power}`, "compare-num compare-metric");
+    const actionCell = document.createElement("td");
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "run-delete-button compare-delete-button";
+    remove.textContent = "Delete";
+    remove.setAttribute("aria-label", `Delete agent run ${run.run_id}`);
+    remove.addEventListener("click", (event) => {
+      event.stopPropagation();
+      deleteAgentRun(run.run_id);
+    });
+    actionCell.append(remove);
+    tr.append(actionCell);
+    const load = () => loadAgentRun(run.run_id);
+    tr.addEventListener("click", load);
+    tr.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        load();
+      }
+    });
+    tbody.append(tr);
+  });
+  table.append(head, tbody);
+  wrap.append(table);
+  body.className = "agent-compare-body";
+  body.append(wrap);
+}
+
+/* ------------------------------- Agent runs ------------------------------- */
+
+function setAgentRunningUi(running) {
+  $("#agent-view").classList.toggle("running", running);
+  $("#agent-run-button").disabled = running;
+  $("#agent-stop-button").classList.toggle("hidden", !running);
+  $("#agent-stop-button").disabled = state.agent.cancelling;
+  $("#agent-progress").classList.toggle("hidden", !running);
+  $("#agent-progress").classList.toggle("indeterminate", running);
+}
+
+function startRunTimer() {
+  clearInterval(state.agent.runTimer);
+  state.agent.runStartedAt = Date.now();
+  state.agent.runTimer = setInterval(() => {
+    if (!state.agent.running) return;
+    if (state.agent.job?.status === "waiting_input") return;
+    const elapsed = formatDuration(Date.now() - state.agent.runStartedAt);
+    $("#agent-run-status").textContent = state.agent.cancelling
+      ? `Stopping… · ${elapsed}`
+      : `Running · ${state.agent.events.length} steps · ${elapsed}`;
+    $("#agent-run-status").className = "muted running";
+  }, 1000);
+}
+
+function stopRunTimer() {
+  clearInterval(state.agent.runTimer);
+  state.agent.runTimer = null;
+}
+
+function updateAgentRunStatus(job) {
+  const status = job?.status || (state.agent.run?.status ?? "ready");
+  const level = job?.error ? "error" : ["running", "cancelling", "waiting_input"].includes(status) ? "running" : "";
+  if (status === "waiting_input") {
+    $("#agent-run-status").textContent = "Waiting for Spec input…";
+    $("#agent-run-status").className = "muted running";
+    return;
+  }
+  if (status === "running" || status === "cancelling") {
+    const elapsed = state.agent.runStartedAt ? formatDuration(Date.now() - state.agent.runStartedAt) : "0 ms";
+    $("#agent-run-status").textContent = status === "cancelling"
+      ? `Stopping… · ${elapsed}`
+      : `Running · ${state.agent.events.length} steps · ${elapsed}`;
+  } else if (job?.error) {
+    const [label] = statusMeta(job.status);
+    $("#agent-run-status").textContent = state.agent.run
+      ? `${label} · ${state.agent.run.run_id} · ${formatDuration(state.agent.run.duration_ms)}`
+      : `${label} · ${job.error}`;
+    $("#agent-run-status").title = job.error;
+  } else if (state.agent.run) {
+    const result = state.agent.run;
+    const [label] = statusMeta(result.status);
+    const tokens = totalTokens(result.events);
+    const verified = result.result?.cpu_capability?.verified_level;
+    const levelLabel = result.status === "passed" && Number.isInteger(verified) ? ` · L${verified}` : "";
+    const sourceLabel = result.result?.architecture_profile === "l3_architecture" ? " · Bundled architecture" : "";
+    $("#agent-run-status").textContent = `${label}${levelLabel}${sourceLabel} · ${result.run_id} · ${formatDuration(result.duration_ms)}${tokens ? ` · ${tokens} tok` : ""}`;
+  } else {
+    $("#agent-run-status").textContent = "Ready · click Run Agent";
+  }
+  $("#agent-run-status").className = `muted ${level}`;
+  updateResumeButton();
+}
+
+async function saveAgentGraph() {
+  const graph = agentGraph();
+  if (!graph) return null;
+  localStorage.setItem("ai-eda-agent-graph-draft", JSON.stringify(graph));
+  setAgentSaveStatus("Saving…", "saving");
+  try {
+    const saved = await api("/api/agent/graph", { method: "PUT", body: JSON.stringify(graph) });
+    state.agent.serverGraph = saved;
+    localStorage.removeItem("ai-eda-agent-graph-draft");
+    setAgentSaveStatus("Flow saved", "saved");
+    return saved;
+  } catch (error) {
+    setAgentSaveStatus("Save failed; draft kept in browser", "error");
+    showToast(error.message, "error");
+    throw error;
+  }
+}
+
+function scheduleAgentSave() {
+  if (!agentGraph()) return;
+  localStorage.setItem("ai-eda-agent-graph-draft", JSON.stringify(agentGraph()));
+  setAgentSaveStatus("Browser draft saved", "saving");
+  clearTimeout(state.agent.saveTimer);
+  state.agent.saveTimer = setTimeout(() => saveAgentGraph().catch(() => {}), 700);
+}
+
+function resumableAgentRun() {
+  const failedStatuses = new Set(["failed", "cancelled", "error"]);
+  const current = state.agent.run;
+  if (current?.run_id && failedStatuses.has(current.status)) return current;
+  const run = (state.agent.runs || []).find((item) => item.run_id && failedStatuses.has(item.status));
+  return run || null;
+}
+
+function updateResumeButton() {
+  const button = $("#agent-resume-button");
+  if (!button) return;
+  const source = resumableAgentRun();
+  const visible = Boolean(source) && !state.agent.running;
+  button.classList.toggle("hidden", !visible);
+  button.disabled = !visible;
+  button.title = source ? "Continue Coder from the previous Spec/Plan" : "No resumable failed run";
+}
+
+async function resumeAgentRun() {
+  if (state.agent.running) return;
+  const source = resumableAgentRun();
+  if (!source?.run_id) {
+    showToast("No resumable failed run", "warning");
+    return;
+  }
+  await runAgent(source.run_id);
+}
+
+async function runAgent(resumeFrom = null) {
+  if (!agentGraph() || state.agent.running) return;
+  const resumeId = typeof resumeFrom === "string" && resumeFrom ? resumeFrom : null;
+  state.agent.running = true;
+  state.agent.cancelling = false;
+  state.agent.job = null;
+  state.agent.run = null;
+  state.agent.events = [];
+  state.agent.selectedStep = null;
+  state.agent.followLive = false;
+  state.agent.handoffEdges = new Set();
+  state.agent.detailScrollPositions.clear();
+  state.agent.renderedDetailKey = "";
+  closeAgentInputDialog();
+  renderAgentResult(null);
+  updateFollowLiveButton();
+  setAgentRunningUi(true);
+  startRunTimer();
+  $("#agent-run-status").textContent = resumeId ? `Resuming from ${resumeId}…` : "Starting Agent job…";
+  $("#agent-run-status").className = "muted running";
+  renderAgentCanvas();
+  renderAgentEvents();
+  try {
+    const job = await api("/api/agent/jobs", {
+      method: "POST",
+      body: JSON.stringify({
+        thinking: $("#agent-thinking").checked,
+        temperature: Number($("#agent-temperature").value),
+        max_tokens: Number($("#agent-max-tokens").value || 60000),
+        max_calls: Number($("#agent-max-calls")?.value || 100),
+        max_repair_attempts: Number($("#agent-max-repair-attempts")?.value || 8),
+        reasoning_effort: $("#agent-reasoning-effort").value,
+        planner_skill: Boolean($("#agent-planner-skill")?.checked),
+        resume_from: resumeId,
+        architecture_profile: !resumeId && state.agent.projectId === "rv32i5_ooo"
+          ? $("#agent-l3-start").value || null : null,
+        project_id: state.agent.projectId || "stream_filter",
+      }),
+    });
+    state.agent.job = { job_id: job.job_id, status: "running", events: [], result: null, error: null };
+    pollAgentJob(job.job_id, 0);
+  } catch (error) {
+    state.agent.running = false;
+    stopRunTimer();
+    setAgentRunningUi(false);
+    $("#agent-run-status").textContent = error.message;
+    $("#agent-run-status").className = "muted error";
+    showToast(error.message, "error");
+  }
+}
+
+async function pollAgentJob(jobId, attempt = 0) {
+  if (!state.agent.running) return;
+  try {
+    const job = await api(`/api/agent/jobs/${jobId}`);
+    if (!state.agent.job || state.agent.job.job_id !== jobId) return;
+    state.agent.job = job;
+    state.agent.events = job.result?.events?.length ? job.result.events : (job.events || []);
+    if (job.run_id && Date.now() - handoffRefreshAt > 1000) {
+      handoffRefreshAt = Date.now();
+      refreshAgentHandoffs(job.run_id).catch(() => {});
+    }
+    if (state.agent.followLive && state.agent.events.length) {
+      state.agent.selectedStep = state.agent.events[state.agent.events.length - 1].step;
+    }
+    renderAgentCanvas();
+    renderAgentEvents();
+    updateAgentRunStatus(job);
+    if (job.status === "waiting_input") {
+      showAgentInputDialog(job.input_request);
+      return;
+    }
+    if (["running", "cancelling"].includes(job.status)) {
+      clearTimeout(state.agent.pollTimer);
+      state.agent.pollTimer = setTimeout(() => pollAgentJob(jobId), 500);
+    } else {
+      finishAgentJob(job);
+    }
+  } catch (error) {
+    if (attempt < 3) {
+      clearTimeout(state.agent.pollTimer);
+      state.agent.pollTimer = setTimeout(() => pollAgentJob(jobId, attempt + 1), 800 * (attempt + 1));
+      return;
+    }
+    state.agent.running = false;
+    stopRunTimer();
+    setAgentRunningUi(false);
+    $("#agent-run-status").textContent = `Unable to read Agent job status: ${error.message}`;
+    $("#agent-run-status").className = "muted error";
+    showToast(`Unable to read Agent job status: ${error.message}`, "error");
+  }
+}
+
+function closeAgentInputDialog() {
+  const dialog = $("#agent-input-dialog");
+  if (dialog?.open) dialog.close();
+  state.agent.waitingInput = null;
+}
+
+function showAgentInputDialog(request) {
+  if (!request) return;
+  state.agent.waitingInput = request;
+  const dialog = $("#agent-input-dialog");
+  if (!dialog || dialog.open) return;
+  $("#agent-input-summary").textContent = request.prompt || "Parser needs the following Spec details.";
+  const list = $("#agent-input-questions");
+  list.replaceChildren();
+  [...(request.missing || []), ...(request.questions || [])].forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = String(item);
+    list.append(li);
+  });
+  $("#agent-input-response").value = "";
+  $("#agent-input-status").textContent = "";
+  dialog.showModal();
+  setTimeout(() => $("#agent-input-response").focus(), 50);
+}
+
+async function submitAgentInput(event) {
+  event.preventDefault();
+  const job = state.agent.job;
+  const response = $("#agent-input-response").value.trim();
+  if (!job || !response) {
+    $("#agent-input-status").textContent = "Enter additional details";
+    return;
+  }
+  $("#agent-input-submit").disabled = true;
+  $("#agent-input-status").textContent = "Submitting…";
+  try {
+    await api(`/api/agent/jobs/${job.job_id}/input`, {
+      method: "POST",
+      body: JSON.stringify({ response }),
+    });
+    closeAgentInputDialog();
+    updateAgentRunStatus({ status: "running" });
+    pollAgentJob(job.job_id);
+  } catch (error) {
+    $("#agent-input-status").textContent = error.message;
+  } finally {
+    $("#agent-input-submit").disabled = false;
+  }
+}
+
+async function cancelAgentInput() {
+  closeAgentInputDialog();
+  await cancelAgentRun();
+  const job = state.agent.job;
+  if (job) pollAgentJob(job.job_id);
+}
+
+function finishAgentJob(job) {
+  closeAgentInputDialog();
+  state.agent.running = false;
+  state.agent.cancelling = false;
+  stopRunTimer();
+  setAgentRunningUi(false);
+  if (job.result) {
+    state.agent.run = job.result;
+    state.agent.events = job.result.events || state.agent.events;
+    state.agent.selectedStep = pickEventForResult(job.result);
+  } else {
+    state.agent.run = null;
+    state.agent.events = job.events || state.agent.events;
+    state.agent.selectedStep = state.agent.events[state.agent.events.length - 1]?.step ?? null;
+  }
+  state.agent.followLive = false;
+  updateFollowLiveButton();
+  if (state.agent.run?.run_id) {
+    refreshAgentHandoffs(state.agent.run.run_id).catch(() => {});
+  }
+  updateAgentRunStatus(job);
+  renderAgentResult(job.result?.result || null);
+  renderAgentCanvas();
+  renderAgentEvents();
+  loadAgentRuns().catch(() => {});
+  const status = job.result?.status || job.status;
+  if (job.status === "failed") showToast(job.error || "Agent run failed", "error");
+  else if (job.status === "cancelled") showToast("Agent run cancelled", "warning");
+  else if (status === "passed") showToast(`Agent finished: TB PASS (${formatDuration(job.result?.duration_ms)})`, "success");
+  else if (status === "failed") showToast("Agent finished; teacher TB did not pass", "error");
+  else showToast("Agent run complete", "success");
+}
+
+function pickEventForResult(result) {
+  const events = result.events || [];
+  if (result.status === "failed") {
+    const failed = [...events].reverse().find((event) => event.report && !event.report.passed);
+    if (failed) return failed.step;
+  }
+  const verify = [...events].reverse().find((event) => event.report);
+  return verify?.step ?? events[events.length - 1]?.step ?? null;
+}
+
+async function cancelAgentRun() {
+  if (!state.agent.running || state.agent.cancelling || !state.agent.job) return;
+  state.agent.cancelling = true;
+  $("#agent-stop-button").disabled = true;
+  $("#agent-run-status").textContent = "Stopping…";
+  $("#agent-run-status").className = "muted running";
+  try {
+    await api(`/api/agent/jobs/${state.agent.job.job_id}/cancel`, { method: "POST", body: "{}" });
+    showToast("Stop requested; applies after the current model call", "warning");
+  } catch (error) {
+    state.agent.cancelling = false;
+    $("#agent-stop-button").disabled = false;
+    showToast(error.message, "error");
+  }
+}
+
+function renderAgentProjectTabs() {
+  const container = $("#agent-project-tabs");
+  if (!container) return;
+  container.replaceChildren();
+  (state.agent.projects || []).forEach((project) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `agent-project-tab ${project.id === state.agent.projectId ? "active" : ""}`;
+    button.dataset.projectId = project.id;
+    button.textContent = project.title;
+    button.title = project.description || project.title;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", project.id === state.agent.projectId ? "true" : "false");
+    button.addEventListener("click", () => switchAgentProject(project.id));
+    container.append(button);
+  });
+  const description = $("#agent-project-description");
+  if (description) description.textContent = state.agent.projectDescription || "";
+}
+
+function setAgentProject(projectId) {
+  $("#agent-l3-start-option").classList.toggle("hidden", projectId !== "rv32i5_ooo");
+  const isL1 = projectId === "rv32i5_cache";
+  const wasL1 = state.agent.projectId === "rv32i5_cache";
+  const useCacheDefaults = ["rv32i5_cache", "rv32i5_predict"].includes(projectId);
+  const usedCacheDefaults = ["rv32i5_cache", "rv32i5_predict"].includes(state.agent.projectId);
+  if (useCacheDefaults !== usedCacheDefaults) {
+    const thinking = $("#agent-thinking");
+    if (useCacheDefaults) {
+      state.agent.previousThinking = thinking.checked;
+      thinking.checked = false;
+    } else {
+      thinking.checked = state.agent.previousThinking ?? true;
+    }
+  }
+  if (isL1 !== wasL1) {
+    const repairs = $("#agent-max-repair-attempts");
+    if (isL1) {
+      state.agent.previousRepairs = repairs.value;
+      repairs.value = 20;
+    } else {
+      repairs.value = state.agent.previousRepairs ?? repairs.defaultValue;
+    }
+  }
+  state.agent.projectId = projectId;
+}
+
+async function switchAgentProject(projectId) {
+  if (state.agent.running) {
+    showToast("Agent is running; finish or stop before switching projects", "warning");
+    return;
+  }
+  if (!projectId || projectId === state.agent.projectId) return;
+  setAgentProject(projectId);
+  state.agent.run = null;
+  state.agent.job = null;
+  state.agent.events = [];
+  state.agent.selectedStep = null;
+  state.agent.followLive = true;
+  state.agent.handoffEdges = new Set();
+  updateAgentHandoffBadges();
+  renderAgentResult(null);
+  updateAgentRunStatus(null);
+  await loadAgentGraph();
+  await loadAgentRuns();
+  renderAgentEvents();
+  showToast(`Switched to ${state.agent.projectDescription || projectId}`, "success");
+}
+
+let handoffRefreshAt = 0;
+
+async function refreshAgentHandoffs(runId = state.agent.run?.run_id) {
+  if (!runId) {
+    state.agent.handoffEdges = new Set();
+    updateAgentHandoffBadges();
+    return;
+  }
+  if (!state.agent.run || state.agent.run.run_id !== runId) return;
+  try {
+    const payload = await api(`/api/agent/runs/${encodeURIComponent(runId)}/handoffs`);
+    state.agent.handoffEdges = new Set((payload.edges || []).map((edge) => edge.edge_id));
+  } catch (_) {
+    state.agent.handoffEdges = new Set();
+  }
+  updateAgentHandoffBadges();
+}
+
+async function loadAgentRuns() {
+  const projectId = state.agent.projectId || "stream_filter";
+  const payload = await api(`/api/agent/runs?project=${encodeURIComponent(projectId)}`);
+  renderAgentComparison(payload.runs || []);
+  updateResumeButton();
+}
+
+async function loadAgentRun(runId) {
+  if (state.agent.running) {
+    showToast("Agent is running; wait or stop before loading history", "warning");
+    return;
+  }
+  try {
+    const payload = await api(`/api/agent/runs/${runId}`);
+    state.agent.running = false;
+    state.agent.cancelling = false;
+    state.agent.job = null;
+    state.agent.run = payload;
+    state.agent.events = payload.events || [];
+    state.agent.selectedStep = pickEventForResult(payload);
+    await refreshAgentHandoffs(payload.run_id);
+    state.agent.followLive = false;
+    state.agent.detailScrollPositions.clear();
+    state.agent.renderedDetailKey = "";
+    updateFollowLiveButton();
+    stopRunTimer();
+    setAgentRunningUi(false);
+    $("#agent-progress").classList.add("hidden");
+    updateAgentRunStatus({ status: payload.status });
+    renderAgentResult(payload.result || null);
+    renderAgentCanvas();
+    renderAgentEvents();
+    renderAgentComparison(state.agent.runs);
+    showToast(`Run loaded: ${runId}`, "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+}
+
+async function retestCurrentAgentRun(button) {
+  const runId = state.agent.run?.run_id;
+  if (!runId || state.agent.running || state.agent.retesting) return;
+  state.agent.retesting = true;
+  button.disabled = true;
+  button.textContent = "Retesting…";
+  try {
+    const { run } = await api(`/api/agent/runs/${encodeURIComponent(runId)}/retest`, { method: "POST" });
+    if (state.agent.run?.run_id === runId && !state.agent.running) {
+      await loadAgentRun(runId);
+    }
+    await loadAgentRuns();
+    const passed = run.status === "passed";
+    showToast(passed ? "Retest finished: teacher TB passed" : "Retest finished: teacher TB failed",
+      passed ? "success" : "error");
+  } catch (error) {
+    showToast(error.message, "error");
+  } finally {
+    state.agent.retesting = false;
+    button.disabled = false;
+    button.textContent = "Retest";
+  }
+}
+
+async function deleteAgentRun(runId) {
+  const approved = await confirmAction("Delete agent run", `Delete “${runId}”? This cannot be undone.`, "Delete");
+  if (!approved) return;
+  try {
+    await api(`/api/agent/runs/${runId}`, { method: "DELETE" });
+    if (state.agent.run?.run_id === runId) {
+      state.agent.run = null;
+      state.agent.events = [];
+      state.agent.selectedStep = null;
+      state.agent.handoffEdges = new Set();
+      updateAgentHandoffBadges();
+      renderAgentResult(null);
+      renderAgentCanvas();
+      renderAgentEvents();
+      updateAgentRunStatus(null);
+    }
+    await loadAgentRuns();
+    showToast(`Deleted ${runId}`, "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+}
+
+async function clearAgentRuns() {
+  const approved = await confirmAction("Clear agent runs", "Clear all agent runs? This cannot be undone.", "Clear");
+  if (!approved) return;
+  try {
+    const projectId = state.agent.projectId || "stream_filter";
+    const result = await api(`/api/agent/runs?project=${encodeURIComponent(projectId)}`, { method: "DELETE" });
+    state.agent.run = null;
+    state.agent.events = [];
+    state.agent.selectedStep = null;
+    renderAgentResult(null);
+    renderAgentCanvas();
+    renderAgentEvents();
+    updateAgentRunStatus(null);
+    await loadAgentRuns();
+    showToast(`Cleared ${result.deleted} agent runs`, "success");
+  } catch (error) {
+    showToast(error.message, "error");
+  }
+}
+
+async function loadAgentGraph() {
+  const projectId = state.agent.projectId || "stream_filter";
+  const [server, agentState] = await Promise.all([
+    api("/api/agent/graph"),
+    api(`/api/agent/state?project=${encodeURIComponent(projectId)}`),
+  ]);
+  state.agent.projectId = agentState.project?.id || projectId;
+  state.agent.projects = agentState.projects || [];
+  state.agent.projectDescription = agentState.project?.description || "";
+  state.agent.spec = agentState.spec || "";
+  renderAgentProjectTabs();
+  state.agent.serverGraph = normalizeAgentGraph(server);
+  state.agent.graph = JSON.parse(JSON.stringify(state.agent.serverGraph));
+  state.agent.needsFit = true;
+  renderAgentCanvas();
+  updateFollowLiveButton();
+  requestAnimationFrame(() => {
+    if (!$("#agent-view").classList.contains("hidden")) fitAgentView();
+  });
+}
+

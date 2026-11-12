@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+import os
 from pathlib import Path
 
 from ai_eda.agent.projects import get_project
@@ -94,7 +95,7 @@ class TesterAgent(SubAgent):
                 power_testbench_top=project["power_testbench_top"],
                 expected_cpu_level=project.get("expected_cpu_level"),
                 rtl_top_module=plan.get("top_module"),
-                timeout_seconds=int(project.get("timeout_seconds", 20)),
+                timeout_seconds=int(os.environ.get("EDA_SIM_TIMEOUT") or project.get("timeout_seconds", 20)),
                 run_dir=tester_dir,
                 metrics_on_failure=False,
             )

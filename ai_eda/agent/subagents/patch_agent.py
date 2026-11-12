@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+from ai_eda.agent.compile_repair import repair as repair_compile_faults
 from ai_eda.agent.cpu_workflow import L3_EDGE_CONTRACT, in_order_boundary_wiring, l3_allocation_wiring, module_headers
 from ai_eda.agent.patches import PatchProtocolError, RepairApplication, apply_repair_payload
 from ai_eda.agent.skills.cpu_observation import dcache_lane_observation, icache_word_observation
@@ -38,6 +39,39 @@ Prefer short anchored edits. Each expected string must match verbatim once in th
 correction you may instead return files=[{path, content}] for the same allowed paths.
 Include only files whose contents change."""
 
+
+def _compile_stderr(files: dict[str, str]) -> str | None:
+    """返回展开失败时的 stderr；通过则返回 None。"""
+
+    with tempfile.TemporaryDirectory(prefix="eda-mech-") as directory:
+        path = Path(directory) / "generated_attempt0.sv"
+        path.write_text(combine_files(files))
+        try:
+            result = subprocess.run(
+                ["iverilog", "-g2012", "-s", "rv32i5", "-tnull", str(path)],
+                capture_output=True, text=True, timeout=15,
+            )
+        except subprocess.TimeoutExpired:
+            return None
+    return None if result.returncode == 0 else result.stderr
+
+
+def mechanical_compile_repair(files: dict[str, str]) -> dict[str, str]:
+    """重复声明/双驱动/重复端口这类错误有确定位置：机械删掉再展开，别让模型猜一轮。
+
+    编译会在第一个 elaboration 错误处停下，所以修完一类错误才会暴露下一类，需要迭代。
+    """
+
+    current = files
+    for _ in range(3):
+        stderr = _compile_stderr(current)
+        if not stderr:
+            return current
+        repaired, notes = repair_compile_faults(current, stderr)
+        if not notes:
+            break
+        current = repaired
+    return current if _compile_stderr(current) is None else files
 
 class PatchAgent(SubAgent):
     name = "patch"
@@ -121,6 +155,7 @@ class PatchAgent(SubAgent):
                     l3_allocation_wiring(candidate)
                 if plan.get("in_order_boundary_contract"):
                     in_order_boundary_wiring(candidate)
+                candidate = mechanical_compile_repair(candidate)
                 # Let Tester compare incremental progress when the baseline already fails compilation.
                 if cpu_simulation:
                     self._check_cpu_compile(candidate, changed_interfaces)

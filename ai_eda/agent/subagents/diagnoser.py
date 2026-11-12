@@ -2056,7 +2056,21 @@ class DiagnoserAgent(SubAgent):
         connections = l3_connections(files) if plan.get("l3_allocation_tag_contract") else {}
         raw = (_observed_diagnosis(evidence, files, failing_probes) if stage == "simulation"
                else _observed_compile_diagnosis(evidence, files) if stage == "compile" else None)
-        source_evidence = _source_evidence(evidence, files, failing_probes) if raw is None else {}
+        stale_measurement = bool(
+            raw is not None and previous and not previous[-1].get("accepted")
+            and previous[-1].get("reason") == "no_verified_progress"
+        )
+        if stale_measurement:
+            # 机械诊断上一轮已经被补丁验证为无效：继续沿用它只会重复同一份补丁。
+            # 把测量结果降级成提示交还给模型，强制换一个根因假设。
+            source_evidence = {
+                "previously_failed_measured_diagnosis": raw,
+                "note": "上一轮按这份机械诊断打的补丁零效果（失败数逐字不变），"
+                        "不要再重复它；请给出不同的根因，并说明为什么这份测量判断错了。",
+            }
+            raw = None
+        if not stale_measurement:
+            source_evidence = _source_evidence(evidence, files, failing_probes) if raw is None else {}
         prompt = json.dumps({
             "current_stage": stage,
             "failure_packet": packet, "modules": module_map,

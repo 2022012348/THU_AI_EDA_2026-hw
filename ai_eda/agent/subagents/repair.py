@@ -175,6 +175,12 @@ def repair_verdict(old: dict, new: dict) -> tuple[bool, str]:
     if new.get("stage") == "compile" or (new.get("timed_out") and not old.get("timed_out")):
         return False, "lost_simulation_coverage"
     if old.get("timed_out") and not new.get("timed_out"):
+        # 之前的超时设计现在能跑完，但断言数暴涨时不能算进步：
+        # 实测 L3 续跑把 34 条失败"修"成 234 条，因为旧口径只看到"不再超时"。
+        old_failed = len(old.get("checks") or [])
+        new_failed = len(new.get("checks") or [])
+        if old_failed and new_failed > 2 * old_failed:
+            return False, "completed_simulation_with_assertion_explosion"
         return True, "completed_teacher_simulation"
     old_passed = {x["name"] for x in old.get("test_suites", []) if x.get("passed") and not x.get("skipped")}
     new_passed = {x["name"] for x in new.get("test_suites", []) if x.get("passed") and not x.get("skipped")}

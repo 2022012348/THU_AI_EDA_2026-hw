@@ -584,8 +584,11 @@ def run_agent(
             if tester_attempts == 1:
                 initial_failed_checks = failing
                 retired = _first_retirements(report)
-                stalled_limit = int(os.environ.get("EDA_STALL_RETIREMENTS", "5"))
-                if (not report.get("passed") and report.get("stage") == "simulation"
+                stalled_limit = int(os.environ.get("EDA_STALL_RETIREMENTS", "2"))
+                # 只有 L1 的死设计才值得早停：L2/L3 退休少是常态（ROB/发射还没接通），
+                # 实测把「退休≤2 但只有 34 条失败」的 L3 设计错杀过。
+                if (project.get("expected_cpu_level") == 1 and not report.get("passed")
+                        and report.get("stage") == "simulation"
                         and retired is not None and retired <= stalled_limit):
                     # 1024 周期只退休个位数：这类设计是死的，修补 10 轮也回不来。
                     repair_stop = f"stalled_design: retired={retired} in observation window"
